@@ -7,8 +7,10 @@ const User = use('App/Models/User');
 class UserController {
   
   create({ view }) {
-    return view.render('frontend.register');
+    return view.render('frontend.ordemservico');
   }
+  
+  
 
 
   async store({ auth, session, request, response }) {

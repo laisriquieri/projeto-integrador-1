@@ -16,9 +16,9 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-//Route.on('/').render('frontend.home')
-Route.get('/', 'HomeController.index').as('home.index')
-Route.get('/avaliacoes', 'AvaliacoesController.index').as('avaliacoes.index').middleware('auth')
+Route.on('/').render('session.ordemservico')
+Route.get('/', 'HomeController').as('frontend.home')
+Route.get('/ordemservico', 'OrdemServicoController.index').as('ordemservico.master').middleware('auth')
 Route.get('/categoria', 'CategoriaController.index').as('categoria.index').middleware('auth')
 Route.get('/contato', 'ContatoController.index').as('contato.index').middleware('auth')
 Route.get('/filmes', 'FilmesController.index').as('filmes.index').middleware('auth')
