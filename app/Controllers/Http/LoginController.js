@@ -2,9 +2,9 @@
 
 'use strict';
 
-class SessionController {
+class LoginController {
   create({ view }) {
-    return view.render('session.create');
+    return view.render('frontend.login.login');
   }
 
   async store({ auth, request, response, session }) {
@@ -30,8 +30,8 @@ class SessionController {
     await auth.logout();
     session.flash({ notification: 'Logged out successfully' });
 
-    return response.redirect('/');
+    return response.redirect('/login');
   }
 }
 
-module.exports = SessionController;
+module.exports = LoginController;

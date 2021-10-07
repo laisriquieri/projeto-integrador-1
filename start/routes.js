@@ -16,19 +16,34 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('session.ordemservico')
-Route.get('/', 'HomeController').as('frontend.home')
-Route.get('/ordemservico', 'OrdemServicoController.index').as('ordemservico.master').middleware('auth')
-Route.get('/categoria', 'CategoriaController.index').as('categoria.index').middleware('auth')
-Route.get('/contato', 'ContatoController.index').as('contato.index').middleware('auth')
-Route.get('/filmes', 'FilmesController.index').as('filmes.index').middleware('auth')
+//-----------------------------------
+//ROTAS DESPROTEGIDAS
+//-----------------------------------
+// Login
+Route.get('login', 'LoginController.create');
+Route.post('login', 'LoginController.store');
+Route.get('logout', 'LoginController.delete');
+
+// Usuarios (PROVISORIO)
+Route.get('usuario', 'UserController.create'); // create.edge provisório
+Route.post('usuario/store', 'UserController.store');
+
+//-----------------------------------
+//ROTAS PROTEGIDAS
+//-----------------------------------
+Route.group(() => {
+ 
+       // Raiz
+        Route.get('/', 'OrdemServicoController.show');
+
+        // Ordens de Serviços
+        Route.get('os', 'OrdemServicoController.show');
+        Route.get('os/create', 'OrdemServicoController.create'); // Pensar sobre CSS e Montar form.
+        //Route.post('os/store', 'OrdemServicoController.store'); // Aguardando form.
+
+        // Clientes
+        Route.get('clientes', 'ClienteController.show'); // Aguardando página Laís
+
+}).middleware('auth')
 
 
-// Register Users
-Route.get('register', 'UserController.create');
-Route.post('register', 'UserController.store');
-
-// Session
-Route.get('login', 'SessionController.create');
-Route.post('login', 'SessionController.store');
-Route.get('logout', 'SessionController.delete');

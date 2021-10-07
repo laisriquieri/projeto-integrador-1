@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lemes Company</title>
+        
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
+        <!-- CSS e Bootstrap)-->
+        <link rel="stylesheet" type="text/css" href="css/loginUtil.css">
+        <link rel="stylesheet" type="text/css" href="css/stylesordem.css">
+    </head>
+
+    <body>
+
+<h1>CRIAR USUARIO (provisorio)</h1>
+
+  <form action="/usuario/store" method="POST">
+    {{ csrfField() }}
+
+    <div class="form-group">
+      <label for="">Username</label>
+      <input type="text" name="username" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="text" name="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="">Password</label>
+      <input type="password" name="password" class="form-control">
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+
+    </body>
+</html>
