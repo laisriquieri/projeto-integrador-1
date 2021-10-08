@@ -11,7 +11,7 @@ Entrar na pasta do projeto clonado.
 
 Renomear o arquivo .env.example para .env
 
-Se ainda não tiver o CLI do ADONIS, instalar com: npm i --global @adonisjs/cli
+Dentro da pasta do projeto clonado usar o comando no cmd: npm i --global @adonisjs/cli
 
 Dentro da pasta do projeto clonado usar o comando no cmd: npm install
 

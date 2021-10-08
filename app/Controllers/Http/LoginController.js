@@ -3,8 +3,9 @@
 'use strict';
 
 class LoginController {
-  create({ view }) {
-    return view.render('frontend.login.login');
+
+  index({ view }) {
+    return view.render('frontend.login.index');
   }
 
   async store({ auth, request, response, session }) {

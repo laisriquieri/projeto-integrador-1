@@ -2,8 +2,8 @@
 
 class OrdemServicoController {
 
-    show({ view }) {
-        return view.render('frontend.ordensservicos.show');
+    index({ view }) {
+        return view.render('frontend.ordensservicos.index');
     }
 
     create({ view }) {

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Cliente = use('App/Models/Cliente');
 
@@ -19,11 +19,10 @@ class ClienteController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-   show ({ request, response, view }) {
 
-    //const clientes = Cliente.all();
-    return view.render('frontend.clientes.show'/*, clientes*/);
-    
+
+   async index ({ view }) {
+    return view.render('frontend.clientes.index');   
     }
 
   /**
@@ -36,6 +35,7 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
+    return view.render('frontend.clientes.create');   
   }
 
   /**
@@ -47,7 +47,45 @@ class ClienteController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+
+    //Em construção...
+    const data = request.only(['tipo'
+                              ,'nome'
+                              ,'cpf_cnpj'
+                              ,'data_nascimento'
+                              ,'telefone'
+                              ,'email'
+                              ,'CEP'
+                              ,'endereco'
+                              ,'numero_endereco'
+                              ,'complemento'
+                              ,'bairro'
+                              ,'cidade'
+                              ,'estado'
+                              ,'observacoes']);
+
+    const cliente = await Cliente.create(data);
+
+    session.flash({ notification: 'Cliente created successfully' });
+
+    return response.redirect('/');
+  
   }
+
+      ['tipo'
+      ,'nome'
+      ,'cpf_cnpj'
+      ,'data_nascimento'
+      ,'telefone'
+      ,'email'
+      ,'CEP'
+      ,'endereco'
+      ,'numero_endereco'
+      ,'complemento'
+      ,'bairro'
+      ,'cidade'
+      ,'estado'
+      ,'observacoes']
 
   /**
    * Display a single cliente.
