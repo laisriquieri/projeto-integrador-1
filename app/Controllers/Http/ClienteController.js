@@ -88,7 +88,7 @@ class ClienteController {
 
     const cliente = await Cliente.find(params.id);
     return  view.render('frontend.clientes.show', {cliente} )
-    
+
   }
 
   /**
@@ -101,6 +101,11 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
+
+    const cliente = await Cliente.find(params.id);
+    //console.log(cliente)
+    return view.render('frontend.clientes.edit', {cliente})
+
   }
 
   /**
