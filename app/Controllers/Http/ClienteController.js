@@ -46,7 +46,7 @@ class ClienteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, response, session }) {
 
     //Em construção...
     const data = request.only(['tipo'
@@ -66,26 +66,12 @@ class ClienteController {
 
     const cliente = await Cliente.create(data);
 
+    //Implementar no front as mensagens flash
     session.flash({ notification: 'Cliente created successfully' });
 
     return response.redirect('/');
   
   }
-
-      ['tipo'
-      ,'nome'
-      ,'cpf_cnpj'
-      ,'data_nascimento'
-      ,'telefone'
-      ,'email'
-      ,'CEP'
-      ,'endereco'
-      ,'numero_endereco'
-      ,'complemento'
-      ,'bairro'
-      ,'cidade'
-      ,'estado'
-      ,'observacoes']
 
   /**
    * Display a single cliente.
