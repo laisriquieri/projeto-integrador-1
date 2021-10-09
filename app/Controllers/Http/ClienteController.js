@@ -51,7 +51,6 @@ class ClienteController {
    */
   async store ({ request, response, session }) {
     
-    //Em construção...
     const data = request.only(['tipo'
                               ,'nome'
                               ,'cpf_cnpj'
@@ -86,6 +85,10 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+
+    const cliente = await Cliente.find(params.id);
+    return  view.render('frontend.clientes.show', {cliente} )
+    
   }
 
   /**

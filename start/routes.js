@@ -45,7 +45,8 @@ Route.group(() => {
         Route.get('clientes', 'ClienteController.index'); // Aguardando página
         Route.get('cliente/create', 'ClienteController.create'); // Aguardando página
         Route.post('cliente/create', 'ClienteController.store'); // Aguardando página
-        
+        Route.get('cliente/show/:id', 'ClienteController.show'); // Aguardando página
+
 }).middleware('auth')
 
 

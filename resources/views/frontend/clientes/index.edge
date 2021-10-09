@@ -24,12 +24,12 @@
         @each(cliente in clientes)
         
         <tr>
-          <td>{{ cliente.nome }}</td>
+          <td><a href="/cliente/show/{{ cliente.id }}">{{ cliente.nome }}</a></td>
           <td>{{ cliente.data_nascimento }}</td>
           <td>{{ cliente.cidade }}</td>
           <td>{{ cliente.estado }}</td>
           <td>{{ cliente.telefone }}</td>
-          <td><a href="/cliente/show/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
+          <td><a href="/cliente/edit/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
           <td><a href="/cliente/destroy/{{ cliente.id }}""><span class="material-icons">delete</span></a></td>
         </tr>
         
