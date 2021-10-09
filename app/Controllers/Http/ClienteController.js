@@ -21,8 +21,11 @@ class ClienteController {
    */
 
 
-   async index ({ view }) {
-    return view.render('frontend.clientes.index');   
+    async index ({ view }) {
+
+    const clientes = await Cliente.all();
+    
+    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });   
     }
 
   /**
@@ -47,7 +50,7 @@ class ClienteController {
    * @param {Response} ctx.response
    */
   async store ({ request, response, session }) {
-
+    
     //Em construção...
     const data = request.only(['tipo'
                               ,'nome'
@@ -63,13 +66,13 @@ class ClienteController {
                               ,'cidade'
                               ,'estado'
                               ,'observacoes']);
-
+    
     const cliente = await Cliente.create(data);
-
+    
     //Implementar no front as mensagens flash
     session.flash({ notification: 'Cliente created successfully' });
 
-    return response.redirect('/');
+    return response.redirect('/clientes');
   
   }
 

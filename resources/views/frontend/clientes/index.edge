@@ -11,51 +11,30 @@
       <thead>
         <tr>
           <th>Cliente</th>
-          <th>Data de Entrada</th>
-          <th>Status</th>
-          <th>Valor</th>
-          <th>Data de Entrega</th>
+          <th>Data de Nascimento</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th>Telefone</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
+        
+        @each(cliente in clientes)
+        
         <tr>
-          <td>Visão do show.edge</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.data_nascimento }}</td>
+          <td>{{ cliente.cidade }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td>{{ cliente.telefone }}</td>
+          <td><a href="/cliente/show/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
+          <td><a href="/cliente/destroy/{{ cliente.id }}""><span class="material-icons">delete</span></a></td>
         </tr>
-        <tr>
-          <td>Visão do show.edge</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Visão do show.edge</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Visão do show.edge</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
+        
+        @endeach
+
       </tbody>
     </table>
   </div>
