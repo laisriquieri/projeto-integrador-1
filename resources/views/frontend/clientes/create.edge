@@ -1,0 +1,189 @@
+@layout("layouts.master")
+
+@section("content")
+
+      <h3>Novo Cliente</h3>
+
+      <div id="busca">
+      </div>
+
+      <div class="label-float">
+        <input list="lista-tipopessoa" type="text" placeholder=" " required/>
+        <label>Selecione o tipo Pessoa</label>
+      </div>
+
+      <datalist id="lista-tipopessoa">
+        <option>Pessoa Física</option>
+        <option>Pessoa Jurídica</option>
+      </datalist>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Nome / Razão Social</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>CPF / CNPJ</label>
+      </div>
+
+      <div class="label-float">
+        <input type="date" placeholder=" " required/>
+        <label>Data Nascimento / Data Abertura</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Telefone</label>
+      </div>
+
+      <div class="label-float">
+        <input type="email" placeholder=" " required/>
+        <label>E-mail</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>CEP</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Rua/Avenida</label>
+      </div>
+
+      <div class="label-float">
+        <input type="number" placeholder=" " required/>
+        <label>Número</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Complemento</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Bairro</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Cidade</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Estado</label>
+      </div>
+
+      <div class="label-float">
+        <input type="text" placeholder=" " required/>
+        <label>Observação do Cliente</label>
+      </div>
+
+      <div class="botoes">
+        <button class="botao-cancelar">
+          Cancelar
+        </button>
+
+        <button class="botao-cadastrar">
+          Cadastrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="lista">
+  <div>
+    <div>
+      <form action="/cliente/create" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+          <label for="">tipo</label>
+          <input type="text" name="tipo" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">nome</label>
+          <input type="text" name="nome" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">cpf_cnpj</label>
+          <input type="text" name="cpf_cnpj" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">data_nascimento</label>
+          <input type="date" name="data_nascimento" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">telefone</label>
+          <input type="text" name="telefone" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">email</label>
+          <input type="text" name="email" value="{{ old('email', '') }}" class="form-control">
+              @if(hasErrorFor('email'))
+                </span> {{ getErrorFor('email') }} </span>
+              @endif
+        </div>
+
+        <div class="form-group">
+          <label for="">CEP</label>
+          <input type="text" name="CEP" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">endereco</label>
+          <input type="text" name="endereco" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">numero_endereco</label>
+          <input type="text" name="numero_endereco" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">complemento</label>
+          <input type="text" name="complemento" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">bairro</label>
+          <input type="text" name="bairro" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">cidade</label>
+          <input type="text" name="cidade" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">estado</label>
+          <input type="text" name="estado" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">observacoes</label>
+          <input type="text" name="observacoes" class="form-control">
+        </div>
+
+        <div class="">
+          <button class="login100-form-btn" type="submit">
+            Salvar
+          </button>
+        </div>
+      </form> 
+    </div>
+-->
+
+@endsection
+

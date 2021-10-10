@@ -1,8 +1,6 @@
 'use strict';
 
 const Cliente = use('App/Models/Cliente');
-//const ClienteValidator = use('App/Validators/Cliente');
-//const { validate } = use('Validator')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -53,19 +51,7 @@ class ClienteController {
    */
   async store ({ request, response, session }) {
     
-    const data = request.only(Cliente.fillable());
-    
-    //const rules = await ClienteValidator.rules();
-    //const messages = await ClienteValidator.messages();
-    
-    //const validation = await validate(data, rules, messages)
-    
-    //if (validation.fails()) {
-    //  session.withErrors(validation.messages())
-
-    //  return response.redirect('back')
-    //}
-
+    const data = request.only(Cliente.fillable()); 
     const cliente = await Cliente.create(data);
 
     session.flash({ notification: 'Cliente salvo com sucesso' });
