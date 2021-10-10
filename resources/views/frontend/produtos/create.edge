@@ -1,0 +1,44 @@
+{{--provisório para testes--}}
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista">
+  <div>
+
+    <div>
+      <form action="/produto" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+          <label for="">Nome</label>
+          <input type="text" name="nome" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">Descrição</label>
+          <input type="text" name="descricao" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">Valor Compra</label>
+          <input type="number" name="valor_compra" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">Valor Venda</label>
+          <input type="number" name="valor_venda" class="form-control">
+        </div>
+
+        <div class="">
+          <button class="login100-form-btn" type="submit">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+@endsection
+

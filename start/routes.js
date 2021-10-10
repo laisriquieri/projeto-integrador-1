@@ -32,7 +32,7 @@ Route.post('usuario/store', 'UserController.store'); //provisório
 //ROTAS PROTEGIDAS
 //-----------------------------------
 Route.group(() => {
- 
+
        // Raiz
         Route.get('/', 'OrdemServicoController.index');
 
@@ -49,7 +49,10 @@ Route.group(() => {
         Route.get('cliente/edit/:id', 'ClienteController.edit'); // Aguardando página
         Route.post('cliente/update/:id', 'ClienteController.update'); // Aguardando página
         Route.post('cliente/destroy/:id', 'ClienteController.destroy'); // Aguardando página
-        
+
+        //Produtos
+        Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
+
 }).middleware('auth')
 
 

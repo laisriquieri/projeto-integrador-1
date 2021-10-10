@@ -26,8 +26,8 @@ class ClienteController {
     async index ({ view }) {
 
     const clientes = await Cliente.all();
-    
-    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });   
+
+    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });
     }
 
   /**
@@ -40,7 +40,7 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    return view.render('frontend.clientes.create');   
+    return view.render('frontend.clientes.create');
   }
 
   /**

@@ -1,0 +1,48 @@
+{{--provisório para testes--}}
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista">
+  <div>
+    <div id="busca">
+
+    </div>
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor Compra</th>
+          <th>Valor venda</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @each(produto in Produtos)
+
+        <tr>
+          <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.valor_compra }}</td>
+          <td>{{ produto.valor_venda }}</td>
+          <td><a href="/produto/edit/{{ produto.id }}"><span class="material-icons">edit</span></a></td>
+          <td><a href="/produto/destroy/{{ produto.id }}"><span class="material-icons">delete</span></a></td>
+        </tr>
+
+        @endeach
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<a href="/produto/create" class="float">
+  <i id="add-button" class="material-icons">add</i>
+</a>
+
+
+@endsection
