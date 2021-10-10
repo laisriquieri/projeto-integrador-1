@@ -51,7 +51,7 @@ Route.group(() => {
         Route.post('cliente/destroy/:id', 'ClienteController.destroy'); // Aguardando página
 
         //Produtos
-        Route.resource("produto", "ProdutoController"); // Para obter a lista de rotas use o comando: adonis route:list
+        Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
 
 }).middleware('auth')
 

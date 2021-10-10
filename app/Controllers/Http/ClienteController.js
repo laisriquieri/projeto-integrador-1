@@ -24,8 +24,8 @@ class ClienteController {
     async index ({ view }) {
 
     const clientes = await Cliente.all();
-    
-    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });   
+
+    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });
     }
 
   /**
@@ -38,7 +38,7 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    return view.render('frontend.clientes.create');   
+    return view.render('frontend.clientes.create');
   }
 
   /**
@@ -50,7 +50,7 @@ class ClienteController {
    * @param {Response} ctx.response
    */
   async store ({ request, response, session }) {
-    
+
     const data = request.only(['tipo'
                               ,'nome'
                               ,'cpf_cnpj'
@@ -65,14 +65,14 @@ class ClienteController {
                               ,'cidade'
                               ,'estado'
                               ,'observacoes']);
-    
-    const cliente = await Cliente.create(data);
-    
+
+    const cliente = await Cliente.store(data);
+
     //Implementar no front as mensagens flash
     session.flash({ notification: 'Cliente created successfully' });
 
     return response.redirect('/clientes');
-  
+
   }
 
   /**
