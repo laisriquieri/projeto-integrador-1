@@ -1,6 +1,8 @@
 'use strict';
 
 const Cliente = use('App/Models/Cliente');
+//const ClienteValidator = use('App/Validators/Cliente');
+//const { validate } = use('Validator')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -51,27 +53,23 @@ class ClienteController {
    */
   async store ({ request, response, session }) {
     
-    const data = request.only(['tipo'
-                              ,'nome'
-                              ,'cpf_cnpj'
-                              ,'data_nascimento'
-                              ,'telefone'
-                              ,'email'
-                              ,'CEP'
-                              ,'endereco'
-                              ,'numero_endereco'
-                              ,'complemento'
-                              ,'bairro'
-                              ,'cidade'
-                              ,'estado'
-                              ,'observacoes']);
+    const data = request.only(Cliente.fillable());
     
-    const cliente = await Cliente.create(data);
+    //const rules = await ClienteValidator.rules();
+    //const messages = await ClienteValidator.messages();
     
-    //Implementar no front as mensagens flash
-    session.flash({ notification: 'Cliente created successfully' });
+    //const validation = await validate(data, rules, messages)
+    
+    //if (validation.fails()) {
+    //  session.withErrors(validation.messages())
 
-    return response.redirect('/clientes');
+    //  return response.redirect('back')
+    //}
+
+    const cliente = await Cliente.create(data);
+
+    session.flash({ notification: 'Cliente salvo com sucesso' });
+    return response.redirect(`/cliente/show/${cliente.id}`);
   
   }
 
@@ -103,7 +101,6 @@ class ClienteController {
   async edit ({ params, request, response, view }) {
 
     const cliente = await Cliente.find(params.id);
-    //console.log(cliente)
     return view.render('frontend.clientes.edit', {cliente})
 
   }
@@ -116,7 +113,16 @@ class ClienteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, session }) {
+
+    const data = request.only(Cliente.fillable());  
+    let cliente = await Cliente.find(params.id); 
+    cliente.merge(data);
+    await cliente.save();
+
+    session.flash({ notification: 'Cliente atualizado com sucesso' });
+    return response.redirect(`/cliente/show/${cliente.id}`);
+
   }
 
   /**
@@ -128,6 +134,13 @@ class ClienteController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+
+    const cliente = await Cliente.findOrFail(params.id)
+    await cliente.delete()
+
+    session.flash({ notification: 'Cliente deletado com sucesso' });
+    return response.redirect('back');
+
   }
 }
 
