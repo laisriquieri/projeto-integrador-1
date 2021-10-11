@@ -3,7 +3,7 @@
 @section("content")
 
 
-<div id="lista-cadastro-cliente">
+<div id="lista-altera-cliente">
   <div>
       @if(flashMessage('notification'))
         <span>{{ flashMessage('notification') }}</span>
@@ -12,83 +12,81 @@
     
       <table id="tabela">
             
-        <div class="label-float">
-          <label for="">tipo</label>
-          <label>Tipo</label>
+        <div class="label-edit">
+          <label for="">Tipo de Cliente:</label>
           <input list="lista-tipopessoa" type="text" name="tipo" value={{ cliente.tipo }}  required/>
         </div>
         
         <datalist id="lista-tipopessoa">
-          <option>Pessoa Física</option>
-          <option>Pessoa Jurídica</option>
+          <option>PF</option>
+          <option>PJ</option>
         </datalist>
   
 
-        <div class="label-float">
-          <label>Nome / Razão Social</label>
-          <input type="text" name="nome" value={{ cliente.nome }}/>
+        <div class="label-edit">
+          <label>Nome / Razão Social:</label>
+          <input type="text" name="nome" value={{ cliente.nome }} required/>
         </div>
 
-        <div class="label-float">
-          <label for="">cpf_cnpj</label>
+        <div class="label-edit">
+          <label for="">CPF / CNPJ:</label>
           <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">data_nascimento</label>
+        <div class="label-edit">
+          <label for="">Data de Nascimento: </label>
           <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">telefone</label>
+        <div class="label-edit">
+          <label for="">Telefone: </label>
           <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">email</label>
+        <div class="label-edit">
+          <label for="">Endereço de e-mail: </label>
           <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">CEP</label>
+        <div class="label-edit">
+          <label for="">CEP: </label>
           <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">endereco</label>
+        <div class="label-edit">
+          <label for="">Rua/Avenida: </label>
           <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">numero_endereco</label>
+        <div class="label-edit">
+          <label for="">Número: </label>
           <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">complemento</label>
+        <div class="label-edit">
+          <label for="">Complemento: </label>
           <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">bairro</label>
+        <div class="label-edit">
+          <label for="">Bairro: </label>
           <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">cidade</label>
+        <div class="label-edit">
+          <label for="">Cidade: </label>
           <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">estado</label>
+        <div class="label-edit">
+          <label for="">Estado: </label>
           <input type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
         </div>
 
-        <div class="label-float">
-          <label for="">observacoes</label>
+        <div class="label-edit">
+          <label for="">Observações: </label>
           <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
         </div>
-
       <div class="botoes">
         <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">
           Editar
