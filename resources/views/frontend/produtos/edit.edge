@@ -1,0 +1,43 @@
+
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista-cadastro">
+  <form action="/produtos/update/{{ produto.id }}" method="POST">
+    {{ csrfField() }}
+
+  <h3>Novo Produto</h3>
+
+  <div id="busca">
+  </div>
+
+  <div class="label-float">
+    <input type="text" name="nome" value={{ produto.nome }}  required/>
+    <label>Nome</label>
+  </div>
+
+  <div class="label-float">
+    <input type="text" name="descricao" value={{ produto.descricao }}  required/>
+    <label>Descrição</label>
+  </div>
+
+  <div class="label-float">
+    <input type="number" name="valor_compra" value={{ produto.valor_compra }}  required/>
+    <label>Valor Compra</label>
+  </div>
+
+  <div class="label-float">
+    <input type="number" name="valor_venda" value={{ produto.valor_venda }}  required/>
+    <label>Valor Venda</label>
+  </div>
+
+  <div class="botoes">
+    <button class="login100-form-btn" type="submit">
+      Salvar
+    </button>
+  </div>
+
+</div>
+@endsection
+

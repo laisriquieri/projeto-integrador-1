@@ -3,7 +3,49 @@
 
 @section("content")
 
-<div id="lista">
+<div id="lista-cadastro">
+
+  <h3>Novo Produto</h3>
+
+  <div id="busca">
+  </div>
+
+  <div class="label-float">
+    <input type="text" placeholder=" " required/>
+    <label>Nome</label>
+  </div>
+
+  <div class="label-float">
+    <input type="text" placeholder=" " required/>
+    <label>Descrição</label>
+  </div>
+
+  <div class="label-float">
+    <input type="number" placeholder=" " required/>
+    <label>Valor Compra</label>
+  </div>
+
+  <div class="label-float">
+    <input type="number" placeholder=" " required/>
+    <label>Valor Venda</label>
+  </div>
+
+  <div class="botoes">
+    <button class="botao-cancelar">
+      Cancelar
+    </button>
+
+    <button class="botao-cadastrar">
+      Cadastrar
+    </button>
+  </div>
+
+</div>
+
+
+@endsection
+
+{{--  <div id="lista">
   <div>
 
     <div>
@@ -39,6 +81,4 @@
     </div>
 
   </div>
-</div>
-@endsection
-
+</div>  --}}

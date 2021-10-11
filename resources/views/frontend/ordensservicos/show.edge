@@ -1,0 +1,119 @@
+{{--  Falta confirmar banco de dados e conferir  --}}
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista">
+  <div>
+
+    <div>
+      
+
+        <div id="busca">
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="nome" value={{ ordem.nome }} required/>
+          <label>Cliente</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="data" value={{ ordem.data }} required/>
+          <label>Data da Entrada</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="equipamento" value={{ ordem.equipamento }} required/>
+          <label>Equipamento do Cliente</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="relato" value={{ ordem.relato }} required/>
+          <label>Relato do Cliente</label>
+        </div>
+      
+        <div class="label-float">
+          <input list="lista-servicos" name="lista-servico" value={{ ordem.lista-servico }} required/>
+          <label>Selecione um Serviço</label>
+        </div>
+      
+        <datalist id="lista-servicos">
+          <option>Formatação</option>
+          <option>Manutenção em hardware</option>
+          <option>Teste</option>
+        </datalist>
+      
+        <div class="label-float">
+          <input list="lista-produtos" name="lista-produto" value={{ ordem.lista-produto }} required/>
+          <label>Selecione um Produto</label>
+        </div>
+      
+        <datalist id="lista-produtos">
+          <option>Teclado</option>
+          <option>Mouse</option>
+          <option>Memória DDR3</option>
+          <option>Pendrive</option>
+          <option>Teste</option>
+        </datalist>
+      
+        <div class="label-float">
+          <input type="number"  name="valor" value={{ ordem.valor }} required/>
+          <label>Valor</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="telefone" value={{ ordem.telefone }} required/>
+          <label>Telefone do Cliente</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="text" name="observacao" value={{ ordem.observacao }} required/>
+          <label>Observações do Técnico</label>
+        </div>
+      
+        <div class="label-float">
+          <input type="date" name="data-entrega" value={{ ordem.data-entrega }} required/>
+          <label>Data da Entrega</label>
+        </div>
+      
+        <div class="label-float">
+          <input list="lista-status" name="lista-status" value={{ ordem.lista-status }} required/>
+          <label>Selecione um Status</label>
+        </div>
+      
+        <datalist id="lista-status">
+          <option>Em análise</option>
+          <option>Orçamento enviado</option>
+          <option>Orçamento aprovado</option>
+          <option>Cancelado</option>
+          <option>Em andamento</option>
+          <option>Pronto para entrega</option>
+          <option>Entregue</option>
+        </datalist>
+      
+        <div class="label-float">
+          <input list="lista-pagamento" name="lista-pagamento" value={{ ordem.lista-pagamento }} required/>
+          <label>Selecione uma Forma de Pagamento</label>
+        </div>
+      
+        <datalist id="lista-pagamento">
+          <option>Dinheiro</option>
+          <option>Cartão de Crédito</option>
+          <option>Cartão de Débito</option>
+          <option>Pix</option>
+        </datalist>
+
+        <div class="botoes">
+          <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">
+            Editar
+          </button>
+          
+  
+          <button class="botao-cadastrar" href="/cliente/destroy/{{ cliente.id }}">
+            Deletar
+          </button>
+        </div>
+
+  </div>
+</div>
+@endsection
