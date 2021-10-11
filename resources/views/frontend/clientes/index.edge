@@ -27,10 +27,9 @@
         
         <tr>
           <td><a href="/cliente/show/{{ cliente.id }}">{{ cliente.nome }}</a></td>
-          <td>{{ cliente.data_nascimento }}</td>
-          <td>{{ cliente.cidade }}</td>
-          <td>{{ cliente.estado }}</td>
           <td>{{ cliente.telefone }}</td>
+          <td>{{ cliente.cpf_cnpj }}</td>
+          
           <td><a href="/cliente/edit/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
           <td>
             <form action="/cliente/destroy/{{ cliente.id }}" method="POST">
