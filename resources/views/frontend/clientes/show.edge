@@ -122,11 +122,13 @@
 
 
 
-
+<!--
 <div id="lista">
   <div>
     <div id="busca">
-
+      @if(flashMessage('notification'))
+        <span>{{ flashMessage('notification') }}</span>
+      @endif
     </div>
   
     <table id="tabela">

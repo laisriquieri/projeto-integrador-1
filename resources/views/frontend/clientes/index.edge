@@ -6,7 +6,9 @@
   <h3>Cliente</h3>
   <div>
     <div id="busca">
-
+      @if(flashMessage('notification'))
+        <span>{{ flashMessage('notification') }}</span>
+      @endif
     </div>
     <table id="tabela">
       <thead>
@@ -15,8 +17,7 @@
               <th>Nome/Razão Social</th>
               <th>Telefone</th>
               <th>CPF/CNPJ</th>
-              <th></th>
-              <th></th>
+             
             </tr>
       </thead>
       </thead>
@@ -31,7 +32,15 @@
           <td>{{ cliente.estado }}</td>
           <td>{{ cliente.telefone }}</td>
           <td><a href="/cliente/edit/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
-          <td><a href="/cliente/destroy/{{ cliente.id }}"><span class="material-icons">delete</span></a></td>
+          <td>
+            <form action="/cliente/destroy/{{ cliente.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit">
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
         </tr>
         
         @endeach

@@ -1,5 +1,7 @@
 'use strict'
 
+const Produto = use('App/Models/Produto');
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -17,8 +19,11 @@ class ProdutoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({view }) {
+    const products = await Produto.all();
+    return view.render('frontend.produtos.index',  { produtos: products['rows'] });
   }
+
 
   /**
    * Render a form to be used for creating a new produto.
@@ -30,6 +35,7 @@ class ProdutoController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
+    return view.render('frontend.produtos.create');
   }
 
   /**
@@ -40,7 +46,20 @@ class ProdutoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, response, session }) {
+    const data = request.only(['tipo'
+    ,'nome'
+    ,'descricao'
+    ,'valor_compra'
+    ,'valor_venda']);
+
+const produto = await Produto.create(data);
+
+//Implementar no front as mensagens flash
+session.flash({ notification: 'Produto created successfully' });
+
+return response.redirect('/produto');
+
   }
 
   /**
@@ -53,6 +72,8 @@ class ProdutoController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const produto = await Produto.find(params.id);
+    return  view.render('frontend.produtos.show', {produto} )
   }
 
   /**
@@ -65,6 +86,11 @@ class ProdutoController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
+
+    const produto = await Produto.find(params.id);
+    //console.log(produto)
+    return view.render('frontend.produtos.edit', {produto})
+
   }
 
   /**

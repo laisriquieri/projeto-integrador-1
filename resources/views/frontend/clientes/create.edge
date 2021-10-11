@@ -1,11 +1,9 @@
 @layout("layouts.master")
 
 @section("content")
-
 <div id="lista-cadastro-cliente">
-  <div>
-    <div>
-
+      <form action="/cliente/create" method="POST">
+        {{ csrfField() }}
       <h3>Novo Cliente</h3>
 
       <div id="busca">
@@ -42,7 +40,10 @@
       </div>
 
       <div class="label-float">
-        <input type="email" placeholder=" " required/>
+        <input type="text" name="email" value="{{ old('email', '') }}" class="form-control">
+              @if(hasErrorFor('email'))
+                </span> {{ getErrorFor('email') }} </span>
+              @endif required/>
         <label>E-mail</label>
       </div>
 
@@ -99,5 +100,95 @@
     </div>
   </div>
 </div>
+
+<!--
+<div id="lista">
+  <div>
+    <div>
+      <form action="/cliente/create" method="POST">
+        {{ csrfField() }}
+
+        <div class="form-group">
+          <label for="">tipo</label>
+          <input type="text" name="tipo" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">nome</label>
+          <input type="text" name="nome" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">cpf_cnpj</label>
+          <input type="text" name="cpf_cnpj" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">data_nascimento</label>
+          <input type="date" name="data_nascimento" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">telefone</label>
+          <input type="text" name="telefone" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">email</label>
+          <input type="text" name="email" value="{{ old('email', '') }}" class="form-control">
+              @if(hasErrorFor('email'))
+                </span> {{ getErrorFor('email') }} </span>
+              @endif
+        </div>
+
+        <div class="form-group">
+          <label for="">CEP</label>
+          <input type="text" name="CEP" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">endereco</label>
+          <input type="text" name="endereco" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">numero_endereco</label>
+          <input type="text" name="numero_endereco" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">complemento</label>
+          <input type="text" name="complemento" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">bairro</label>
+          <input type="text" name="bairro" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">cidade</label>
+          <input type="text" name="cidade" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">estado</label>
+          <input type="text" name="estado" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="">observacoes</label>
+          <input type="text" name="observacoes" class="form-control">
+        </div>
+
+        <div class="">
+          <button class="login100-form-btn" type="submit">
+            Salvar
+          </button>
+        </div>
+      </form> 
+    </div>
+-->
+
 @endsection
 

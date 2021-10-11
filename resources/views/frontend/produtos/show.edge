@@ -1,0 +1,33 @@
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista">
+  <div>
+    <div id="busca">
+
+    </div>
+
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor Compra</th>
+          <th>Valor Venda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.valor_compra }}</td>
+          <td>{{ produto.valor_venda }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+@endsection

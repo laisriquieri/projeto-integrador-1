@@ -24,8 +24,8 @@ class ClienteController {
     async index ({ view }) {
 
     const clientes = await Cliente.all();
-    
-    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });   
+
+    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });
     }
 
   /**
@@ -38,7 +38,7 @@ class ClienteController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    return view.render('frontend.clientes.create');   
+    return view.render('frontend.clientes.create');
   }
 
   /**
@@ -51,27 +51,11 @@ class ClienteController {
    */
   async store ({ request, response, session }) {
     
-    const data = request.only(['tipo'
-                              ,'nome'
-                              ,'cpf_cnpj'
-                              ,'data_nascimento'
-                              ,'telefone'
-                              ,'email'
-                              ,'CEP'
-                              ,'endereco'
-                              ,'numero_endereco'
-                              ,'complemento'
-                              ,'bairro'
-                              ,'cidade'
-                              ,'estado'
-                              ,'observacoes']);
-    
+    const data = request.only(Cliente.fillable()); 
     const cliente = await Cliente.create(data);
-    
-    //Implementar no front as mensagens flash
-    session.flash({ notification: 'Cliente created successfully' });
 
-    return response.redirect('/clientes');
+    session.flash({ notification: 'Cliente salvo com sucesso' });
+    return response.redirect(`/cliente/show/${cliente.id}`);
   
   }
 
@@ -103,7 +87,6 @@ class ClienteController {
   async edit ({ params, request, response, view }) {
 
     const cliente = await Cliente.find(params.id);
-    //console.log(cliente)
     return view.render('frontend.clientes.edit', {cliente})
 
   }
@@ -116,7 +99,16 @@ class ClienteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, session }) {
+
+    const data = request.only(Cliente.fillable());  
+    let cliente = await Cliente.find(params.id); 
+    cliente.merge(data);
+    await cliente.save();
+
+    session.flash({ notification: 'Cliente atualizado com sucesso' });
+    return response.redirect(`/cliente/show/${cliente.id}`);
+
   }
 
   /**
@@ -128,6 +120,13 @@ class ClienteController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+
+    const cliente = await Cliente.findOrFail(params.id)
+    await cliente.delete()
+
+    session.flash({ notification: 'Cliente deletado com sucesso' });
+    return response.redirect('back');
+
   }
 }
 
