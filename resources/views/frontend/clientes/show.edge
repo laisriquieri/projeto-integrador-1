@@ -2,56 +2,103 @@
 
 @section("content")
 
-<div id="lista">
+
+<div id="lista-cadastro-cliente">
   <div>
     
-    <span id="icone-pesquisa" class="material-icons">search</span>
-      <input id="pesquisar" type="text" placeholder="Pesquisar" />
-      
-
-    <div id="busca">
-    </div>
+    
+    
       <table id="tabela">
-          <thead>
-                <tr>
-                  <th>Nome/Razão Social</th>
-                  <th>Telefone</th>
-                  <th>CPF/CNPJ</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-          </thead>
-         <tbody>
-              <tr>
-                  <td>Vinícius da Silva</td>
-                  <td>(16)98765-4321</td>
-                  <td>415.785.147-98</td>
-                  <td><span class="material-icons">edit</span></td>
-                  <td><span class="material-icons">delete</span></td>
-              </tr>
-              <tr>
-                  <td>Vinícius da Silva</td>
-                  <td>(16)98765-4321</td>
-                  <td>415.785.147-98</td>
-                  <td><span class="material-icons">edit</span></td>
-                  <td><span class="material-icons">delete</span></td>
-              </tr>
-              <tr>
-                  <td>Vinícius da Silva</td>
-                  <td>(16)98765-4321</td>
-                  <td>415.785.147-98</td>
-                  <td><span class="material-icons">edit</span></td>
-                  <td><span class="material-icons">delete</span></td>
-              </tr>
-              <tr>
-                  <td>Vinícius da Silva</td>
-                  <td>(16)98765-4321</td>
-                  <td>415.785.147-98</td>
-                  <td><span class="material-icons">edit</span></td>
-                  <td><span class="material-icons">delete</span></td>
-              </tr>
-         </tbody>
-        </table>
+            
+        <div class="label-float">
+          <label for="">tipo</label>
+          <label>Tipo</label>
+          <input list="lista-tipopessoa" type="text" name="tipo" value={{ cliente.tipo }}  required/>
+        </div>
+        
+        <datalist id="lista-tipopessoa">
+          <option>Pessoa Física</option>
+          <option>Pessoa Jurídica</option>
+        </datalist>
+  
+
+        <div class="label-float">
+          <label>Nome / Razão Social</label>
+          <input type="text" name="nome" value={{ cliente.nome }} required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">cpf_cnpj</label>
+          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">data_nascimento</label>
+          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">telefone</label>
+          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">email</label>
+          <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">CEP</label>
+          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">endereco</label>
+          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">numero_endereco</label>
+          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">complemento</label>
+          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">bairro</label>
+          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">cidade</label>
+          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">estado</label>
+          <input type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
+        </div>
+
+        <div class="label-float">
+          <label for="">observacoes</label>
+          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
+        </div>
+
+      <div class="botoes">
+        <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">
+          Editar
+        </button>
+        
+
+        <button class="botao-cadastrar" href="/cliente/destroy/{{ cliente.id }}">
+          Deletar
+        </button>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -103,53 +150,8 @@
       </tbody>
     </table>
 
-    <br>
+    
 
-   <table id="tabela">
-      <thead>
-        <tr>
-          <th>Tipo</th>
-          <th>CPF/CNPJ</th>
-          <th>Email</th>
-          <th>Endereco</th>
-          <th>Numero</th>
-        </tr>
-      </thead>
-      <tbody>       
-        <tr>
-          <td>{{ cliente.tipo }}</td>
-          <td>{{ cliente.cpf_cnpj }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.endereco }}</td>
-          <td>{{ cliente.numero_endereco }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table id="tabela">
-      <thead>
-        <tr>
-          <th>Complemento</th>
-          <th>Bairro</th>
-          <th>CEP</th>
-          <th>Observacoes</th>
-          <th>Data Registro</th>
-        </tr>
-      </thead>
-      <tbody>       
-        <tr>
-          <td>{{ cliente.complemento }}</td>
-          <td>{{ cliente.bairro }}</td>
-          <td>{{ cliente.CEP }}</td>
-          <td>{{ cliente.observacoes }}</td>
-          <td>{{ cliente.created_at }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <br>
-
-  </div>
-</div>
+   
 
 @endsection
