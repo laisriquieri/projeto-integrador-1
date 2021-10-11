@@ -687,3 +687,17 @@ iframe {
   opacity: 1;
   float: right;
 }
+span.mens-error {
+  
+  color: #999999;
+  font: 10px Verdana, sans-serif;
+
+}
+label.label-edit{
+position: relative;
+padding-top: 50px;
+margin-top: 50px;
+margin-left: 75px;
+width: 350px;
+float: left;
+}

@@ -2,92 +2,51 @@
 
 @section("content")
 
-<div id="lista">
-  <div>
-
-    <div>
-      <form action="/cliente/update/{{ cliente.id }}" method="POST">
+  <div id="lista-cadastro">
+        <form action="/cliente/update/{{ cliente.id }}" method="POST">
         {{ csrfField() }}
-
-        <div class="form-group">
-          <label for="">tipo</label>
-          <input type="text" name="tipo" value={{ cliente.tipo }} class="form-control">
+          <h3>Editar Serviço</h3>
+    
+          <div id="busca">
+          </div>
+    
+          <div class="label-float">
+            <input type="text" placeholder=" " required/>
+            <label>Nome</label>
+          </div>
+    
+          <div class="label-float">
+            <input type="text" placeholder=" " required/>
+            <label>Descrição</label>
+          </div>
+    
+          <div class="label-float">
+            <input list="lista-categorias" type="text" placeholder=" " required/>
+            <label>Selecione uma Categoria</label>
+          </div>
+    
+          <datalist id="lista-categorias">
+            <option>Manutenção</option>
+            <option>Assistência</option>
+            <option>Teste</option>
+          </datalist>
+    
+          <div class="label-float">
+            <input type="number" placeholder=" " required/>
+            <label>Valor</label>
+          </div>
+    
+          <div class="botoes">
+            <button class="botao-cancelar">
+              Cancelar
+            </button>
+    
+            <button class="botao-cadastrar">
+              Cadastrar
+            </button>
+          </div>
+    
         </div>
-
-        <div class="form-group">
-          <label for="">nome</label>
-          <input type="text" name="nome" value={{ cliente.nome }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">cpf_cnpj</label>
-          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">data_nascimento</label>
-          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">telefone</label>
-          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">email</label>
-          <input type="text" name="email" value={{ cliente.email }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">CEP</label>
-          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">endereco</label>
-          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">numero_endereco</label>
-          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">complemento</label>
-          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">bairro</label>
-          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">cidade</label>
-          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">estado</label>
-          <input type="text" name="estado" value={{ cliente.estado }} class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">observacoes</label>
-          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control">
-        </div>
-
-        <div class="">
-          <button class="login100-form-btn" type="submit">
-            Salvar
-          </button>
-        </div>
-      </form> 
-    </div>
-
-  </div>
-</div>
+    
 @endsection
 
