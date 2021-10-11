@@ -1,7 +1,123 @@
 @layout("layouts.master")
 
 @section("content")
-<div id="lista">
+
+<div id="lista-cadastro-ordemservico">
+
+  <h3>Nova Ordem de Serviço</h3>
+
+  <div id="busca">
+  </div>
+
+  <div class="label-float">
+  <input type="text" placeholder=" " required/>
+  <label>Cliente</label>
+  </div>
+
+  <div class="label-float">
+  <input type="date" placeholder=" " required/>
+  <label>Data da Entrada</label>
+  </div>
+
+  <div class="label-float">
+  <input type="text" placeholder=" " required/>
+  <label>Equipamento do Cliente</label>
+  </div>
+
+  <div class="label-float">
+  <input type="text" placeholder=" " required/>
+  <label>Relato do Cliente</label>
+  </div>
+
+  <div class="label-float">
+    <input list="lista-servicos" type="text" placeholder=" " required/>
+    <label>Selecione um Serviço</label>
+  </div>
+
+  <datalist id="lista-servicos">
+    <option>Formatação</option>
+    <option>Manutenção em hardware</option>
+    <option>Teste</option>
+  </datalist>
+
+  <div class="label-float">
+    <input list="lista-produtos" type="text" placeholder=" " required/>
+    <label>Selecione um Produto</label>
+  </div>
+
+  <datalist id="lista-produtos">
+    <option>Teclado</option>
+    <option>Mouse</option>
+    <option>Memória DDR3</option>
+    <option>Pendrive</option>
+    <option>Teste</option>
+  </datalist>
+
+  <div class="label-float">
+    <input type="number"  placeholder=" " required/>
+    <label>Valor</label>
+  </div>
+
+  <div class="label-float">
+    <input type="text" placeholder=" " required/>
+    <label>Telefone do Cliente</label>
+  </div>
+
+  <div class="label-float">
+    <input type="text" placeholder=" "/>
+    <label>Observações do Técnico</label>
+  </div>
+
+  <div class="label-float">
+    <input type="date" placeholder=" " required/>
+    <label>Data da Entrega</label>
+  </div>
+
+  <div class="label-float">
+    <input list="lista-status" type="text" placeholder=" " required/>
+    <label>Selecione um Status</label>
+  </div>
+
+  <datalist id="lista-status">
+    <option>Em análise</option>
+    <option>Orçamento enviado</option>
+    <option>Orçamento aprovado</option>
+    <option>Cancelado</option>
+    <option>Em andamento</option>
+    <option>Pronto para entrega</option>
+    <option>Entregue</option>
+  </datalist>
+
+  <div class="label-float">
+    <input list="lista-pagamento" type="text" placeholder=" " required/>
+    <label>Selecione uma Forma de Pagamento</label>
+  </div>
+
+  <datalist id="lista-pagamento">
+    <option>Dinheiro</option>
+    <option>Cartão de Crédito</option>
+    <option>Cartão de Débito</option>
+    <option>Pix</option>
+  </datalist>
+
+  <div class="botoes">
+    <button class="botao-cancelar">
+      Cancelar
+    </button>
+
+    <button class="botao-cadastrar">
+      Cadastrar
+    </button>
+  </div>
+
+</div>
+
+
+
+
+
+@endsection
+{{--  <div id="lista">
   <div>
     
     
@@ -15,7 +131,4 @@
     <h2 id="resultado"></h2>
 
   </div>
-</div>
-
-
-@endsection
+</div>  --}}
