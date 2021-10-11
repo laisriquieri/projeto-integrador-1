@@ -2,81 +2,91 @@
 
 @section("content")
 
-<div id="lista">
-  <div>
+<div id="lista-cadastro-cliente">
+  
+    <h3>Altera Cliente</h3>
 
-    <div>
-      <form action="/cliente/update/{{ cliente.id }}" method="POST">
+    <div id="busca">
+    </div>
+
+
+        <form action="/cliente/update/{{ cliente.id }}" method="POST">
         {{ csrfField() }}
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">tipo</label>
-          <input type="text" name="tipo" value={{ cliente.tipo }} class="form-control">
+          <input list="lista-tipopessoa" type="text" name="tipo" value={{ cliente.tipo }}  required/>
+        </div>
+        
+        <datalist id="lista-tipopessoa">
+          <option>Pessoa Física</option>
+          <option>Pessoa Jurídica</option>
+        </datalist>
+  
+
+        <div class="label-float">
+          <label>Nome / Razão Social</label>
+          <input type="text" name="nome" value={{ cliente.nome }} required/>
         </div>
 
-        <div class="form-group">
-          <label for="">nome</label>
-          <input type="text" name="nome" value={{ cliente.nome }} class="form-control">
-        </div>
-
-        <div class="form-group">
+        <div class="label-float">
           <label for="">cpf_cnpj</label>
-          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control">
+          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">data_nascimento</label>
-          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control">
+          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">telefone</label>
-          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control">
+          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">email</label>
-          <input type="text" name="email" value={{ cliente.email }} class="form-control">
+          <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">CEP</label>
-          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control">
+          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">endereco</label>
-          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control">
+          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">numero_endereco</label>
-          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control">
+          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">complemento</label>
-          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control">
+          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">bairro</label>
-          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control">
+          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">cidade</label>
-          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control">
+          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">estado</label>
-          <input type="text" name="estado" value={{ cliente.estado }} class="form-control">
+          <input type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
         </div>
 
-        <div class="form-group">
+        <div class="label-float">
           <label for="">observacoes</label>
-          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control">
+          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
         </div>
 
         <div class="">
@@ -84,7 +94,8 @@
             Salvar
           </button>
         </div>
-      </form> 
+      
+      </div> 
     </div>
 
   </div>

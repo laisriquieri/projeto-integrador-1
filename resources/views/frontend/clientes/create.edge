@@ -1,7 +1,10 @@
 @layout("layouts.master")
 
 @section("content")
-
+<div id="lista-cadastro-cliente">
+  
+      <form action="/cliente/create" method="POST">
+        {{ csrfField() }}
       <h3>Novo Cliente</h3>
 
       <div id="busca">
@@ -38,7 +41,7 @@
       </div>
 
       <div class="label-float">
-        <input type="email" placeholder=" " required/>
+        <input type="text" name="email" value="{{ old('email', '') }}" class="form-control"required/>
         <label>E-mail</label>
       </div>
 
