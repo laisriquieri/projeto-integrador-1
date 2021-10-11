@@ -52,6 +52,7 @@ class ClienteController {
   async store ({ request, response, session }) {
     
     const data = request.only(Cliente.fillable()); 
+    console.log(data);
     const cliente = await Cliente.create(data);
 
     session.flash({ notification: 'Cliente salvo com sucesso' });
@@ -119,7 +120,7 @@ class ClienteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, request, response, session }) {
 
     const cliente = await Cliente.findOrFail(params.id)
     await cliente.delete()

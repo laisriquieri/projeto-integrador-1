@@ -5,7 +5,9 @@
 
 <div id="lista-cadastro-cliente">
   <div>
-    
+      @if(flashMessage('notification'))
+        <span>{{ flashMessage('notification') }}</span>
+      @endif
     
     
       <table id="tabela">
