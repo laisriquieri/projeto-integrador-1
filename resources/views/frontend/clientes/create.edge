@@ -2,6 +2,7 @@
 
 @section("content")
 <div id="lista-cadastro-cliente">
+  
       <form action="/cliente/create" method="POST">
         {{ csrfField() }}
       <h3>Novo Cliente</h3>
@@ -40,10 +41,7 @@
       </div>
 
       <div class="label-float">
-        <input type="text" name="email" value="{{ old('email', '') }}" class="form-control">
-              @if(hasErrorFor('email'))
-                </span> {{ getErrorFor('email') }} </span>
-              @endif required/>
+        <input type="text" name="email" value="{{ old('email', '') }}" class="form-control"required/>
         <label>E-mail</label>
       </div>
 
