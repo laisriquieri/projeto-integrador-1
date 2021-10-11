@@ -1,4 +1,4 @@
-{{--  Falta terminar  --}}
+{{--  Falta criar o banco de dados e vincular os campos certos  --}}
 
 @layout("layouts.master")
 
@@ -15,27 +15,27 @@
         </div>
       
         <div class="label-float">
-          <input type="text" name="nome" value={{ cliente.nome }} required/>
-        <label>Cliente</label>
+          <input type="text" name="nome" value={{ ordem.nome }} required/>
+          <label>Cliente</label>
         </div>
       
         <div class="label-float">
-        <input type="date" placeholder=" " required/>
-        <label>Data da Entrada</label>
+          <input type="text" name="data" value={{ ordem.data }} required/>
+          <label>Data da Entrada</label>
         </div>
       
         <div class="label-float">
-        <input type="text" placeholder=" " required/>
-        <label>Equipamento do Cliente</label>
+          <input type="text" name="equipamento" value={{ ordem.equipamento }} required/>
+          <label>Equipamento do Cliente</label>
         </div>
       
         <div class="label-float">
-        <input type="text" placeholder=" " required/>
-        <label>Relato do Cliente</label>
+          <input type="text" name="relato" value={{ ordem.relato }} required/>
+          <label>Relato do Cliente</label>
         </div>
       
         <div class="label-float">
-          <input list="lista-servicos" type="text" placeholder=" " required/>
+          <input list="lista-servicos" name="lista-servico" value={{ ordem.lista-servico }} required/>
           <label>Selecione um Serviço</label>
         </div>
       
@@ -46,7 +46,7 @@
         </datalist>
       
         <div class="label-float">
-          <input list="lista-produtos" type="text" placeholder=" " required/>
+          <input list="lista-produtos" name="lista-produto" value={{ ordem.lista-produto }} required/>
           <label>Selecione um Produto</label>
         </div>
       
@@ -59,27 +59,27 @@
         </datalist>
       
         <div class="label-float">
-          <input type="number"  placeholder=" " required/>
+          <input type="number"  name="valor" value={{ ordem.valor }} required/>
           <label>Valor</label>
         </div>
       
         <div class="label-float">
-          <input type="text" placeholder=" " required/>
+          <input type="text" name="telefone" value={{ ordem.telefone }} required/>
           <label>Telefone do Cliente</label>
         </div>
       
         <div class="label-float">
-          <input type="text" placeholder=" "/>
+          <input type="text" name="observacao" value={{ ordem.observacao }} required/>
           <label>Observações do Técnico</label>
         </div>
       
         <div class="label-float">
-          <input type="date" placeholder=" " required/>
+          <input type="date" name="data-entrega" value={{ ordem.data-entrega }} required/>
           <label>Data da Entrega</label>
         </div>
       
         <div class="label-float">
-          <input list="lista-status" type="text" placeholder=" " required/>
+          <input list="lista-status" name="lista-status" value={{ ordem.lista-status }} required/>
           <label>Selecione um Status</label>
         </div>
       
@@ -94,7 +94,7 @@
         </datalist>
       
         <div class="label-float">
-          <input list="lista-pagamento" type="text" placeholder=" " required/>
+          <input list="lista-pagamento" name="lista-pagamento" value={{ ordem.lista-pagamento }} required/>
           <label>Selecione uma Forma de Pagamento</label>
         </div>
       
@@ -104,6 +104,7 @@
           <option>Cartão de Débito</option>
           <option>Pix</option>
         </datalist>
+
         <div class="">
           <button class="login100-form-btn" type="submit">
             Salvar
