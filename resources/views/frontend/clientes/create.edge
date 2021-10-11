@@ -24,7 +24,7 @@
         <input type="text" placeholder=" " name="nome" value="{{ old('nome', '') }}" required/>
         <label>Nome / Razão Social</label>
         @if(hasErrorFor('nome')) 
-          </span> {{ getErrorFor('nome') }} </span>
+          <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
         @endif
       </div>
 
@@ -32,7 +32,7 @@
         <input type="text" placeholder=" " name="cpf_cnpj" value="{{ old('cpf_cnpj', '') }}" required/>
         <label>CPF / CNPJ</label>
         @if(hasErrorFor('cpf_cnpj')) 
-          </span> {{ getErrorFor('cpf_cnpj') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
         @endif
       </div>
 
@@ -40,7 +40,7 @@
         <input type="date" placeholder=" " name="data_nascimento" value="{{ old('data_nascimento', '') }}" required/>
         <label>Data Nascimento / Data Abertura</label>
         @if(hasErrorFor('data_nascimento')) 
-          </span> {{ getErrorFor('data_nascimento') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('data_nascimento') }} </span>
         @endif
       </div>
 
@@ -48,7 +48,7 @@
         <input type="text" placeholder=" " name="telefone" value="{{ old('telefone', '') }}" required/>
         <label>Telefone</label>
         @if(hasErrorFor('telefone')) 
-          </span> {{ getErrorFor('telefone') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
         @endif
       </div>
 
@@ -56,7 +56,7 @@
         <input type="text" name="email" value="{{ old('email', '') }}" class="form-control" required/>
         <label>E-mail</label>
         @if(hasErrorFor('email')) 
-          </span> {{ getErrorFor('email') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('email') }} </span>
         @endif
       </div>
 
@@ -64,7 +64,7 @@
         <input type="text" placeholder=" " name="CEP" value="{{ old('CEP', '') }}" required/>
         <label>CEP</label>
         @if(hasErrorFor('CEP')) 
-          </span> {{ getErrorFor('CEP') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
         @endif
       </div>
 
@@ -72,7 +72,7 @@
         <input type="text" placeholder=" " name="endereco" value="{{ old('endereco', '') }}" required/>
         <label>Rua/Avenida</label>
         @if(hasErrorFor('endereco')) 
-          </span> {{ getErrorFor('endereco') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('endereco') }} </span>
         @endif
       </div>
 
@@ -80,7 +80,7 @@
         <input type="number" placeholder=" " name="numero_endereco" value="{{ old('numero_endereco', '') }}" required/>
         <label>Número</label>
         @if(hasErrorFor('numero_endereco')) 
-          </span> {{ getErrorFor('numero_endereco') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('numero_endereco') }} </span>
         @endif
       </div>
 
@@ -88,7 +88,7 @@
         <input type="text" placeholder=" " name="complemento" value="{{ old('complemento', '') }}" required/>
         <label>Complemento</label>
         @if(hasErrorFor('complemento')) 
-          </span> {{ getErrorFor('complemento') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
         @endif
       </div>
 
@@ -96,7 +96,7 @@
         <input type="text" placeholder=" " name="bairro" value="{{ old('bairro', '') }}" required/>
         <label>Bairro</label>
         @if(hasErrorFor('bairro')) 
-          </span> {{ getErrorFor('bairro') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('bairro') }} </span>
         @endif
       </div>
 
@@ -104,23 +104,53 @@
         <input type="text" placeholder=" " name="cidade" value="{{ old('cidade', '') }}" required/>
         <label>Cidade</label>
         @if(hasErrorFor('cidade')) 
-          </span> {{ getErrorFor('cidade') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('cidade') }} </span>
         @endif
       </div>
 
       <div class="label-float">
-        <input type="text" placeholder=" " name="estado" value="{{ old('estado', '') }}" required/>
+        <input list="lista-estado" placeholder=" " name="estado" value="{{ old('estado', '') }}" required/>
         <label>Estado</label>
         @if(hasErrorFor('estado')) 
-          </span> {{ getErrorFor('estado') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
         @endif
+        <datalist id="lista-estado">
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RR</option>
+          <option>RO</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </datalist>
       </div>
+
 
       <div class="label-float">
         <input type="text" placeholder=" " name="observacoes" value="{{ old('observacoes', '') }}" required/>
         <label>Observação do Cliente</label>
         @if(hasErrorFor('observacoes')) 
-          </span> {{ getErrorFor('observacoes') }} </span>
+        <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
         @endif
       </div>
 
