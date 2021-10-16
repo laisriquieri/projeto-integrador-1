@@ -109,7 +109,7 @@
       </div>
 
       <div class="label-float">
-        <input list="lista-estado" placeholder=" " name="estado" autocomplete="off" value="{{ old('estado', '') }}" required/>
+        <input  list="lista-estado" autocomplete="off" placeholder=" " name="estado"  value="{{ old('estado', '') }}" required/>
         <label>Estado</label>
         @if(hasErrorFor('estado')) 
         <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
