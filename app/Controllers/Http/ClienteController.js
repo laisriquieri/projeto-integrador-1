@@ -52,7 +52,6 @@ class ClienteController {
   async store ({ request, response, session }) {
     
     const data = request.only(Cliente.fillable()); 
-    console.log(data);
     const cliente = await Cliente.create(data);
 
     session.flash({ notification: 'Cliente salvo com sucesso' });
@@ -126,7 +125,7 @@ class ClienteController {
     await cliente.delete()
 
     session.flash({ notification: 'Cliente deletado com sucesso' });
-    return response.redirect('back');
+    return response.redirect('/clientes');
 
   }
 }

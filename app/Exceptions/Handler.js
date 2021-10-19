@@ -23,7 +23,7 @@ class ExceptionHandler extends BaseExceptionHandler {
   async handle (error, { request, response }) {
     response.status(error.status).send(error.message)
     if (error.name === 'InvalidSessionException') {
-      return response.redirect('login')
+      return response.redirect('/login')
     }
   }
 

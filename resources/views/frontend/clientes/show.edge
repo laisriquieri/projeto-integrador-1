@@ -5,16 +5,19 @@
 
 <div id="lista-altera-cliente">
   <div>
+      <h3>Cliente: {{ cliente.nome }}</h3>
+      
+
       @if(flashMessage('notification'))
         <span>{{ flashMessage('notification') }}</span>
       @endif
-    
+
     
       <table id="tabela">
             
         <div class="label-edit">
           <label for="">Tipo de Cliente:</label>
-          <input list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value={{ cliente.tipo }}  required/>
+          <input list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value={{ cliente.tipo }}  disabled/>
         </div>
         
         <datalist id="lista-tipopessoa">
@@ -25,135 +28,92 @@
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
-          <input type="text" name="nome" value={{ cliente.nome }} required/>
+          <input type="text" name="nome" value={{ cliente.nome }} class="form-control" disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
+          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control" disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Data de Nascimento: </label>
-          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
+          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Telefone: </label>
-          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
+          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Endereço de e-mail: </label>
-          <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
+          <input type="text" name="email" value={{ cliente.email }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
+          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Rua/Avenida: </label>
-          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
+          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Número: </label>
-          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
+          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
+          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Bairro: </label>
-          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
+          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Cidade: </label>
-          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
+          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Estado: </label>
-          <input type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
+          <input type="text" name="estado" value={{ cliente.estado }} class="form-control"disabled/>
         </div>
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
+          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"disabled/>
         </div>
       <div class="botoes">
-        <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">
-          Editar
+      
+      <form action="/cliente/destroy/{{ cliente.id }}" method="POST"> {{ csrfField() }}
+        <button class="botao-cadastrar" 
+         onclick="return confirm('Certeza que gostaria de deletar o cliente: {{ cliente.nome }} ?')";>
+                Deletar
         </button>
-        
+      </form>
+      
+      <form action="/cliente/edit/{{ cliente.id }}">
+        <button class="botao-cancelar">Editar</button>
+      </form>
+      
 
-        <button class="botao-cadastrar" href="/cliente/destroy/{{ cliente.id }}">
-          Deletar
-        </button>
+
+        
       </div>
 
     </div>
   </div>
 </div>
 
-
-
-
 <a href="cadastrocliente.html" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div id="lista">
-  <div>
-    <div id="busca">
-      @if(flashMessage('notification'))
-        <span>{{ flashMessage('notification') }}</span>
-      @endif
-    </div>
-  
-    <table id="tabela">
-      <thead>
-        <tr>
-          <th>Cliente</th>
-          <th>Data de Nascimento</th>
-          <th>Cidade</th>
-          <th>Estado</th>
-          <th>Telefone</th>
-        </tr>
-      </thead>
-      <tbody>       
-        <tr>
-          <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.data_nascimento }}</td>
-          <td>{{ cliente.cidade }}</td>
-          <td>{{ cliente.estado }}</td>
-          <td>{{ cliente.telefone }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    
-
-   
 
 @endsection
