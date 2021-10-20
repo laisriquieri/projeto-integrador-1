@@ -42,13 +42,14 @@ Route.group(() => {
         //Route.post('os/store', 'OrdemServicoController.store'); // Aguardando form.
 
         // Clientes
-        Route.get('clientes', 'ClienteController.index'); // Aguardando página
-        Route.get('cliente/create', 'ClienteController.create'); // Aguardando página
-        Route.post('cliente/create', 'ClienteController.store').validator('Cliente');; // Aguardando página
-        Route.get('cliente/show/:id', 'ClienteController.show'); // Aguardando página
-        Route.get('cliente/edit/:id', 'ClienteController.edit'); // Aguardando página
-        Route.post('cliente/update/:id', 'ClienteController.update'); // Aguardando página
-        Route.post('cliente/destroy/:id', 'ClienteController.destroy'); // Aguardando página
+        Route.get('clientes', 'ClienteController.index'); 
+        Route.post('clientes', 'ClienteController.index'); 
+        Route.get('cliente/create', 'ClienteController.create');
+        Route.post('cliente/create', 'ClienteController.store').validator('Cliente');
+        Route.get('cliente/show/:id', 'ClienteController.show'); 
+        Route.get('cliente/edit/:id', 'ClienteController.edit'); 
+        Route.post('cliente/update/:id', 'ClienteController.update'); 
+        Route.post('cliente/destroy/:id', 'ClienteController.destroy');
 
         //Produtos
         Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list

@@ -36,6 +36,7 @@ class Cliente {
     return {
       min: 'Preencha no mínimo {{argument.0}} caracteres(s)', 
       max: 'Preencha no máximo {{argument.0}} caractere(s)', 
+      required: 'Campo {{field}} não pode ser vazio.',
       'cpf_cnpj.unique': 'Esse cliente já possui cadastro!', 
       'email.required': 'Por gentileza, insira um {{field}} válido.',
       'email.email': 'Insira um {{field}} válido.',

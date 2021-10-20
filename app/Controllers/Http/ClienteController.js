@@ -21,11 +21,34 @@ class ClienteController {
    */
 
 
-    async index ({ view }) {
+    async index ({ view, request }) {
+    
+      const perPage = 3 // Clientes por página
+      const page = await request.all().p || 1;
+      const testeSearch = await request.all().search;
+      const testeS = await request.all().s;
+      var clientes = "";
+      var search = "";
+      
+      if( ((typeof testeSearch === "undefined") && (typeof testeS === "undefined")) || (testeSearch == null) ) {
+        var clientes = await Cliente.query().paginate(page,perPage);
+      } 
+      
+      if ( !(typeof testeSearch === "undefined") && !(testeSearch == null) ) {
+        var search = testeSearch
+        var clientes = await Cliente.query().where('nome', 'LIKE', '%'+search+'%').paginate(page,perPage);
+      }
+      
+      if ( ((typeof testeSearch === "undefined") && !(typeof testeS === "undefined")) ) {
+        var search = await request.all().s
+        var clientes = await Cliente.query().where('nome', 'LIKE', '%'+search+'%').paginate(page,perPage);
+      } 
 
-    const clientes = await Cliente.all();
-
-    return view.render('frontend.clientes.index',  { clientes: clientes['rows'] });
+      return view.render('frontend.clientes.index',  { 
+        clientes: clientes['rows'],
+        pages:    clientes['pages'],
+        search:   search
+      });
     }
 
   /**
@@ -52,9 +75,12 @@ class ClienteController {
   async store ({ request, response, session }) {
     
     const data = request.only(Cliente.fillable()); 
+    console.log(data);
     const cliente = await Cliente.create(data);
 
-    session.flash({ notification: 'Cliente salvo com sucesso' });
+    
+
+    session.flash({ notification: 'Cliente cadastrado com sucesso' });
     return response.redirect(`/cliente/show/${cliente.id}`);
   
   }

@@ -2,269 +2,191 @@
 
 @section("content")
 
-<script>
-  $('#drop-list').on('change', function(){
-    var selectVal = $(this).val('option');
-      
-      $(this).attr({
-    'disabled': true,
-    'aria-disabled': true
-      });
-      $('#selectHidden').val(selectVal)
-    });
-</script>
-
 <div id="lista-cadastro-cliente">
-  
-      <form action="/cliente/create" method="POST">
-        {{ csrfField() }}
-      <h3>Novo Cliente</h3>
+  <h3>Novo Cliente</h3>
 
-      <div id="busca">
-      </div>
-
-      <div class="label-float">
-        <select id="drop-list">
-          <option value="PF">PF</option>
-          <option value="PJ">PJ</option>
-        </select>
-        <input type="hidden" value="" id="selectHidden">
-        <label>Selecione o tipo Pessoa</label>
-      </div>
-
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="nome" value="{{ old('nome', '') }}" required/>
-        <label>Nome / Razão Social</label>
-        @if(hasErrorFor('nome')) 
-          <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="cpf_cnpj" value="{{ old('cpf_cnpj', '') }}" required/>
-        <label>CPF / CNPJ</label>
-        @if(hasErrorFor('cpf_cnpj')) 
-        <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="date" placeholder=" " name="data_nascimento" value="{{ old('data_nascimento', '') }}" required/>
-        <label>Data Nascimento / Data Abertura</label>
-        @if(hasErrorFor('data_nascimento')) 
-        <span class= "mens-error"> {{ getErrorFor('data_nascimento') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="telefone" value="{{ old('telefone', '') }}" required/>
-        <label>Telefone</label>
-        @if(hasErrorFor('telefone')) 
-        <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" name="email" value="{{ old('email', '') }}" class="form-control" required/>
-        <label>E-mail</label>
-        @if(hasErrorFor('email')) 
-        <span class= "mens-error"> {{ getErrorFor('email') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="CEP" value="{{ old('CEP', '') }}" required/>
-        <label>CEP</label>
-        @if(hasErrorFor('CEP')) 
-        <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="endereco" value="{{ old('endereco', '') }}" required/>
-        <label>Rua/Avenida</label>
-        @if(hasErrorFor('endereco')) 
-        <span class= "mens-error"> {{ getErrorFor('endereco') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="number" placeholder=" " name="numero_endereco" value="{{ old('numero_endereco', '') }}" required/>
-        <label>Número</label>
-        @if(hasErrorFor('numero_endereco')) 
-        <span class= "mens-error"> {{ getErrorFor('numero_endereco') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="complemento" value="{{ old('complemento', '') }}"/>
-        <label>Complemento</label>
-        @if(hasErrorFor('complemento')) 
-        <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="bairro" value="{{ old('bairro', '') }}" required/>
-        <label>Bairro</label>
-        @if(hasErrorFor('bairro')) 
-        <span class= "mens-error"> {{ getErrorFor('bairro') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="cidade" value="{{ old('cidade', '') }}" required/>
-        <label>Cidade</label>
-        @if(hasErrorFor('cidade')) 
-        <span class= "mens-error"> {{ getErrorFor('cidade') }} </span>
-        @endif
-      </div>
-
-      <div class="label-float">
-        <select id="drop-list">
-          <option value="AL">AL</option>
-          <option value="AC">AC</option>
-          <option value="AP">AP</option>
-          <option value="AM">AM</option>
-          <option value="BA">BA</option>
-          <option value="CE">CE</option>
-          <option value="DF">DF</option>
-          <option value="ES">ES</option>
-          <option value="GO">GO</option>
-          <option value="MA">MA</option>
-          <option value="MT">MT</option>
-          <option value="MS">MS</option>
-          <option value="MG">MG</option>
-          <option value="PA">PA</option>
-          <option value="PB">PB</option>
-          <option value="PR">PR</option>
-          <option value="PE">PE</option>
-          <option value="PI">PI</option>
-          <option value="PR">RR</option>
-          <option value="RO">RO</option>
-          <option value="RJ">RJ</option>
-          <option value="RN">RN</option>
-          <option value="RS">RS</option>
-          <option value="SC">SC</option>
-          <option value="SP">SP</option>
-          <option value="SE">SE</option>
-          <option value="TO">TO</option>
-        </select>
-        <input type="hidden" value="" id="selectHidden">
-        <label>Selecione o tipo Pessoa</label>
-      </div>
-
-      <div class="label-float">
-        <input type="text" placeholder=" " name="observacoes" value="{{ old('observacoes', '') }}"/>
-        <label>Observação do Cliente</label>
-        @if(hasErrorFor('observacoes')) 
-        <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
-        @endif
-      </div>
-
-      <div class="botoes">
-        <button class="botao-cancelar">
-          Cancelar
-        </button>
-
-        <button class="botao-cadastrar">
-          Cadastrar
-        </button>
-      </div>
-
+  <form action="/cliente/create" method="POST">
+    {{ csrfField() }}
+    
+    <div id="busca">
     </div>
-  </div>
+
+    <div class="label-float">
+      <select id="drop-list-tipo-pessoa" onchange="selecionaTipoPessoa()">
+        <option value="" selected>Selecione o tipo de pessoa</option>
+        <option value="PF">PF</option>
+        <option value="PJ">PJ</option>
+      </select>
+      <input type="hidden" value="" name="tipo" id="input-tipo-pessoa">
+      <label>Tipo de Pessoa</label>
+      @if(hasErrorFor('tipo')) 
+      <span class= "mens-error"> {{ getErrorFor('tipo') }} </span>
+      @endif
+    </div>
+
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="nome" value="{{ old('nome', '') }}" required/>
+      <label>Nome / Razão Social</label>
+      @if(hasErrorFor('nome')) 
+        <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="cpf_cnpj" value="{{ old('cpf_cnpj', '') }}" required/>
+      <label>CPF / CNPJ</label>
+      @if(hasErrorFor('cpf_cnpj')) 
+      <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="date" placeholder=" " name="data_nascimento" value="{{ old('data_nascimento', '') }}" required/>
+      <label>Data Nascimento / Data Abertura</label>
+      @if(hasErrorFor('data_nascimento')) 
+      <span class= "mens-error"> {{ getErrorFor('data_nascimento') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="telefone" value="{{ old('telefone', '') }}" required/>
+      <label>Telefone</label>
+      @if(hasErrorFor('telefone')) 
+      <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" name="email" value="{{ old('email', '') }}" class="form-control" required/>
+      <label>E-mail</label>
+      @if(hasErrorFor('email')) 
+      <span class= "mens-error"> {{ getErrorFor('email') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="CEP" value="{{ old('CEP', '') }}" required/>
+      <label>CEP</label>
+      @if(hasErrorFor('CEP')) 
+      <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="endereco" value="{{ old('endereco', '') }}" required/>
+      <label>Rua/Avenida</label>
+      @if(hasErrorFor('endereco')) 
+      <span class= "mens-error"> {{ getErrorFor('endereco') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="number" placeholder=" " name="numero_endereco" value="{{ old('numero_endereco', '') }}" required/>
+      <label>Número</label>
+      @if(hasErrorFor('numero_endereco')) 
+      <span class= "mens-error"> {{ getErrorFor('numero_endereco') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="complemento" value="{{ old('complemento', '') }}"/>
+      <label>Complemento</label>
+      @if(hasErrorFor('complemento')) 
+      <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="bairro" value="{{ old('bairro', '') }}" required/>
+      <label>Bairro</label>
+      @if(hasErrorFor('bairro')) 
+      <span class= "mens-error"> {{ getErrorFor('bairro') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="cidade" value="{{ old('cidade', '') }}" required/>
+      <label>Cidade</label>
+      @if(hasErrorFor('cidade')) 
+      <span class= "mens-error"> {{ getErrorFor('cidade') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <select id="drop-list-estado" onchange="selecionaEstado()">
+        <option value="" selected>Selecione o estado</option>
+        <option value="AL">AL</option>
+        <option value="AC">AC</option>
+        <option value="AP">AP</option>
+        <option value="AM">AM</option>
+        <option value="BA">BA</option>
+        <option value="CE">CE</option>
+        <option value="DF">DF</option>
+        <option value="ES">ES</option>
+        <option value="GO">GO</option>
+        <option value="MA">MA</option>
+        <option value="MT">MT</option>
+        <option value="MS">MS</option>
+        <option value="MG">MG</option>
+        <option value="PA">PA</option>
+        <option value="PB">PB</option>
+        <option value="PR">PR</option>
+        <option value="PE">PE</option>
+        <option value="PI">PI</option>
+        <option value="PR">RR</option>
+        <option value="RO">RO</option>
+        <option value="RJ">RJ</option>
+        <option value="RN">RN</option>
+        <option value="RS">RS</option>
+        <option value="SC">SC</option>
+        <option value="SP">SP</option>
+        <option value="SE">SE</option>
+        <option value="TO">TO</option>
+      </select>
+      <input type="hidden" name="estado" value="" id="input-estado">
+      <label>Estado</label>
+      @if(hasErrorFor('estado')) 
+      <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="observacoes" value="{{ old('observacoes', '') }}"/>
+      <label>Observação do Cliente</label>
+      @if(hasErrorFor('observacoes')) 
+      <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
+      @endif
+    </div>
+
+    <div class="botoes">
+      <button class="botao-cancelar">
+        Cancelar
+      </button>
+
+      <button class="botao-cadastrar" type="submit">
+        Cadastrar
+      </button>
+    </div>
+  </form>
 </div>
-
-<!--
-<div id="lista">
-  <div>
-    <div>
-      <form action="/cliente/create" method="POST">
-        {{ csrfField() }}
-
-        <div class="form-group">
-          <label for="">tipo</label>
-          <input type="text" name="tipo" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">nome</label>
-          <input type="text" name="nome" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">cpf_cnpj</label>
-          <input type="text" name="cpf_cnpj" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">data_nascimento</label>
-          <input type="date" name="data_nascimento" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">telefone</label>
-          <input type="text" name="telefone" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">email</label>
-          <input type="text" name="email" value="{{ old('email', '') }}" class="form-control">
-              @if(hasErrorFor('email'))
-                </span> {{ getErrorFor('email') }} </span>
-              @endif
-        </div>
-
-        <div class="form-group">
-          <label for="">CEP</label>
-          <input type="text" name="CEP" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">endereco</label>
-          <input type="text" name="endereco" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">numero_endereco</label>
-          <input type="text" name="numero_endereco" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">complemento</label>
-          <input type="text" name="complemento" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">bairro</label>
-          <input type="text" name="bairro" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">cidade</label>
-          <input type="text" name="cidade" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">estado</label>
-          <input type="text" name="estado" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">observacoes</label>
-          <input type="text" name="observacoes" class="form-control">
-        </div>
-
-        <div class="">
-          <button class="login100-form-btn" type="submit">
-            Salvar
-          </button>
-        </div>
-      </form> 
-    </div>
--->
 
 @endsection
 
+@section('scripts')
+
+  <script>
+
+    function selecionaTipoPessoa() {
+      var x = document.getElementById("drop-list-tipo-pessoa").value;
+      document.getElementById("input-tipo-pessoa").value = x;
+    }
+
+    function selecionaEstado() {
+      var x = document.getElementById("drop-list-estado").value;
+      document.getElementById("input-estado").value = x;
+    }
+
+  </script>
+
+@endsection

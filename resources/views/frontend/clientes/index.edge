@@ -5,12 +5,15 @@
 <div id="lista">
   <h3>Cliente</h3>
   
-    
-  
   <div>
 
-    <span id="icone-pesquisa" class="material-icons">search</span>
-    <input id="pesquisar" type="text" placeholder="Pesquisar" />
+    <form action="/clientes" method="POST"> 
+    {{ csrfField() }}
+      <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+      <button type="submit">
+        <span id="icone-pesquisa" class="material-icons">search</span>
+      </button>
+    </form>
 
     <div id="busca">
 
@@ -44,7 +47,8 @@
             <form action="/cliente/destroy/{{ cliente.id }}" method="POST">
             {{ csrfField() }}
 
-              <button type="submit">
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar o cliente: {{ cliente.nome }} ?')";>
                 <span class="material-icons">delete</span>
               </button>
             </form>
@@ -55,6 +59,17 @@
 
       </tbody>
     </table>
+
+    <div align="center">
+      <a href="/clientes?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/clientes?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
   </div>
 </div>
 

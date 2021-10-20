@@ -7,15 +7,14 @@
 @endif
 
 <div id="lista-mostra-cliente">
+  <h3>Cliente: {{ cliente.nome }}</h3>
   <div>
-     
-    
-    
+         
       <table id="tabela">
             
         <div class="label-edit">
           <label for="">Tipo de Cliente:</label>
-          <input disabled list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value={{ cliente.tipo }}  required/>
+          <input disabled list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value="{{ cliente.tipo }}" required/>
         </div>
         
         <datalist id="lista-tipopessoa">
@@ -26,67 +25,67 @@
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
-          <input disabled type="text" name="nome" value={{ cliente.nome }} required/>
+          <input disabled type="text" name="nome" value="{{ cliente.nome }}" required/>
         </div>
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input disabled type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
+          <input disabled type="text" name="cpf_cnpj" value="{{ cliente.cpf_cnpj }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Data de Nascimento: </label>
-          <input disabled type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
+          <input disabled type="date" name="data_nascimento" value="{{ cliente.data_nascimento }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Telefone: </label>
-          <input disabled type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
+          <input disabled type="text" name="telefone" value="{{ cliente.telefone }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Endereço de e-mail: </label>
-          <input disabled type="text" name="email" value={{ cliente.email }} class="form-control"required/>
+          <input disabled type="text" name="email" value="{{ cliente.email }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input disabled type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
+          <input disabled type="text" name="CEP" value="{{ cliente.CEP }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Rua/Avenida: </label>
-          <input disabled type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
+          <input disabled type="text" name="endereco" value="{{ cliente.endereco }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Número: </label>
-          <input disabled type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
+          <input disabled type="text" name="numero_endereco" value="{{ cliente.numero_endereco }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input disabled type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
+          <input disabled type="text" name="complemento" value="{{ cliente.complemento }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Bairro: </label>
-          <input disabled type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
+          <input disabled type="text" name="bairro" value="{{ cliente.bairro }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Cidade: </label>
-          <input disabled type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
+          <input disabled type="text" name="cidade" value="{{ cliente.cidade }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Estado: </label>
-          <input disabled type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
+          <input disabled type="text" name="estado" value="{{ cliente.estado }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input disabled type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
+          <input disabled type="text" name="observacoes" value="{{ cliente.observacoes }}" class="form-control"required/>
         </div>
       <div class="botoes">
       
@@ -110,7 +109,7 @@
   </div>
 </div>
 
-<a href="cadastrocliente.html" class="float">
+<a href="/cliente/create" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
 
