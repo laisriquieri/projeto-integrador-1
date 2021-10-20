@@ -344,8 +344,8 @@ a:focus {
 }
 
 a:hover {
-    text-decoration: none;
-  color: #fff;
+  text-decoration: none;
+  color: #1d1b1b;
 }
 
 
@@ -675,8 +675,8 @@ iframe {
   border-radius: 15px;
   opacity: 1;
   float: right;
-
 }
+
 #lista-cadastro-ordemservico {
   margin-top: 160px;
   width: 970px;
@@ -695,12 +695,13 @@ span.mens-error {
 }
 .label-edit{
 position: relative;
-padding-top: 60px;
-margin-top: 25px;
+padding-top: 13px;
+margin-top: 50px;
 margin-left: 75px;
 width: 350px;
 float: left;
 }
+
 
 .label-edit input{
   border: 0;
@@ -724,4 +725,30 @@ float: left;
   border-radius: 15px;
   opacity: 1;
   float: right;
+}
+
+#lista-mostra-cliente {
+  margin-top: 160px;
+  width: 970px;
+  height: 900px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: -3px -5px 6px #00000024;
+  border-radius: 15px;
+  opacity: 1;
+  float: right;
+}
+
+.sucesso {
+  position: absolute;
+  z-index: 1;
+  margin-top: 120px;
+  margin-left: 250px;
+  width: 280px;
+  height: 35px;
+  padding-top: 7px;
+  text-align: center;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: -3px -5px 6px #45dd7fc9;
+  border-radius: 15px;
+  opacity: 1;
 }

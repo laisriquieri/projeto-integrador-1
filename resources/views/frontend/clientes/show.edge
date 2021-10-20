@@ -2,19 +2,20 @@
 
 @section("content")
 
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
 
-<div id="lista-altera-cliente">
+<div id="lista-mostra-cliente">
   <div>
-      @if(flashMessage('notification'))
-        <span>{{ flashMessage('notification') }}</span>
-      @endif
+     
     
     
       <table id="tabela">
             
         <div class="label-edit">
           <label for="">Tipo de Cliente:</label>
-          <input list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value={{ cliente.tipo }}  required/>
+          <input disabled list="lista-tipopessoa" autocomplete="off" type="text" name="tipo" value={{ cliente.tipo }}  required/>
         </div>
         
         <datalist id="lista-tipopessoa">
@@ -25,67 +26,67 @@
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
-          <input type="text" name="nome" value={{ cliente.nome }} required/>
+          <input disabled type="text" name="nome" value={{ cliente.nome }} required/>
         </div>
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
+          <input disabled type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Data de Nascimento: </label>
-          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
+          <input disabled type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Telefone: </label>
-          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
+          <input disabled type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Endereço de e-mail: </label>
-          <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
+          <input disabled type="text" name="email" value={{ cliente.email }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
+          <input disabled type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Rua/Avenida: </label>
-          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
+          <input disabled type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Número: </label>
-          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
+          <input disabled type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
+          <input disabled type="text" name="complemento" value={{ cliente.complemento }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Bairro: </label>
-          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
+          <input disabled type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Cidade: </label>
-          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
+          <input disabled type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Estado: </label>
-          <input type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
+          <input disabled type="text" name="estado" value={{ cliente.estado }} class="form-control"required/>
         </div>
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
+          <input disabled type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"required/>
         </div>
       <div class="botoes">
         <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">

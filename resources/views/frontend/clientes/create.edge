@@ -1,6 +1,19 @@
 @layout("layouts.master")
 
 @section("content")
+
+<script>
+  $('#drop-list').on('change', function(){
+    var selectVal = $(this).val('option');
+      
+      $(this).attr({
+    'disabled': true,
+    'aria-disabled': true
+      });
+      $('#selectHidden').val(selectVal)
+    });
+</script>
+
 <div id="lista-cadastro-cliente">
   
       <form action="/cliente/create" method="POST">
@@ -11,14 +24,14 @@
       </div>
 
       <div class="label-float">
-        <input list="lista-tipopessoa" type="text"  autocomplete="off" placeholder=" " name="tipo" value="{{ old('tipo', '') }}" required/>
+        <select id="drop-list">
+          <option value="PF">PF</option>
+          <option value="PJ">PJ</option>
+        </select>
+        <input type="hidden" value="" id="selectHidden">
         <label>Selecione o tipo Pessoa</label>
       </div>
 
-      <datalist id="lista-tipopessoa">
-        <option>PF</option>
-        <option>PJ</option>
-      </datalist>
 
       <div class="label-float">
         <input type="text" placeholder=" " name="nome" value="{{ old('nome', '') }}" required/>
@@ -85,7 +98,7 @@
       </div>
 
       <div class="label-float">
-        <input type="text" placeholder=" " name="complemento" value="{{ old('complemento', '') }}" required/>
+        <input type="text" placeholder=" " name="complemento" value="{{ old('complemento', '') }}"/>
         <label>Complemento</label>
         @if(hasErrorFor('complemento')) 
         <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
@@ -109,45 +122,41 @@
       </div>
 
       <div class="label-float">
-        <input  list="lista-estado" autocomplete="off" placeholder=" " name="estado"  value="{{ old('estado', '') }}" required/>
-        <label>Estado</label>
-        @if(hasErrorFor('estado')) 
-        <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
-        @endif
-        <datalist id="lista-estado">
-          <option>AC</option>
-          <option>AL</option>
-          <option>AP</option>
-          <option>AM</option>
-          <option>BA</option>
-          <option>CE</option>
-          <option>DF</option>
-          <option>ES</option>
-          <option>GO</option>
-          <option>MA</option>
-          <option>MT</option>
-          <option>MS</option>
-          <option>MG</option>
-          <option>PA</option>
-          <option>PB</option>
-          <option>PR</option>
-          <option>PE</option>
-          <option>PI</option>
-          <option>RR</option>
-          <option>RO</option>
-          <option>RJ</option>
-          <option>RN</option>
-          <option>RS</option>
-          <option>SC</option>
-          <option>SP</option>
-          <option>SE</option>
-          <option>TO</option>
-        </datalist>
+        <select id="drop-list">
+          <option value="AL">AL</option>
+          <option value="AC">AC</option>
+          <option value="AP">AP</option>
+          <option value="AM">AM</option>
+          <option value="BA">BA</option>
+          <option value="CE">CE</option>
+          <option value="DF">DF</option>
+          <option value="ES">ES</option>
+          <option value="GO">GO</option>
+          <option value="MA">MA</option>
+          <option value="MT">MT</option>
+          <option value="MS">MS</option>
+          <option value="MG">MG</option>
+          <option value="PA">PA</option>
+          <option value="PB">PB</option>
+          <option value="PR">PR</option>
+          <option value="PE">PE</option>
+          <option value="PI">PI</option>
+          <option value="PR">RR</option>
+          <option value="RO">RO</option>
+          <option value="RJ">RJ</option>
+          <option value="RN">RN</option>
+          <option value="RS">RS</option>
+          <option value="SC">SC</option>
+          <option value="SP">SP</option>
+          <option value="SE">SE</option>
+          <option value="TO">TO</option>
+        </select>
+        <input type="hidden" value="" id="selectHidden">
+        <label>Selecione o tipo Pessoa</label>
       </div>
 
-
       <div class="label-float">
-        <input type="text" placeholder=" " name="observacoes" value="{{ old('observacoes', '') }}" required/>
+        <input type="text" placeholder=" " name="observacoes" value="{{ old('observacoes', '') }}"/>
         <label>Observação do Cliente</label>
         @if(hasErrorFor('observacoes')) 
         <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
