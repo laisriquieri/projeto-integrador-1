@@ -20,29 +20,32 @@ class ClienteController {
    * @param {View} ctx.view
    */
 
-
-    async index ({ view, request }) {
+    async search(search, page, perPage) {
+      return await Cliente.query()
+                          .where('nome', 'like', '%'+search+'%')
+                          .orWhere('cpf_cnpj', 'like', '%'+search+'%')
+                          .orWhere('cidade', 'like', '%'+search+'%')
+                          .paginate(page, perPage);
+    }
     
+    async index ({ view, request }) {  
+      
       const perPage = 3 // Clientes por página
       const page = await request.all().p || 1;
       const testeSearch = await request.all().search;
       const testeS = await request.all().s;
       var clientes = "";
       var search = "";
-      
-      if( ((typeof testeSearch === "undefined") && (typeof testeS === "undefined")) || (testeSearch == null) ) {
-        var clientes = await Cliente.query().paginate(page,perPage);
-      } 
-      
+         
       if ( !(typeof testeSearch === "undefined") && !(testeSearch == null) ) {
-        var search = testeSearch
-        var clientes = await Cliente.query().where('nome', 'LIKE', '%'+search+'%').paginate(page,perPage);
+        var search = testeSearch.replace(/[^a-zA-Z0-9]/gi, '');
       }
       
       if ( ((typeof testeSearch === "undefined") && !(typeof testeS === "undefined")) ) {
-        var search = await request.all().s
-        var clientes = await Cliente.query().where('nome', 'LIKE', '%'+search+'%').paginate(page,perPage);
+        var search = await testeS.replace(/[^a-zA-Z0-9]/gi, '');
       } 
+
+      var clientes = await this.search(search, page, perPage);
 
       return view.render('frontend.clientes.index',  { 
         clientes: clientes['rows'],
@@ -75,10 +78,7 @@ class ClienteController {
   async store ({ request, response, session }) {
     
     const data = request.only(Cliente.fillable()); 
-    console.log(data);
-    const cliente = await Cliente.create(data);
-
-    
+    const cliente = await Cliente.create(data);  
 
     session.flash({ notification: 'Cliente cadastrado com sucesso' });
     return response.redirect(`/cliente/show/${cliente.id}`);
