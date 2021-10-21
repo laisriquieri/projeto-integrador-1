@@ -2,17 +2,7 @@
 
 @section("content")
 
-<script>
-  $('#drop-list').on('change', function() {
-    var selectVal = $(this).val();
-      
-      $(this).attr({
-    'disabled': true,
-    'aria-disabled': true
-      });
-      $('#selectHidden').val(selectVal)
-    });
-</script>
+
 
 <div id="lista-altera-cliente">
   
@@ -26,72 +16,110 @@
         {{ csrfField() }}
 
         <div class="label-float">
-          <select id="drop-list">
+          <select id="drop-list-tipo-pessoa" onchange="selecionaTipoPessoa()">
+            <option value="" selected>Selecione o tipo de pessoa</option>
             <option value="PF">PF</option>
             <option value="PJ">PJ</option>
           </select>
-          <input type="hidden" value="" id="selectHidden">
+          <input type="hidden" name='tipo' value="" id="selectHidden">
           <label>Selecione o tipo Pessoa</label>
+          @if(hasErrorFor('tipo')) 
+          <span class= "mens-error"> {{ getErrorFor('tipo') }} </span>
+          @endif
         </div>
   
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
-          <input type="text" name="nome" value={{ cliente.nome }} required/>
+          <input type="text" name="nome" value="{{ cliente.nome }}" required/>
+          @if(hasErrorFor('nome')) 
+          <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input type="text" name="cpf_cnpj" value={{ cliente.cpf_cnpj }} class="form-control"required/>
+          <input type="text" name="cpf_cnpj" value="{{ cliente.cpf_cnpj }}" class="form-control"required/>
+          @if(hasErrorFor('cpf_cnpj')) 
+          <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Data de Nascimento: </label>
-          <input type="date" name="data_nascimento" value={{ cliente.data_nascimento }} class="form-control"required/>
+          <input type="date" name="data_nascimento" value="{{ cliente.data_nascimento }}" class="form-control"required/>
+          @if(hasErrorFor('data_nascimento')) 
+          <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Telefone: </label>
-          <input type="text" name="telefone" value={{ cliente.telefone }} class="form-control"required/>
+          <input type="text" name="telefone" value="{{ cliente.telefone }}" class="form-control"required/>
+          @if(hasErrorFor('telefone')) 
+          <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Endereço de e-mail: </label>
-          <input type="text" name="email" value={{ cliente.email }} class="form-control"required/>
+          <input type="text" name="email" value="{{ cliente.email }}" class="form-control"required/>
+          @if(hasErrorFor('email')) 
+          <span class= "mens-error"> {{ getErrorFor('email') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input type="text" name="CEP" value={{ cliente.CEP }} class="form-control"required/>
+          <input type="text" name="CEP" value="{{ cliente.CEP }}" class="form-control"required/>
+          @if(hasErrorFor('CEP')) 
+          <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Rua/Avenida: </label>
-          <input type="text" name="endereco" value={{ cliente.endereco }} class="form-control"required/>
+          <input type="text" name="endereco" value="{{ cliente.endereco }}" class="form-control"required/>
+          @if(hasErrorFor('endereco')) 
+          <span class= "mens-error"> {{ getErrorFor('endereco') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Número: </label>
-          <input type="text" name="numero_endereco" value={{ cliente.numero_endereco }} class="form-control"required/>
+          <input type="text" name="numero_endereco" value="{{ cliente.numero_endereco }}" class="form-control"required/>
+          @if(hasErrorFor('numero_endereco')) 
+          <span class= "mens-error"> {{ getErrorFor('numero_endereco') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input type="text" name="complemento" value={{ cliente.complemento }} class="form-control"/>
+          <input type="text" name="complemento" value="{{ cliente.complemento }}" class="form-control"/>
+          @if(hasErrorFor('complemento')) 
+          <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Bairro: </label>
-          <input type="text" name="bairro" value={{ cliente.bairro }} class="form-control"required/>
+          <input type="text" name="bairro" value="{{ cliente.bairro }}" class="form-control"required/>
+          @if(hasErrorFor('bairro')) 
+          <span class= "mens-error"> {{ getErrorFor('bairro') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Cidade: </label>
-          <input type="text" name="cidade" value={{ cliente.cidade }} class="form-control"required/>
+          <input type="text" name="cidade" value="{{ cliente.cidade }}" class="form-control"required/>
+          @if(hasErrorFor('cidade')) 
+          <span class= "mens-error"> {{ getErrorFor('cidade') }} </span>
+          @endif
         </div>
 
         <div class="label-float">
-          <select id="drop-list">
+          <select id="drop-list-estado" onchange="selecionaEstado()">
+            <option value="" selected>Selecione o estado</option>
             <option value="AL">AL</option>
             <option value="AC">AC</option>
             <option value="AP">AP</option>
@@ -120,13 +148,19 @@
             <option value="SE">SE</option>
             <option value="TO">TO</option>
           </select>
-          <input type="hidden" value="" id="selectHidden">
-          <label>Selecione o tipo Pessoa</label>
+          <input type="hidden" name="estado" value="" id="input-estado">
+          <label>Estado</label>
+          @if(hasErrorFor('estado')) 
+          <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
+          @endif
         </div>
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input type="text" name="observacoes" value={{ cliente.observacoes }} class="form-control"/>
+          <input type="text" name="observacoes" value="{{ cliente.observacoes }}" class="form-control"/>
+          @if(hasErrorFor('observacoes')) 
+          <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
+          @endif
         </div>
 
         <div class="botoes">
@@ -146,3 +180,20 @@
 </div>
 @endsection
 
+@section('scripts')
+
+  <script>
+
+    function selecionaTipoPessoa() {
+      var x = document.getElementById("drop-list-tipo-pessoa").value;
+      document.getElementById("input-tipo-pessoa").value = x;
+    }
+
+    function selecionaEstado() {
+      var x = document.getElementById("drop-list-estado").value;
+      document.getElementById("input-estado").value = x;
+    }
+
+  </script>
+
+@endsection
