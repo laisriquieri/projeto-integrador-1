@@ -7,15 +7,13 @@
           
   <div>
 
-    <form id="form.pesquisa" action="/clientes" method="POST"> 
+    <form action="/clientes" method="POST"> 
     {{ csrfField() }}
    
-      
-          <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
-          <button type="submit">
-            <span   id="icone-pesquisa"  class="material-icons">search</span>
+          <button id="icone-pesquisa" type="submit">
+            <span class="material-icons">search</span>
           </button>  
-    
+          <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
 
     </form>
     <div id="busca">
@@ -65,7 +63,7 @@
       </tbody>
     </table>
 
-    <div align= "center" id="div.paginacao">
+    <div class="div-paginacao">
       <a href="/clientes?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_before</span>
       </a>
