@@ -10,6 +10,7 @@ const Cliente = use('App/Models/Cliente');
  * Resourceful controller for interacting with clientes
  */
 class ClienteController {
+  
   /**
    * Show a list of all clientes.
    * GET clientes
@@ -18,16 +19,7 @@ class ClienteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    * @param {View} ctx.view
-   */
-
-    async search(search, page, perPage) {
-      return await Cliente.query()
-                          .where('nome', 'like', '%'+search+'%')
-                          .orWhere('cpf_cnpj', 'like', '%'+search+'%')
-                          .orWhere('cidade', 'like', '%'+search+'%')
-                          .paginate(page, perPage);
-    }
-    
+   */   
     async index ({ view, request }) {  
       
       const perPage = 3 // Clientes por página
@@ -53,7 +45,20 @@ class ClienteController {
         search:   search
       });
     }
-
+  
+      /**
+       * Query for search.
+       * GET clientes/create
+       *
+       */
+    async search(search, page, perPage) {
+      return await Cliente.query()
+                          .where('nome', 'like', '%'+search+'%')
+                          .orWhere('cpf_cnpj', 'like', '%'+search+'%')
+                          .orWhere('cidade', 'like', '%'+search+'%')
+                          .paginate(page, perPage);
+    }
+  
   /**
    * Render a form to be used for creating a new cliente.
    * GET clientes/create
