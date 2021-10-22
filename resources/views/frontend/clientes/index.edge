@@ -2,6 +2,10 @@
 
 @section("content")
 
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
 <div id="lista">
   <h3>Cliente</h3>
           
@@ -18,13 +22,6 @@
     </form>
     <div id="busca">
     </div>
-    
-
-      @if(flashMessage('notification'))
-        <span>{{ flashMessage('notification') }}</span>
-      @endif
-
-    
     
     <table id="tabela">
       <thead>
@@ -45,7 +42,12 @@
           <td>{{ cliente.telefone }}</td>
           <td>{{ cliente.cpf_cnpj }}</td>
           
-          <td><a href="/cliente/edit/{{ cliente.id }}"><span class="material-icons">edit</span></a></td>
+          <td>
+            <a href="/cliente/edit/{{ cliente.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          
           <td>
             <form action="/cliente/destroy/{{ cliente.id }}" method="POST">
             {{ csrfField() }}

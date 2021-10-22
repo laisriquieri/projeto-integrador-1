@@ -1,6 +1,6 @@
 'use strict'
 
-class Cliente {
+class ClienteUpdate {
   get validateAll() {
     return true;
   }
@@ -16,7 +16,7 @@ class Cliente {
       //username: 'required|unique:users|min:3|max:16',    
       tipo: 'required', 
       nome: 'required|min:3',
-      cpf_cnpj: 'required|unique:clientes|min:3',
+      cpf_cnpj: 'required|min:3',
       data_nascimento: 'required',
       telefone: 'required|min:3',
       email: 'required|email',
@@ -60,4 +60,4 @@ class Cliente {
 
 }
 
-module.exports = Cliente
+module.exports = ClienteUpdate

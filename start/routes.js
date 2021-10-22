@@ -45,10 +45,10 @@ Route.group(() => {
         Route.get('clientes', 'ClienteController.index'); 
         Route.post('clientes', 'ClienteController.index'); 
         Route.get('cliente/create', 'ClienteController.create');
-        Route.post('cliente/create', 'ClienteController.store').validator('Cliente');
+        Route.post('cliente/create', 'ClienteController.store').validator('ClienteStore');
         Route.get('cliente/show/:id', 'ClienteController.show'); 
         Route.get('cliente/edit/:id', 'ClienteController.edit'); 
-        Route.post('cliente/update/:id', 'ClienteController.update'); 
+        Route.post('cliente/update/:id', 'ClienteController.update').validator('ClienteUpdate'); 
         Route.post('cliente/destroy/:id', 'ClienteController.destroy');
 
         //Produtos
