@@ -2,8 +2,6 @@
 
 @section("content")
 
-
-
 <div id="lista-altera-cliente">
   
     <h3>Altera Cliente</h3>
@@ -17,11 +15,11 @@
 
         <div class="label-float">
           <select id="drop-list-tipo-pessoa" onchange="selecionaTipoPessoa()">
-            <option value="" {{ cliente.tipo == "" ? "selected" : "" }}>Selecione o tipo de pessoa</option>
-            <option value="PF" {{ cliente.tipo == "PF" ? "selected" : "" }}>PF</option>
-            <option value="PJ" {{ cliente.tipo == "PJ" ? "selected" : "" }}>PJ</option>
+            <option value="" {{ old('tipo', cliente.tipo) == "" ? "selected" : "" }}>Selecione o tipo de pessoa</option>
+            <option value="PF" {{ old('tipo', cliente.tipo) == "PF" ? "selected" : "" }}>PF</option>
+            <option value="PJ" {{ old('tipo', cliente.tipo) == "PJ" ? "selected" : "" }}>PJ</option>
           </select>
-          <input type="hidden" name='tipo' value="{{ cliente.tipo }}" id="selectHidden">
+          <input type="hidden" name="tipo" value="{{ old('tipo', cliente.tipo) }}" id="input-tipo-pessoa">
           <label>Selecione o tipo Pessoa</label>
           @if(hasErrorFor('tipo')) 
           <span class= "mens-error"> {{ getErrorFor('tipo') }} </span>
@@ -31,7 +29,7 @@
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
-          <input type="text" name="nome" value="{{ cliente.nome }}" required/>
+          <input type="text" name="nome" value="{{ old('nome', cliente.nome) }}" required/>
           @if(hasErrorFor('nome')) 
           <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
           @endif
@@ -39,7 +37,7 @@
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input type="text" name="cpf_cnpj" value="{{ cliente.cpf_cnpj }}" class="form-control"required/>
+          <input type="text" name="cpf_cnpj" value="{{ old('cpf_cnpj', cliente.cpf_cnpj) }}" class="form-control"required/>
           @if(hasErrorFor('cpf_cnpj')) 
           <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
           @endif
@@ -47,7 +45,7 @@
 
         <div class="label-edit">
           <label for="">Data de Nascimento: </label>
-          <input type="date" name="data_nascimento" value="{{ cliente.data_nascimento }}" class="form-control"required/>
+          <input type="date" name="data_nascimento" value="{{ old('data_nascimento', cliente.data_nascimento) }}" class="form-control"required/>
           @if(hasErrorFor('data_nascimento')) 
           <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
           @endif
@@ -55,7 +53,7 @@
 
         <div class="label-edit">
           <label for="">Telefone: </label>
-          <input type="text" name="telefone" value="{{ cliente.telefone }}" class="form-control"required/>
+          <input type="text" name="telefone" value="{{ old('telefone', cliente.telefone) }}" class="form-control"required/>
           @if(hasErrorFor('telefone')) 
           <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
           @endif
@@ -63,7 +61,7 @@
 
         <div class="label-edit">
           <label for="">Endereço de e-mail: </label>
-          <input type="text" name="email" value="{{ cliente.email }}" class="form-control"required/>
+          <input type="text" name="email" value="{{ old('email', cliente.email) }}" class="form-control"required/>
           @if(hasErrorFor('email')) 
           <span class= "mens-error"> {{ getErrorFor('email') }} </span>
           @endif
@@ -71,7 +69,7 @@
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input type="text" name="CEP" value="{{ cliente.CEP }}" class="form-control"required/>
+          <input type="text" name="CEP" value="{{ old('CEP', cliente.CEP) }}" class="form-control"required/>
           @if(hasErrorFor('CEP')) 
           <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
           @endif
@@ -79,7 +77,7 @@
 
         <div class="label-edit">
           <label for="">Rua/Avenida: </label>
-          <input type="text" name="endereco" value="{{ cliente.endereco }}" class="form-control"required/>
+          <input type="text" name="endereco" value="{{ old('endereco', cliente.endereco) }}" class="form-control"required/>
           @if(hasErrorFor('endereco')) 
           <span class= "mens-error"> {{ getErrorFor('endereco') }} </span>
           @endif
@@ -87,7 +85,7 @@
 
         <div class="label-edit">
           <label for="">Número: </label>
-          <input type="text" name="numero_endereco" value="{{ cliente.numero_endereco }}" class="form-control"required/>
+          <input type="text" name="numero_endereco" value="{{ old('numero_endereco', cliente.numero_endereco) }}" class="form-control"required/>
           @if(hasErrorFor('numero_endereco')) 
           <span class= "mens-error"> {{ getErrorFor('numero_endereco') }} </span>
           @endif
@@ -95,7 +93,7 @@
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input type="text" name="complemento" value="{{ cliente.complemento }}" class="form-control"/>
+          <input type="text" name="complemento" value="{{ old('complemento', cliente.complemento) }}" class="form-control"/>
           @if(hasErrorFor('complemento')) 
           <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
           @endif
@@ -103,7 +101,7 @@
 
         <div class="label-edit">
           <label for="">Bairro: </label>
-          <input type="text" name="bairro" value="{{ cliente.bairro }}" class="form-control"required/>
+          <input type="text" name="bairro" value="{{ old('bairro', cliente.bairro) }}" class="form-control"required/>
           @if(hasErrorFor('bairro')) 
           <span class= "mens-error"> {{ getErrorFor('bairro') }} </span>
           @endif
@@ -111,7 +109,7 @@
 
         <div class="label-edit">
           <label for="">Cidade: </label>
-          <input type="text" name="cidade" value="{{ cliente.cidade }}" class="form-control"required/>
+          <input type="text" name="cidade" value="{{ old('cidade', cliente.cidade) }}" class="form-control"required/>
           @if(hasErrorFor('cidade')) 
           <span class= "mens-error"> {{ getErrorFor('cidade') }} </span>
           @endif
@@ -119,37 +117,36 @@
 
         <div class="label-float">
           <select id="drop-list-estado" onchange="selecionaEstado()" >
-            <option value="" {{ cliente.estado == "" ? "selected" : "" }}>Selecione o Estado</option>
-            <option value="AL" {{ cliente.estado == "AL" ? "selected" : "" }}>AL</option>
-            <option value="AC" {{ cliente.estado == "AC" ? "selected" : "" }}>AC</option>
-            <option value="AP" {{ cliente.estado == "AP" ? "selected" : "" }}>AP</option>
-            <option value="AM" {{ cliente.estado == "AM" ? "selected" : "" }}>AM</option>
-            <option value="BA" {{ cliente.estado == "BA" ? "selected" : "" }}>BA</option>
-            <option value="CE" {{ cliente.estado == "CE" ? "selected" : "" }}>CEL</option>
-            <option value="DF" {{ cliente.estado == "DF" ? "selected" : "" }}>DF</option>
-            <option value="ES" {{ cliente.estado == "ES" ? "selected" : "" }}>ES</option>
-            <option value="GO" {{ cliente.estado == "GO" ? "selected" : "" }}>GO</option>
-            <option value="MA" {{ cliente.estado == "MA" ? "selected" : "" }}>MA</option>
-            <option value="MT" {{ cliente.estado == "MT" ? "selected" : "" }}>MT</option>
-            <option value="MS" {{ cliente.estado == "MS" ? "selected" : "" }}>MS</option>
-            <option value="MG" {{ cliente.estado == "MG" ? "selected" : "" }}>MG</option>
-            <option value="PA" {{ cliente.estado == "PA" ? "selected" : "" }}>PA</option>
-            <option value="PB" {{ cliente.estado == "PB" ? "selected" : "" }}>PB</option>
-            <option value="PR" {{ cliente.estado == "PR" ? "selected" : "" }}>PR</option>
-            <option value="PE" {{ cliente.estado == "PE" ? "selected" : "" }}>PE</option>
-            <option value="PI" {{ cliente.estado == "PI" ? "selected" : "" }}>PI</option>
-            <option value="PR" {{ cliente.estado == "PR" ? "selected" : "" }}>PR</option>
-            <option value="RO" {{ cliente.estado == "RO" ? "selected" : "" }}>RO</option>
-            <option value="RR" {{ cliente.estado == "RR" ? "selected" : "" }}>RR</option>
-            <option value="RJ" {{ cliente.estado == "RJ" ? "selected" : "" }}>RJ</option>
-            <option value="RN" {{ cliente.estado == "RN" ? "selected" : "" }}>RN</option>
-            <option value="RS" {{ cliente.estado == "RS" ? "selected" : "" }}>RS</option>
-            <option value="SC" {{ cliente.estado == "SC" ? "selected" : "" }}>SC</option>
-            <option value="SP" {{ cliente.estado == "SP" ? "selected" : "" }}>SP</option>
-            <option value="SE" {{ cliente.estado == "SE" ? "selected" : "" }}>SE</option>
-            <option value="TO" {{ cliente.estado == "TO" ? "selected" : "" }}>TO</option>
+            <option value="" {{ old('estado', cliente.estado) == "" ? "selected" : "" }}>Selecione o Estado</option>
+            <option value="AC" {{ old('estado', cliente.estado) == "AC" ? "selected" : "" }}>AC</option>
+            <option value="AL" {{ old('estado', cliente.estado) == "AL" ? "selected" : "" }}>AL</option>
+            <option value="AP" {{ old('estado', cliente.estado) == "AP" ? "selected" : "" }}>AP</option>
+            <option value="AM" {{ old('estado', cliente.estado) == "AM" ? "selected" : "" }}>AM</option>
+            <option value="BA" {{ old('estado', cliente.estado) == "BA" ? "selected" : "" }}>BA</option>
+            <option value="CE" {{ old('estado', cliente.estado) == "CE" ? "selected" : "" }}>CEL</option>
+            <option value="DF" {{ old('estado', cliente.estado) == "DF" ? "selected" : "" }}>DF</option>
+            <option value="ES" {{ old('estado', cliente.estado) == "ES" ? "selected" : "" }}>ES</option>
+            <option value="GO" {{ old('estado', cliente.estado) == "GO" ? "selected" : "" }}>GO</option>
+            <option value="MA" {{ old('estado', cliente.estado) == "MA" ? "selected" : "" }}>MA</option>
+            <option value="MT" {{ old('estado', cliente.estado) == "MT" ? "selected" : "" }}>MT</option>
+            <option value="MS" {{ old('estado', cliente.estado) == "MS" ? "selected" : "" }}>MS</option>
+            <option value="MG" {{ old('estado', cliente.estado) == "MG" ? "selected" : "" }}>MG</option>
+            <option value="PA" {{ old('estado', cliente.estado) == "PA" ? "selected" : "" }}>PA</option>
+            <option value="PB" {{ old('estado', cliente.estado) == "PB" ? "selected" : "" }}>PB</option>
+            <option value="PR" {{ old('estado', cliente.estado) == "PR" ? "selected" : "" }}>PR</option>
+            <option value="PE" {{ old('estado', cliente.estado) == "PE" ? "selected" : "" }}>PE</option>
+            <option value="PI" {{ old('estado', cliente.estado) == "PI" ? "selected" : "" }}>PI</option>
+            <option value="RJ" {{ old('estado', cliente.estado) == "RJ" ? "selected" : "" }}>RJ</option>
+            <option value="RN" {{ old('estado', cliente.estado) == "RN" ? "selected" : "" }}>RN</option>
+            <option value="RO" {{ old('estado', cliente.estado) == "RO" ? "selected" : "" }}>RO</option>
+            <option value="RR" {{ old('estado', cliente.estado) == "RR" ? "selected" : "" }}>RR</option>
+            <option value="RS" {{ old('estado', cliente.estado) == "RS" ? "selected" : "" }}>RS</option>
+            <option value="SC" {{ old('estado', cliente.estado) == "SC" ? "selected" : "" }}>SC</option>
+            <option value="SP" {{ old('estado', cliente.estado) == "SP" ? "selected" : "" }}>SP</option>
+            <option value="SE" {{ old('estado', cliente.estado) == "SE" ? "selected" : "" }}>SE</option>
+            <option value="TO" {{ old('estado', cliente.estado) == "TO" ? "selected" : "" }}>TO</option>
           </select>
-          <input type="hidden" name="estado" value="{{ cliente.estado }}" id="input-estado">
+          <input type="hidden" name="estado" value="{{ old('estado', cliente.estado) }}" id="input-estado">
           <label>Estado</label>
           @if(hasErrorFor('estado')) 
           <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
@@ -158,7 +155,7 @@
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input type="text" name="observacoes" value="{{ cliente.observacoes }}" class="form-control"/>
+          <input type="text" name="observacoes" value="{{ old('observacoes', cliente.observacoes) }}" class="form-control"/>
           @if(hasErrorFor('observacoes')) 
           <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
           @endif
