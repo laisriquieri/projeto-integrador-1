@@ -17,11 +17,11 @@
 
         <div class="label-float">
           <select id="drop-list-tipo-pessoa" onchange="selecionaTipoPessoa()">
-            <option value="" selected>Selecione o tipo de pessoa</option>
-            <option value="PF">PF</option>
-            <option value="PJ">PJ</option>
+            <option value="" {{ cliente.tipo == "" ? "selected" : "" }}>Selecione o tipo de pessoa</option>
+            <option value="PF" {{ cliente.tipo == "PF" ? "selected" : "" }}>PF</option>
+            <option value="PJ" {{ cliente.tipo == "PJ" ? "selected" : "" }}>PJ</option>
           </select>
-          <input type="hidden" name='tipo' value="" id="selectHidden">
+          <input type="hidden" name='tipo' value="{{ cliente.tipo }}" id="selectHidden">
           <label>Selecione o tipo Pessoa</label>
           @if(hasErrorFor('tipo')) 
           <span class= "mens-error"> {{ getErrorFor('tipo') }} </span>
@@ -118,37 +118,38 @@
         </div>
 
         <div class="label-float">
-          <select id="drop-list-estado" onchange="selecionaEstado()">
-            <option value="" selected>Selecione o estado</option>
-            <option value="AL">AL</option>
-            <option value="AC">AC</option>
-            <option value="AP">AP</option>
-            <option value="AM">AM</option>
-            <option value="BA">BA</option>
-            <option value="CE">CE</option>
-            <option value="DF">DF</option>
-            <option value="ES">ES</option>
-            <option value="GO">GO</option>
-            <option value="MA">MA</option>
-            <option value="MT">MT</option>
-            <option value="MS">MS</option>
-            <option value="MG">MG</option>
-            <option value="PA">PA</option>
-            <option value="PB">PB</option>
-            <option value="PR">PR</option>
-            <option value="PE">PE</option>
-            <option value="PI">PI</option>
-            <option value="PR">RR</option>
-            <option value="RO">RO</option>
-            <option value="RJ">RJ</option>
-            <option value="RN">RN</option>
-            <option value="RS">RS</option>
-            <option value="SC">SC</option>
-            <option value="SP">SP</option>
-            <option value="SE">SE</option>
-            <option value="TO">TO</option>
+          <select id="drop-list-estado" onchange="selecionaEstado()" >
+            <option value="" {{ cliente.estado == "" ? "selected" : "" }}>Selecione o Estado</option>
+            <option value="AL" {{ cliente.estado == "AL" ? "selected" : "" }}>AL</option>
+            <option value="AC" {{ cliente.estado == "AC" ? "selected" : "" }}>AC</option>
+            <option value="AP" {{ cliente.estado == "AP" ? "selected" : "" }}>AP</option>
+            <option value="AM" {{ cliente.estado == "AM" ? "selected" : "" }}>AM</option>
+            <option value="BA" {{ cliente.estado == "BA" ? "selected" : "" }}>BA</option>
+            <option value="CE" {{ cliente.estado == "CE" ? "selected" : "" }}>CEL</option>
+            <option value="DF" {{ cliente.estado == "DF" ? "selected" : "" }}>DF</option>
+            <option value="ES" {{ cliente.estado == "ES" ? "selected" : "" }}>ES</option>
+            <option value="GO" {{ cliente.estado == "GO" ? "selected" : "" }}>GO</option>
+            <option value="MA" {{ cliente.estado == "MA" ? "selected" : "" }}>MA</option>
+            <option value="MT" {{ cliente.estado == "MT" ? "selected" : "" }}>MT</option>
+            <option value="MS" {{ cliente.estado == "MS" ? "selected" : "" }}>MS</option>
+            <option value="MG" {{ cliente.estado == "MG" ? "selected" : "" }}>MG</option>
+            <option value="PA" {{ cliente.estado == "PA" ? "selected" : "" }}>PA</option>
+            <option value="PB" {{ cliente.estado == "PB" ? "selected" : "" }}>PB</option>
+            <option value="PR" {{ cliente.estado == "PR" ? "selected" : "" }}>PR</option>
+            <option value="PE" {{ cliente.estado == "PE" ? "selected" : "" }}>PE</option>
+            <option value="PI" {{ cliente.estado == "PI" ? "selected" : "" }}>PI</option>
+            <option value="PR" {{ cliente.estado == "PR" ? "selected" : "" }}>PR</option>
+            <option value="RO" {{ cliente.estado == "RO" ? "selected" : "" }}>RO</option>
+            <option value="RR" {{ cliente.estado == "RR" ? "selected" : "" }}>RR</option>
+            <option value="RJ" {{ cliente.estado == "RJ" ? "selected" : "" }}>RJ</option>
+            <option value="RN" {{ cliente.estado == "RN" ? "selected" : "" }}>RN</option>
+            <option value="RS" {{ cliente.estado == "RS" ? "selected" : "" }}>RS</option>
+            <option value="SC" {{ cliente.estado == "SC" ? "selected" : "" }}>SC</option>
+            <option value="SP" {{ cliente.estado == "SP" ? "selected" : "" }}>SP</option>
+            <option value="SE" {{ cliente.estado == "SE" ? "selected" : "" }}>SE</option>
+            <option value="TO" {{ cliente.estado == "TO" ? "selected" : "" }}>TO</option>
           </select>
-          <input type="hidden" name="estado" value="" id="input-estado">
+          <input type="hidden" name="estado" value="{{ cliente.estado }}" id="input-estado">
           <label>Estado</label>
           @if(hasErrorFor('estado')) 
           <span class= "mens-error"> {{ getErrorFor('estado') }} </span>
