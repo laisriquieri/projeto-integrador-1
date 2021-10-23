@@ -4,6 +4,14 @@
 const Model = use('Model')
 
 class Produto extends Model {
+
+    static fillable() {
+        return [ 'nome'
+                ,'descricao'
+                ,'preco'
+                ,'valor_compra'
+                ,'valor_venda']
+    }
 }
 
 module.exports = Produto

@@ -4,39 +4,53 @@
 @section("content")
 
 <div id="lista-cadastro">
-
   <h3>Novo Produto</h3>
 
-  <div id="busca">
-  </div>
+  <form action="/produto" method="POST">
+    {{ csrfField() }}
 
-  <div class="label-float">
-    <input type="text" placeholder=" " required/>
-    <label>Nome</label>
-  </div>
+    <div id="busca">
+    </div>
 
-  <div class="label-float">
-    <input type="text" placeholder=" " required/>
-    <label>Descrição</label>
-  </div>
+      <div class="label-float">
+        <input type="text" placeholder=" " name="nome" valor_vendavalue="{{ old('nome', '') }}" required/>
+        <label>Nome</label>
+        @if(hasErrorFor('nome'))
+        <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+        @endif
+      </div>
 
-  <div class="label-float">
-    <input type="number" placeholder=" " required/>
-    <label>Valor Compra</label>
-  </div>
+      <div class="label-float">
+        <input type="text" placeholder=" " name="descricao" value="{{ old('descricao', '') }}" required/>
+        <label>Descrição</label>
+        @if(hasErrorFor('descricao'))
+        <span class= "mens-error"> {{ getErrorFor('descricao') }} </span>
+        @endif
+      </div>
 
-  <div class="label-float">
-    <input type="number" placeholder=" " required/>
-    <label>Valor Venda</label>
-  </div>
+      <div class="label-float">
+        <input type="real" placeholder=" " name="valor_compra" value="{{ old('valor_compra', '') }}" required/>
+        <label>Valor Compra</label>
+        @if(hasErrorFor('valor_compra'))
+        <span class= "mens-error"> {{ getErrorFor('valor_compra') }} </span>
+        @endif
+      </div>
 
-  <div class="botoes">
-    <button class="botao-cancelar">
-      Cancelar
-    </button>
+      <div class="label-float">
+        <input type="real" placeholder=" " name="valor_venda" value="{{ old('valor_venda', '') }}" required/>
+        <label>Valor Venda</label>
+        @if(hasErrorFor('valor_venda'))
+        <span class= "mens-error"> {{ getErrorFor('valor_venda') }} </span>
+        @endif
+      </div>
 
-    <button class="botao-cadastrar">
-      Cadastrar
+    <div class="botoes">
+      <button class="botao-cancelar">
+        Cancelar
+      </button>
+
+      <button class="botao-cadastrar" type="submit">
+        Cadastrar
     </button>
   </div>
 
@@ -44,41 +58,3 @@
 
 
 @endsection
-
-{{--  <div id="lista">
-  <div>
-
-    <div>
-      <form action="/produto" method="POST">
-        {{ csrfField() }}
-
-        <div class="form-group">
-          <label for="">Nome</label>
-          <input type="text" name="nome" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">Descrição</label>
-          <input type="text" name="descricao" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">Valor Compra</label>
-          <input type="number" name="valor_compra" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="">Valor Venda</label>
-          <input type="number" name="valor_venda" class="form-control">
-        </div>
-
-        <div class="">
-          <button class="login100-form-btn" type="submit">
-            Salvar
-          </button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-</div>  --}}
