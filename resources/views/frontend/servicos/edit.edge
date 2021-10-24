@@ -2,14 +2,20 @@
 
 @section("content")
 
-  <div id="lista-cadastro">
+  <div id="lista-altera-cliente">
+
+    <h3>Editar Serviço: {{ servico.nome }}</h3>
+
+      <form action="/servico/update/{{ servico.id }}" method="POST">
+      {{ csrfField() }}
+
+        <div id="busca">
+        </div>
+
+
         <form action="/cliente/update/{{ cliente.id }}" method="POST">
         {{ csrfField() }}
-          <h3>Editar Serviço</h3>
-    
-          <div id="busca">
-          </div>
-    
+        
           <div class="label-float">
             <input type="text" placeholder=" " required/>
             <label>Nome</label>
