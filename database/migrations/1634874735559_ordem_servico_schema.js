@@ -7,7 +7,7 @@ class OrdemServicoSchema extends Schema {
   up () {
     this.create('ordem_servicos', (table) => {
       table.increments()
-      table.integer('cliente_id').unsigned().references('id').inTable('clientes').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('cliente_id').unsigned().references('id').inTable('clientes')//.onUpdate('CASCADE').onDelete('CASCADE')
       table.date('data_entrada').notNullable()
       table.string('equipameto', 100).notNullable()
       table.string('relato', 255).notNullable()

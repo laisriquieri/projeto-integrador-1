@@ -54,6 +54,16 @@ Route.group(() => {
         //Produtos
         Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
 
+        //Servicos
+        Route.get('servicos', 'ServicoController.index'); 
+        Route.post('servicos', 'ServicoController.index'); 
+        Route.get('servico/create', 'ServicoController.create');
+        Route.post('servico/create', 'ServicoController.store').validator('ServicoStore');
+        Route.get('servico/show/:id', 'ServicoController.show'); 
+        Route.get('servico/edit/:id', 'ServicoController.edit'); 
+        Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate'); 
+        Route.post('servico/destroy/:id', 'ServicoController.destroy');
+
 }).middleware('auth')
 
 

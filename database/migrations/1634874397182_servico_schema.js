@@ -7,8 +7,9 @@ class ServicoSchema extends Schema {
   up () {
     this.create('servicos', (table) => {
       table.increments()
-      table.string('nome', 45).notNullable()
+      table.string('nome', 100).notNullable()
       table.string('categoria', 45).notNullable()
+      table.string('descricao', 200)
       table.decimal('valor').notNullable()
       table.timestamps()
     })
