@@ -3,11 +3,15 @@
 
 @section("content")
 
-<div id="lista">
-  <div>
-    <div id="busca">
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
 
-    </div>
+<div id="lista">
+  <h3>Produtos</h3>
+
+  <div>
+    
     <table id="tabela">
       <thead>
         <tr>
@@ -21,15 +25,29 @@
       </thead>
       <tbody>
 
-        @each(produto in Produtos)
+        @each(produto in Produto)
 
         <tr>
-          <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
+          <td><a href="/produto/{{ produto.id }}">{{ produto.nome }}</a></td>
           <td>{{ produto.descricao }}</td>
           <td>{{ produto.valor_compra }}</td>
           <td>{{ produto.valor_venda }}</td>
-          <td><a href="/produto/edit/{{ produto.id }}"><span class="material-icons">edit</span></a></td>
-          <td><a href="/produto/destroy/{{ produto.id }}"><span class="material-icons">delete</span></a></td>
+          <td>
+            <a href="/produto/edit/{{ produto.id }}">
+            <span class="material-icons">Editar</span>
+            </a>
+          </td>
+
+          <td>
+            <form action="/produto/destroy/{{ produto.id }}" method="POST">
+              {{ csrfField() }}
+
+                <button type="submit"
+                onclick="return confirm('Certeza que gostaria de deletar o produto: {{ produto.nome }} ?')";>
+                  <span class="material-icons">Delete</span>
+                </button>
+            </form>
+          </td>
         </tr>
 
         @endeach
@@ -37,11 +55,9 @@
       </tbody>
     </table>
   </div>
-</div>
-
 
 <a href="/produto/create" class="float">
-  <i id="add-button" class="material-icons">add</i>
+  <i id="add-button" class="material-icons">+</i>
 </a>
 
 

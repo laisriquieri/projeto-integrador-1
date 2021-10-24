@@ -19,31 +19,12 @@ class ProdutoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({view, request }) {
-    const perPage = 3 // produtos por página
-    const page = await request.all().p || 1;
-    const testeSearch = await request.all().search;
-    const testeS = await request.all().s;
-    var produtos = "";
-    var search = "";
 
-    if ( !(typeof testeSearch === "undefined") && !(testeSearch == null) ) {
-      var search = testeSearch.replace(/[^a-zA-Z0-9]/gi, '');
-    }
-
-    if ( ((typeof testeSearch === "undefined") && !(typeof testeS === "undefined")) ) {
-      var search = await testeS.replace(/[^a-zA-Z0-9]/gi, '');
-    }
-
-    var produtos = await this.search(search, page, perPage);
-
-    return view.render('frontend.produtos.index',  {
-      produtos: produtos['rows'],
-      pages:    produtos['pages'],
-      search:   search
-    });
+  async index ({ view }) {
+    const produtos = await Produto.all();
+    return view.render('frontend.produtos.index',  { produto: produtos['rows'] });
   }
-
+  
     /**
      * Query for search.
      * GET produtos/create
@@ -54,7 +35,6 @@ class ProdutoController {
                         .where('nome', 'like', '%'+search+'%')
                         .paginate(page, perPage);
   }
-
     /**
    * Render a form to be used for creating a new produto.
    * GET produtos/create
@@ -81,8 +61,9 @@ class ProdutoController {
     const produto = await Produto.create(data);
 
     //Implementar no front as mensagens flash
-    session.flash({ notification: 'Produto criado com sucesso' });
-    return response.redirect(`/produto/show/${produto.id}}`);
+    //session.flash({ notification: 'Produto criado com sucesso' });
+    console.log('Produto criado com sucesso')
+    return response.redirect(`/produto/${produto.id}`)
 
   }
 
@@ -98,7 +79,7 @@ class ProdutoController {
   async show ({ params, request, response, view }) {
 
     const produto = await Produto.find(params.id);
-    return  view.render('frontend.produtos.show', {produto} )
+    return  view.render('frontend.produtos.show', {produto})
 
   }
 

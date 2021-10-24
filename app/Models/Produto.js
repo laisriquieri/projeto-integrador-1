@@ -6,7 +6,8 @@ const Model = use('Model')
 class Produto extends Model {
 
     static fillable() {
-        return [ 'nome'
+        return [ 'id'
+                ,'nome'
                 ,'descricao'
                 ,'preco'
                 ,'valor_compra'
