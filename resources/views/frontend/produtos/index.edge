@@ -11,7 +11,7 @@
   <h3>Produtos</h3>
 
   <div>
-    
+
     <table id="tabela">
       <thead>
         <tr>
@@ -25,7 +25,7 @@
       </thead>
       <tbody>
 
-        @each(produto in Produto)
+        @each(produto in produtos)
 
         <tr>
           <td><a href="/produto/{{ produto.id }}">{{ produto.nome }}</a></td>
