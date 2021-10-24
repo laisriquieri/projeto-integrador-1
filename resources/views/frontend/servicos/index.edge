@@ -45,13 +45,13 @@
           <td>{{ servico.valor }}</td>
           
           <td>
-            <a href="/servicos/edit/{{ servico.id }}">
+            <a href="/servico/edit/{{ servico.id }}">
               <span class="material-icons">edit</span>
             </a>
           </td>
           
           <td>
-            <form action="/servicos/destroy/{{ servico.id }}" method="POST">
+            <form action="/servico/destroy/{{ servico.id }}" method="POST">
             {{ csrfField() }}
 
               <button type="submit"

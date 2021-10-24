@@ -1,6 +1,6 @@
 'use strict'
 
-class ClienteStore {
+class ServicoUpdate {
 
   get validateAll() {
     return true;
@@ -9,9 +9,9 @@ class ClienteStore {
   get rules () {
     return {
       nome: 'required|min:3|max:100',
-      categoria: 'required|min:3|max:45',
       descricao: 'required|min:3|max:200',
-      valor: 'required|min:1|number|max:11',
+      categoria: 'required|min:3|max:45',
+      valor: 'required|min:1|number|max:9',
     }
 
   }
@@ -35,4 +35,4 @@ class ClienteStore {
 
 }
 
-module.exports = ClienteStore
+module.exports = ServicoUpdate

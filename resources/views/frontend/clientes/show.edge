@@ -89,20 +89,18 @@
         </div>
       <div class="botoes">
       
-      <form action="/cliente/destroy/{{ cliente.id }}" method="POST"> {{ csrfField() }}
-        <button class="botao-cadastrar" 
-         onclick="return confirm('Certeza que gostaria de deletar o cliente: {{ cliente.nome }} ?')";>
-                Deletar
-        </button>
-      </form>
-      
-      <form action="/cliente/edit/{{ cliente.id }}">
-        <button class="botao-cancelar">Editar</button>
-      </form>
-      
-
-
+        <form action="/cliente/destroy/{{ cliente.id }}" method="POST"> 
+          {{ csrfField() }}
+          <button class="botao-cadastrar" 
+                  onclick="return confirm('Certeza que gostaria de deletar o cliente: {{ cliente.nome }} ?')";>
+                  Deletar
+          </button>
+        </form>
         
+        <form action="/cliente/edit/{{ cliente.id }}">
+          <button class="botao-cancelar">Editar</button>
+        </form>
+              
       </div>
 
     </div>

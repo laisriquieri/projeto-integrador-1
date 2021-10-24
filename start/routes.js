@@ -58,7 +58,7 @@ Route.group(() => {
         Route.get('servicos', 'ServicoController.index'); 
         Route.post('servicos', 'ServicoController.index'); 
         Route.get('servico/create', 'ServicoController.create');
-        Route.post('servico/create', 'ServicoController.store').validator('ServicoStore');
+        Route.post('servico/create', 'ServicoController.store').validator('ServicoUpdate');
         Route.get('servico/show/:id', 'ServicoController.show'); 
         Route.get('servico/edit/:id', 'ServicoController.edit'); 
         Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate'); 

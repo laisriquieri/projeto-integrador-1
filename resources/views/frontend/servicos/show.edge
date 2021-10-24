@@ -19,7 +19,7 @@
       
       <div class="label-edit">
         <label>Descrição</label>
-        <input disabled type="text" value="{{servico.descricao) }}" name="descricao" class="form-control" required/>
+        <input disabled type="text" value="{{ servico.descricao }}" name="descricao" class="form-control" required/>
       </div>
 
       <div class="label-edit">
@@ -34,5 +34,24 @@
       </div>
     </table>
 
+    <div class="botoes">
+      
+        <form action="/servico/destroy/{{ servico.id }}" method="POST"> 
+          {{ csrfField() }}
+          <button class="botao-cadastrar" 
+                  onclick="return confirm('Certeza que gostaria de deletar o servico: {{ servico.nome }} ?')";>
+                  Deletar
+          </button>
+        </form>
+        
+        <form action="/servico/edit/{{ servico.id }}">
+          <button class="botao-cancelar">Editar</button>
+        </form>
+              
+      </div>
+
+  <a href="/servico/create" class="float">
+    <i id="add-button" class="material-icons">add</i>
+  </a>
     
 @endsection

@@ -37,13 +37,13 @@
         </select>
         <input type="hidden" value="{{ old('categoria', '') }}" name="categoria" id="input-categoria">
         <label>Categoria</label>
-        @if(hasErrorFor('tipo')) 
-        <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
+        @if(hasErrorFor('categoria')) 
+          <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
         @endif
       </div>
 
       <div class="label-float">
-        <input type="number" placeholder=" " name="valor" value="{{ old('nome', '') }}" required/>
+        <input type="number" placeholder=" " min="0.01" step="0.01" name="valor" value="{{ old('valor', '') }}" required/>
         <label>Valor</label>
         @if(hasErrorFor('valor')) 
         <span class= "mens-error"> {{ getErrorFor('valor') }} </span>
@@ -51,13 +51,15 @@
       </div>
 
       <div class="botoes">
-        <button class="botao-cancelar">
-          Cancelar
-        </button>
+          <button type="cancel" 
+                  onclick="window.location='/servicos';return false;" 
+                  class="botao-cancelar">
+              Cancelar
+          </button>
 
-        <button class="botao-cadastrar">
-          Cadastrar
-        </button>
+          <button type="submit" class="botao-cadastrar">
+            Salvar
+          </button>
       </div>
     </form>
   </div>
