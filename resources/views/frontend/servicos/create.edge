@@ -1,37 +1,60 @@
 @layout("layouts.master")
 
 @section("content")
-<div id="lista-cadastro">
 
-      <h3>Novo Serviço</h3>
+<div id="lista-cadastro-cliente">
+    <h3>Novo Serviço</h3>
+
+
+    <form action="/servico/create" method="POST">
+      {{ csrfField() }}
 
       <div id="busca">
       </div>
 
       <div class="label-float">
-        <input type="text" placeholder=" " required/>
+        <input type="text" placeholder=" " value="{{ old('nome', '') }}" name="nome" id="nome" required/>
         <label>Nome</label>
+        @if(hasErrorFor('nome')) 
+        <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+        @endif
       </div>
 
       <div class="label-float">
-        <input type="text" placeholder=" " required/>
+        <input type="text" placeholder=" " value="{{ old('descricao', '') }}" name="descricao" id="descricao" required/>
         <label>Descrição</label>
+        @if(hasErrorFor('descricao')) 
+        <span class= "mens-error"> {{ getErrorFor('descricao') }} </span>
+        @endif
       </div>
 
+      
+        
+        
+      </div>
       <div class="label-float">
-        <input list="lista-categorias" type="text" placeholder=" " required/>
+        <select id="drop-lista-categorias" onchange="selecionaCategoria()">
+          <option value="" {{ old('categoria', '') == '' ? "selected" : '' }}>Selecione a Categoria:</option>
+          <option value="Manutenção"{{ old('categoria', '') == 'Manutenção' ? "selected" : '' }}>Manutenção</option>
+          <option value="Assistência"{{ old('categoria', '') == 'Assistência' ? "selected" : '' }}>Assistência</option>
+          <option value="Teste"{{ old('categoria', '') == 'Teste' ? "selected" : '' }}>Teste</option>
+        </select>
+        <input type="hidden" value="{{ old('categoria', '') }}" name="categoria" id="input-categoria">
         <label>Selecione uma Categoria</label>
+        <label>Tipo de Pessoa</label>
+        @if(hasErrorFor('tipo')) 
+        <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
+        @endif
       </div>
 
-      <datalist id="lista-categorias">
-        <option>Manutenção</option>
-        <option>Assistência</option>
-        <option>Teste</option>
-      </datalist>
 
       <div class="label-float">
-        <input type="number" placeholder=" " required/>
+        <input type="number" placeholder=" " name="valor" value="{{ old('nome', '') }}" required/>
         <label>Valor</label>
+        @if(hasErrorFor('valor')) 
+        <span class= "mens-error"> {{ getErrorFor('valor') }} </span>
+        @endif
+
       </div>
 
       <div class="botoes">
@@ -49,18 +72,19 @@
 
 
 @endsection
-{{--  <div id="lista">
-  <div>
-    
-    
-    <form id="frmDate">
-        <label for="data">Nome</label>
-        <input type="text" name="input" value="nome" >
-        <label for="data">Selecione uma data:</label>
-        <input type="date" id="data" name="data">
-    </form>
-    
-    <h2 id="resultado"></h2>
 
-  </div>
-</div>  --}}
+@section('scripts')
+
+  <script>
+
+    function selecionaCategoria() {
+      var x = document.getElementById("drop-lista-categorias").value;
+      document.getElementById("input-categoria").value = x;
+    }
+
+    
+
+
+  </script>
+
+@endsection
