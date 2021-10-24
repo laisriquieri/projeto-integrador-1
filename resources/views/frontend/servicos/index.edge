@@ -1,67 +1,87 @@
 @layout("layouts.master")
 
 @section("content")
-<div id="lista">
-  <div>
-    <div id="busca">
 
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+
+<div id="lista">
+  <h3>Serviços</h3>
+  <div>
+    <form action="/servicos" method="POST"> 
+      {{ csrfField() }}
+     
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>  
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+    <div id="busca">
     </div>
+
+
     <table id="tabela">
       <thead>
-        <tr>
-          <th>Cliente</th>
-          <th>Data de Entrada</th>
-          <th>Status</th>
-          <th>Valor</th>
-          <th>Data de Entrega</th>
-          <th></th>
-          <th></th>
-        </tr>
+        <thead>
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Valor</th>
+          </tr>
+      </thead>
       </thead>
       <tbody>
+        @each(servico in servicos)
+        
         <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
+          <td><a href="/servico/show/{{ servico.id }}">{{ servico.nome }}</a></td>
+          <td>{{ servico.descricao }}</td>
+          <td>{{ servico.categoria }}</td>
+          <td>{{ servico.valor }}</td>
+          
+          <td>
+            <a href="/servicos/edit/{{ servico.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          
+          <td>
+            <form action="/servicos/destroy/{{ servico.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar este serviço: {{ servico.nome }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
         </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
+        
+        @endeach
+
       </tbody>
     </table>
+
+    <div class="div-paginacao">
+      <a href="/servicos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/servicos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
   </div>
 </div>
 
-<a href="/os/create" class="float">
+
+<a href="/servico/create" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
-
 @endsection
