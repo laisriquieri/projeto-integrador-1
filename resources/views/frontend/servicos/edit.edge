@@ -13,34 +13,46 @@
         </div>
 
 
-        <form action="/cliente/update/{{ cliente.id }}" method="POST">
-        {{ csrfField() }}
-        
-          <div class="label-float">
-            <input type="text" placeholder=" " required/>
+          <div class="label-edit">
+            <input type="text" placeholder=" " value="{{ old('tipo', servico.nome) }}" name="nome" required/>
             <label>Nome</label>
+            @if(hasErrorFor('nome')) 
+            <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+            @endif
           </div>
     
-          <div class="label-float">
-            <input type="text" placeholder=" " required/>
+          <div class="label-edit">
+            <input type="text" placeholder=" " value="{{ old('descricao', servico.descricao) }}" name="descricao" required/>
             <label>Descrição</label>
+            @if(hasErrorFor('descricao')) 
+            <span class= "mens-error"> {{ getErrorFor('descricao') }} </span>
+            @endif
+          </div>
+
           </div>
     
           <div class="label-float">
-            <input list="lista-categorias" type="text" placeholder=" " required/>
+            <select id="drop-lista-categorias" onchange="selecionaCategoria()">
+              <option value="" {{ old('categoria', servico.categoria) == '' ? "selected" : '' }}>Selecione a Categoria:</option>
+              <option value="Manutenção"{{ old('categoria', servico.categoria) == 'Manutenção' ? "selected" : '' }}>Manutenção</option>
+              <option value="Assistência"{{ old('categoria', servico.categoria) == 'Assistência' ? "selected" : '' }}>Assistência</option>
+              <option value="Teste"{{ old('categoria', servico.categoria) == 'Teste' ? "selected" : '' }}>Teste</option>
+            </select>
+            <input type="hidden" value="{{ old('categoria', servico.categoria) }}" name="categoria" id="input-categoria">
             <label>Selecione uma Categoria</label>
+            <label>Tipo de Pessoa</label>
+            @if(hasErrorFor('categoria')) 
+            <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
+            @endif
           </div>
-    
-          <datalist id="lista-categorias">
-            <option>Manutenção</option>
-            <option>Assistência</option>
-            <option>Teste</option>
-          </datalist>
     
           <div class="label-float">
-            <input type="number" placeholder=" " required/>
             <label>Valor</label>
-          </div>
+            <input type="number" name="valor" value="{{ old('nome', servico.valor) }}" required/>
+            @if(hasErrorFor('valor')) 
+            <span class= "mens-error"> {{ getErrorFor('valor') }} </span>
+            @endif
+    
     
           <div class="botoes">
             <button class="botao-cancelar">
@@ -54,5 +66,21 @@
     
         </div>
     
+@endsection
+
+@section('scripts')
+
+  <script>
+
+    function selecionaCategoria() {
+      var x = document.getElementById("drop-lista-categorias").value;
+      document.getElementById("input-categoria").value = x;
+    }
+
+    
+
+
+  </script>
+
 @endsection
 
