@@ -11,7 +11,7 @@ class ClienteStore {
       nome: 'required|min:3|max:100',
       categoria: 'required|min:3|max:45',
       descricao: 'required|min:3|max:200',
-      valor: 'required|min:3|number|max:11',
+      valor: 'required|min:1|number|max:11',
     }
 
   }

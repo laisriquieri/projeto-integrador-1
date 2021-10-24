@@ -20,6 +20,12 @@
 
         <div class="limiter">
 
+        @if(flashMessage('notification'))
+          <span class="">{{ flashMessage('notification') }}</span>
+        @endif
+        
+        
+        
         <div class="container-login100" style="background-image: url('fundo2.jpg');">
           <div class="wrap-login100 p-t-190 p-b-30">
             

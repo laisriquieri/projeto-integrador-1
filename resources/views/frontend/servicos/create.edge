@@ -2,7 +2,7 @@
 
 @section("content")
 
-<div id="lista-cadastro-cliente">
+  <div id="lista-cadastro-cliente">
     <h3>Novo Serviço</h3>
 
 
@@ -27,11 +27,7 @@
         <span class= "mens-error"> {{ getErrorFor('descricao') }} </span>
         @endif
       </div>
-
-      
-        
-        
-      </div>
+  
       <div class="label-float">
         <select id="drop-lista-categorias" onchange="selecionaCategoria()">
           <option value="" {{ old('categoria', '') == '' ? "selected" : '' }}>Selecione a Categoria:</option>
@@ -40,13 +36,11 @@
           <option value="Teste"{{ old('categoria', '') == 'Teste' ? "selected" : '' }}>Teste</option>
         </select>
         <input type="hidden" value="{{ old('categoria', '') }}" name="categoria" id="input-categoria">
-        <label>Selecione uma Categoria</label>
-        <label>Tipo de Pessoa</label>
+        <label>Categoria</label>
         @if(hasErrorFor('tipo')) 
         <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
         @endif
       </div>
-
 
       <div class="label-float">
         <input type="number" placeholder=" " name="valor" value="{{ old('nome', '') }}" required/>
@@ -54,7 +48,6 @@
         @if(hasErrorFor('valor')) 
         <span class= "mens-error"> {{ getErrorFor('valor') }} </span>
         @endif
-
       </div>
 
       <div class="botoes">
@@ -66,8 +59,8 @@
           Cadastrar
         </button>
       </div>
-
-    </div>
+    </form>
+  </div>
 
 
 

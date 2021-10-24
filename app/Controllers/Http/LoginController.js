@@ -17,19 +17,19 @@ class LoginController {
       session.flashExcept(['password']);
 
       session.flash({
-        notification: 'We cannot find any account with these credentials.',
+        notification: 'Não localizemos um usuário com as credenciais informadas.',
       });
 
       return response.redirect('login');
     }
 
-    session.flash({ notification: 'Logged in successfully' });
+    //session.flash({ notification: 'Login efetuado com sucesso.}}' });
     return response.redirect('/');
   }
 
     async delete({ auth, response, session }) {
     await auth.logout();
-    session.flash({ notification: 'Logged out successfully' });
+    session.flash({ notification: 'Logout efetuado com sucesso' });
 
     return response.redirect('/login');
   }
