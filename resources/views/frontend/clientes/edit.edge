@@ -69,9 +69,9 @@
 
         <div class="label-edit">
           <label for="">CEP: </label>
-          <input type="text" name="CEP" value="{{ old('CEP', cliente.CEP) }}" class="form-control"required/>
-          @if(hasErrorFor('CEP')) 
-          <span class= "mens-error"> {{ getErrorFor('CEP') }} </span>
+          <input type="text" name="cep" value="{{ old('cep', cliente.cep) }}" class="form-control"required/>
+          @if(hasErrorFor('cep')) 
+          <span class= "mens-error"> {{ getErrorFor('cep') }} </span>
           @endif
         </div>
 

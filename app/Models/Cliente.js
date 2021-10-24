@@ -12,7 +12,7 @@ class Cliente extends Model {
                 ,'data_nascimento'
                 ,'telefone'
                 ,'email'
-                ,'CEP'
+                ,'cep'
                 ,'endereco'
                 ,'numero_endereco'
                 ,'complemento'
@@ -20,6 +20,16 @@ class Cliente extends Model {
                 ,'cidade'
                 ,'estado'
                 ,'observacoes']
+    }
+
+    static get dates() {
+        return super.dates.concat(['data_nascimento'])
+    }
+      
+    static castDates(field, value) {
+        if (field === 'data_nascimento') {
+            return value.format('YYYY-MM-DD')
+        }
     }
 }
 

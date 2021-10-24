@@ -1,6 +1,7 @@
 'use strict'
 
 class ClienteUpdate {
+ 
   get validateAll() {
     return true;
   }
@@ -13,19 +14,18 @@ class ClienteUpdate {
 
   get rules () {
     return {
-      //username: 'required|unique:users|min:3|max:16',    
-      tipo: 'required', 
-      nome: 'required|min:3',
-      cpf_cnpj: 'required|min:3',
-      data_nascimento: 'required',
-      telefone: 'required|min:3',
-      email: 'required|email',
-      CEP: 'required|min:3',
-      endereco: 'required|min:3',
-      numero_endereco: 'required',
+      tipo: 'required|min:2|max:2', 
+      nome: 'required|min:3|max:254',
+      cpf_cnpj: 'required|min:3|max:14|number',
+      data_nascimento: 'required|date',
+      telefone: 'required|min:3|number|max:11',
+      email: 'required|email|min:5|max:254',
+      cep: 'required|min:3|max:8|number',
+      endereco: 'required|min:3|max:250',
+      numero_endereco: 'required|number|max:10',
       //complemento: '',
-      bairro: 'required|min:3',
-      cidade: 'required|min:3',
+      bairro: 'required|min:3|max:60',
+      cidade: 'required|min:3|max:60',
       estado: 'required|min:2|max:2',
       //observacoes: ''
     }
@@ -37,6 +37,7 @@ class ClienteUpdate {
       min: 'Preencha no mínimo {{argument.0}} caracteres(s)', 
       max: 'Preencha no máximo {{argument.0}} caractere(s)', 
       required: 'Campo {{field}} não pode ser vazio.',
+      number: 'Digite somente números',
       'cpf_cnpj.unique': 'Esse cliente já possui cadastro!', 
       'email.required': 'Por gentileza, insira um {{field}} válido.',
       'email.email': 'Insira um {{field}} válido.',

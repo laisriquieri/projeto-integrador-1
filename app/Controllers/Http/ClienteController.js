@@ -102,6 +102,7 @@ class ClienteController {
   async show ({ params, request, response, view }) {
 
     const cliente = await Cliente.find(params.id);
+    cliente.data_nascimento = await cliente.toJSON().data_nascimento;
     return  view.render('frontend.clientes.show', {cliente} )
 
   }
@@ -118,6 +119,7 @@ class ClienteController {
   async edit ({ params, request, response, view }) {
 
     const cliente = await Cliente.find(params.id);
+    cliente.data_nascimento = await cliente.toJSON().data_nascimento
     return view.render('frontend.clientes.edit', {cliente})
 
   }

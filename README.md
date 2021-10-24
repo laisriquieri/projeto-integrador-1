@@ -35,3 +35,31 @@ Testar aplicação.
     DEPOIS da primeira vez, para atualizar o repositório local com as alteraçoes dos demais:
 
 git pull https://github.com/laisriquieri/projeto-integrador-1.git
+
+
+
+(3)*******************
+Configurar MySql localmente:
+
+Alterar .env para ficar com as informaçoes:
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=     <------ *** Sua senha de root ***
+DB_DATABASE=projeto-integrador-dev <------ *** Precisar criar previamente no MySql ***
+
+Ao trocar para o MySQL, rodar as migrations: adonis migration:run
+
+Se der erro 1251:
+code: 'ER_NOT_SUPPORTED_AUTH_MODE',
+  errno: 1251,
+  sqlMessage: 'Client does not support authentication protocol requested by server; consider upgrading MySQL client',  sqlState: '08004',
+  fatal: true
+
+Fazer comando no MySQL configurando uma senha para root:
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+
+
+
+(4)*******************
