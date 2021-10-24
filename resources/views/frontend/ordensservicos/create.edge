@@ -2,37 +2,62 @@
 
 @section("content")
 
-<div id="lista-cadastro-ordemservico">
-
+<div id="lista-cadastro-cliente">
   <h3>Nova Ordem de Serviço</h3>
 
+  <form action="/cliente/create" method="POST">
+    {{ csrfField() }}
+
   <div id="busca">
-  </div>
+  </div>  
 
-  <div class="label-float">
-  <input type="text" placeholder=" " required/>
-  <label>Cliente</label>
-  </div>
+    <div class="label-float">
+      <input type="text" placeholder=" " name="cliente" value="{{ old('cliente', '') }}" required/>
+      <label>Cliente</label>
+      @if(hasErrorFor('cliente')) 
+        <span class= "mens-error"> {{ getErrorFor('cliente') }} </span>
+      @endif
+    </div>
 
-  <div class="label-float">
-  <input type="date" placeholder=" " required/>
-  <label>Data da Entrada</label>
-  </div>
+    
+    <div class="label-float">
+      <input type="date" placeholder=" " name="data_entrada" value="{{ old('data_entrada', '') }}" required/>
+      <label>Data da Entrada</label>
+      @if(hasErrorFor('data_entrada')) 
+        <span class= "mens-error"> {{ getErrorFor('data_entrada') }} </span>
+      @endif
+    </div>
 
-  <div class="label-float">
-  <input type="text" placeholder=" " required/>
-  <label>Equipamento do Cliente</label>
-  </div>
 
-  <div class="label-float">
-  <input type="text" placeholder=" " required/>
-  <label>Relato do Cliente</label>
-  </div>
+    <div class="label-float">
+      <input type="text" placeholder=" " name="equipamento" value="{{ old('equipamento', '') }}" required/>
+      <label>Equipamento do Cliente</label>
+      @if(hasErrorFor('equipamento')) 
+        <span class= "mens-error"> {{ getErrorFor('equipamento') }} </span>
+      @endif
+    </div>
 
-  <div class="label-float">
-    <input list="lista-servicos" type="text" placeholder=" " required/>
-    <label>Selecione um Serviço</label>
-  </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="relato" value="{{ old('relato', '') }}" required/>
+      <label>Relato do Cliente</label>
+      @if(hasErrorFor('relato')) 
+        <span class= "mens-error"> {{ getErrorFor('relato') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input list="lista-servicos" type="text" placeholder=" " required/>
+      <label>Selecione um Serviço</label>
+    </div>
+    <div class="label-float">
+      <input type="text" placeholder=" " name="lista-servicos" value="{{ old('lista-servicos', '') }}" required/>
+      <label>Selecione um Serviço</label>
+      @if(hasErrorFor('lista-servicos')) 
+        <span class= "mens-error"> {{ getErrorFor('lista-servicos') }} </span>
+      @endif
+    </div>
+
 
   <datalist id="lista-servicos">
     <option>Formatação</option>

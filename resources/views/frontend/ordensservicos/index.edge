@@ -1,6 +1,28 @@
 @layout("layouts.master")
 
 @section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista">
+
+
+  <h3>Nova Ordem de Serviço</h3>
+  <div>
+    <form action="/ordensservicos" method="POST"> 
+      {{ csrfField() }}
+     
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>  
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+  <div id="busca">
+  </div>
+  
 <div id="lista">
   <div>
     <div id="busca">
