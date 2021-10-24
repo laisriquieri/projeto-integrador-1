@@ -1,0 +1,58 @@
+@layout("layouts.master")
+
+@section("content")
+
+  <div id="lista-altera-cliente">
+
+    <h3>Editar Serviço: {{ servico.nome }}</h3>
+
+      <form action="/servico/update/{{ servico.id }}" method="POST">
+      {{ csrfField() }}
+
+        <div id="busca">
+        </div>
+
+
+        <form action="/cliente/update/{{ cliente.id }}" method="POST">
+        {{ csrfField() }}
+        
+          <div class="label-float">
+            <input type="text" placeholder=" " required/>
+            <label>Nome</label>
+          </div>
+    
+          <div class="label-float">
+            <input type="text" placeholder=" " required/>
+            <label>Descrição</label>
+          </div>
+    
+          <div class="label-float">
+            <input list="lista-categorias" type="text" placeholder=" " required/>
+            <label>Selecione uma Categoria</label>
+          </div>
+    
+          <datalist id="lista-categorias">
+            <option>Manutenção</option>
+            <option>Assistência</option>
+            <option>Teste</option>
+          </datalist>
+    
+          <div class="label-float">
+            <input type="number" placeholder=" " required/>
+            <label>Valor</label>
+          </div>
+    
+          <div class="botoes">
+            <button class="botao-cancelar">
+              Cancelar
+            </button>
+    
+            <button class="botao-cadastrar">
+              Cadastrar
+            </button>
+          </div>
+    
+        </div>
+    
+@endsection
+
