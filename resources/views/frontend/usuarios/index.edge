@@ -1,0 +1,83 @@
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+  <span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+
+<div id="lista">
+  <h3>Usuários</h3>
+  <div>
+    <form action="/usuarios" method="POST"> 
+      {{ csrfField() }}
+     
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>  
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+    <div id="busca">
+    </div>
+
+
+    <table id="tabela">
+      <thead>
+        <thead>
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+          </tr>
+      </thead>
+      </thead>
+      <tbody>
+        @each(usuario in usuarios)
+        
+        <tr>
+          <td><a href="/usuario/show/{{ usuario.id }}">{{ usuario.username }}</a></td>
+          <td>{{ usuario.email }}</td>
+          
+          <td>
+            <a href="/usuario/edit/{{ usuario.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          
+          <td>
+            <form action="/usuario/destroy/{{ usuario.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar este usuario: {{ usuario.username }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        
+        @endeach
+
+      </tbody>
+    </table>
+
+    <div class="div-paginacao">
+      <a href="/usuarios?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/usuarios?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+<a href="/usuario/create" class="float">
+  <i id="add-button" class="material-icons">add</i>
+</a>
+@endsection

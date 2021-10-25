@@ -1,0 +1,69 @@
+@layout("layouts.master")
+
+@section("content")
+
+  <div id="lista-altera-cliente">
+
+    <h3>Editar Usuário: {{ usuario.username }}</h3>
+
+    <form action="/usuario/update/{{ usuario.id }}" method="POST">
+    {{ csrfField() }}
+
+      <div id="busca">
+      </div>
+
+
+        <div class="label-edit">
+          <label>Nome</label>
+          <input type="text" placeholder=" " value="{{ old('username', usuario.username) }}" name="username" required/>
+          @if(hasErrorFor('username')) 
+            <span class= "mens-error"> {{ getErrorFor('username') }} </span>
+          @endif
+        </div>
+  
+        <div class="label-edit">
+          <label>E-mail</label>
+          <input type="email" placeholder=" " value="{{ old('email', usuario.email) }}" name="email" required/>
+          @if(hasErrorFor('email')) 
+            <span class= "mens-error"> {{ getErrorFor('email') }} </span>
+          @endif
+        </div>
+
+        <div class="label-edit">
+          <label>Senha</label>
+          <input type="password" placeholder="Digite uma nova senha" value="" name="password" required/>
+          @if(hasErrorFor('password')) 
+            <span class= "mens-error"> {{ getErrorFor('password') }} </span>
+          @endif
+        </div>
+
+        <div class="label-edit">
+
+        </div>
+
+  
+        <div class="botoes">
+          <button type="cancel" 
+                  onclick="window.location='/usuario/show/{{ usuario.id }}';return false;" 
+                  class="botao-cancelar">
+              Cancelar
+          </button>       
+
+          <button type="submit" class="botao-cadastrar">
+            Salvar
+          </button>
+        </div>
+  
+      
+    </form>
+  </div>
+
+@endsection
+
+@section('scripts')
+
+  <script>
+
+  </script>
+
+@endsection
