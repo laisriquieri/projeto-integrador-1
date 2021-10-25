@@ -14,8 +14,8 @@
 
 
           <div class="label-edit">
-            <input type="text" placeholder=" " value="{{ old('tipo', servico.nome) }}" name="nome" required/>
             <label>Nome</label>
+            <input type="text" placeholder=" " value="{{ old('tipo', servico.nome) }}" name="nome" required/>
             @if(hasErrorFor('nome')) 
             <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
             @endif

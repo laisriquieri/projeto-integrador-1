@@ -10,7 +10,7 @@
     </div>
 
 
-        <form action="/cliente/update/{{ cliente.id }}" method="POST">
+      <form action="/cliente/update/{{ cliente.id }}" method="POST">
         {{ csrfField() }}
 
         <div class="label-float">
@@ -25,7 +25,7 @@
           <span class= "mens-error"> {{ getErrorFor('tipo') }} </span>
           @endif
         </div>
-  
+
 
         <div class="label-edit">
           <label>Nome / Razão Social:</label>
@@ -161,20 +161,20 @@
           @endif
         </div>
 
-        <div class="botoes">
-          <button class="botao-cancelar">
-            Cancelar
+        <div  class="botoes">
+
+          <button type="cancel" 
+                  onclick="window.location='/cliente/show/{{ cliente.id }}';return false;" 
+                  class="botao-cancelar">
+              Cancelar
           </button>
-  
-          <button class="botao-cadastrar">
+
+          <button type="submit" class="botao-cadastrar">
             Salvar
           </button>
+          
         </div>
-      
-      </div> 
-    </div>
-
-  </div>
+      </form>      
 </div>
 @endsection
 

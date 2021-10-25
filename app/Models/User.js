@@ -34,6 +34,12 @@ class User extends Model {
   tokens () {
     return this.hasMany('App/Models/Token')
   }
+
+  static fillable() {
+    return [ 'username'
+            ,'email'
+            ,'password']
+  }
 }
 
 module.exports = User

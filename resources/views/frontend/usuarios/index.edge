@@ -3,14 +3,14 @@
 @section("content")
 
 @if(flashMessage('notification'))
-<span class="sucesso">{{ flashMessage('notification') }}</span>
+  <span class="sucesso">{{ flashMessage('notification') }}</span>
 @endif
 
 
 <div id="lista">
-  <h3>Serviços</h3>
+  <h3>Usuários</h3>
   <div>
-    <form action="/servicos" method="POST"> 
+    <form action="/usuarios" method="POST"> 
       {{ csrfField() }}
      
             <button id="icone-pesquisa" type="submit">
@@ -29,33 +29,29 @@
         <thead>
           <tr>
               <th>Nome</th>
-              <th>Descrição</th>
-              <th>Categoria</th>
-              <th>Valor</th>
+              <th>E-mail</th>
           </tr>
       </thead>
       </thead>
       <tbody>
-        @each(servico in Servicos)
+        @each(usuario in usuarios)
         
         <tr>
-          <td><a href="/servico/show/{{ servico.id }}">{{ servico.nome }}</a></td>
-          <td>{{ servico.descricao }}</td>
-          <td>{{ servico.categoria }}</td>
-          <td>{{ servico.valor }}</td>
+          <td><a href="/usuario/show/{{ usuario.id }}">{{ usuario.username }}</a></td>
+          <td>{{ usuario.email }}</td>
           
           <td>
-            <a href="/servico/edit/{{ servico.id }}">
+            <a href="/usuario/edit/{{ usuario.id }}">
               <span class="material-icons">edit</span>
             </a>
           </td>
           
           <td>
-            <form action="/servico/destroy/{{ servico.id }}" method="POST">
+            <form action="/usuario/destroy/{{ usuario.id }}" method="POST">
             {{ csrfField() }}
 
               <button type="submit"
-              onclick="return confirm('Certeza que gostaria de deletar este serviço: {{ servico.nome }} ?')";>
+              onclick="return confirm('Certeza que gostaria de deletar este usuario: {{ usuario.username }} ?')";>
                 <span class="material-icons">delete</span>
               </button>
             </form>
@@ -68,11 +64,11 @@
     </table>
 
     <div class="div-paginacao">
-      <a href="/servicos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/usuarios?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_before</span>
       </a>
 
-      <a href="/servicos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/usuarios?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_next</span>
       </a>
     </div>
@@ -81,7 +77,7 @@
 </div>
 
 
-<a href="/servico/create" class="float">
+<a href="/usuario/create" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
 @endsection
