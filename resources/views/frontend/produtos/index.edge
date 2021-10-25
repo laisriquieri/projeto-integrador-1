@@ -20,6 +20,17 @@
     </form>
 
   <div>
+    <form action="/produtos" method="POST">
+      {{ csrfField() }}
+
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+    <div id="busca">
+    </div>
 
     <table id="tabela">
       <thead>
@@ -42,18 +53,19 @@
           <td>{{ produto.valor_compra }}</td>
           <td>{{ produto.valor_venda }}</td>
           <td>
-            <a href="/produto/edit/{{ produto.id }}">
-            <span class="material-icons">Editar</span>
+            <a href="/produto/{{ produto.id }}/edit">
+            <span class="material-icons">edit</span>
             </a>
           </td>
 
           <td>
-            <form action="/produto/destroy/{{ produto.id }}" method="POST">
+
+            <form action="produto/destroy/{{ produto.id }}" method="POST">
               {{ csrfField() }}
 
                 <button type="submit"
                 onclick="return confirm('Certeza que gostaria de deletar o produto: {{ produto.nome }} ?')";>
-                  <span class="material-icons">Delete</span>
+                  <span class="material-icons">delete</span>
                 </button>
             </form>
           </td>
@@ -63,6 +75,17 @@
 
       </tbody>
     </table>
+
+    <div class="div-paginacao">
+      <a href="/produto?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/produto?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
   </div>
 
 </table>

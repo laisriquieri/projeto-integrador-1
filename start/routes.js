@@ -39,11 +39,11 @@ Route.group(() => {
         // Ordens de Serviços
         Route.get('os', 'OrdemServicoController.index');
         Route.post('os', 'OrdemServicoController.index');
-        Route.get('os/create', 'OrdemServicoController.create'); 
+        Route.get('os/create', 'OrdemServicoController.create');
         Route.post('os/create', 'OrdemServicoController.store').validator('OrdemServicoStore');
-        Route.get('os/show/:id', 'OrdemServicoController.show'); 
-        Route.get('os/edit/:id', 'OrdemServicoController.edit'); 
-        Route.post('os/update/:id', 'OrdemServicoController.update').validator('OrdemServicoUpdate'); 
+        Route.get('os/show/:id', 'OrdemServicoController.show');
+        Route.get('os/edit/:id', 'OrdemServicoController.edit');
+        Route.post('os/update/:id', 'OrdemServicoController.update').validator('OrdemServicoUpdate');
         Route.post('os/destroy/:id', 'OrdemServicoController.destroy');
 
         //Usuários
@@ -51,32 +51,34 @@ Route.group(() => {
         Route.post('usuarios', 'UserController.index');
         Route.get('usuario/create', 'UserController.create'); //Por enquanto tem rota desprotegida também
         Route.post('usuario/create', 'UserController.store').validator('UserStore'); //Por enquanto tem rota desprotegida também
-        Route.get('usuario/show/:id', 'UserController.show'); 
-        Route.get('usuario/edit/:id', 'UserController.edit'); 
-        Route.post('usuario/update/:id', 'UserController.update').validator('UserUpdate'); 
+        Route.get('usuario/show/:id', 'UserController.show');
+        Route.get('usuario/edit/:id', 'UserController.edit');
+        Route.post('usuario/update/:id', 'UserController.update').validator('UserUpdate');
         Route.post('usuario/destroy/:id', 'UserController.destroy');
 
         // Clientes
-        Route.get('clientes', 'ClienteController.index'); 
-        Route.post('clientes', 'ClienteController.index'); 
+        Route.get('clientes', 'ClienteController.index');
+        Route.post('clientes', 'ClienteController.index');
         Route.get('cliente/create', 'ClienteController.create');
         Route.post('cliente/create', 'ClienteController.store').validator('ClienteStore');
-        Route.get('cliente/show/:id', 'ClienteController.show'); 
-        Route.get('cliente/edit/:id', 'ClienteController.edit'); 
-        Route.post('cliente/update/:id', 'ClienteController.update').validator('ClienteUpdate'); 
+        Route.get('cliente/show/:id', 'ClienteController.show');
+        Route.get('cliente/edit/:id', 'ClienteController.edit');
+        Route.post('cliente/update/:id', 'ClienteController.update').validator('ClienteUpdate');
         Route.post('cliente/destroy/:id', 'ClienteController.destroy');
 
         //Produtos
         Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
+        Route.post('produto/destroy/:id', 'ProdutoController.destroy');//correção
+        Route.post('produtos', 'ProdutoController.index');
 
         //Servicos
-        Route.get('servicos', 'ServicoController.index'); 
-        Route.post('servicos', 'ServicoController.index'); 
+        Route.get('servicos', 'ServicoController.index');
+        Route.post('servicos', 'ServicoController.index');
         Route.get('servico/create', 'ServicoController.create');
-        Route.post('servico/create', 'ServicoController.store').validator('ServicoUpdate');
-        Route.get('servico/show/:id', 'ServicoController.show'); 
-        Route.get('servico/edit/:id', 'ServicoController.edit'); 
-        Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate'); 
+        Route.post('servico/create', 'ServicoController.store').validator('ServicoStore');
+        Route.get('servico/show/:id', 'ServicoController.show');
+        Route.get('servico/edit/:id', 'ServicoController.edit');
+        Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate');
         Route.post('servico/destroy/:id', 'ServicoController.destroy');
 
 }).middleware('auth')
