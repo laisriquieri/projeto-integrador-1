@@ -9,8 +9,18 @@
 
 <div id="lista">
   <h3>Produtos</h3>
-
   <div>
+    <form action="/produtos" method="POST">
+      {{ csrfField() }}
+
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+    <div id="busca">
+    </div>
 
     <table id="tabela">
       <thead>
@@ -55,6 +65,17 @@
 
       </tbody>
     </table>
+
+    <div class="div-paginacao">
+      <a href="/produto?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/produto?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
   </div>
 
 <a href="/produto/create" class="float">

@@ -20,10 +20,33 @@ class ProdutoController {
    * @param {View} ctx.view
    */
 
-  async index ({ view }) {
-    const produtos = await Produto.all();
+  async index ({ view, request }) {
+    /**const produtos = await Produto.all();
     return view.render('frontend.produtos.index',  { produtos: produtos['rows'] });
-  }
+  }*/
+  const perPage = 3 // produtos por página
+      const page = await request.all().p || 1;
+      const testeSearch = await request.all().search;
+      const testeS = await request.all().s;
+      var produtos = "";
+      var search = "";
+
+      if ( !(typeof testeSearch === "undefined") && !(testeSearch == null) ) {
+        var search = testeSearch.replace(/[^a-zA-Z0-9]/gi, '');
+      }
+
+      if ( ((typeof testeSearch === "undefined") && !(typeof testeS === "undefined")) ) {
+        var search = await testeS.replace(/[^a-zA-Z0-9]/gi, '');
+      }
+
+      var produtos = await this.search(search, page, perPage);
+
+      return view.render('frontend.produtos.index',  {
+        produtos: produtos['rows'],
+        pages:    produtos['pages'],
+        search:   search
+      });
+}
 
     /**
      * Query for search.
@@ -33,6 +56,7 @@ class ProdutoController {
   async search(search, page, perPage) {
     return await Produto.query()
                         .where('nome', 'like', '%'+search+'%')
+                        .orWhere('descricao', 'like', '%'+search+'%')
                         .paginate(page, perPage);
   }
     /**
