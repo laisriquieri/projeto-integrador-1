@@ -1,43 +1,67 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Lemes Company</title>
-        
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
-        <!-- CSS e Bootstrap)-->
-        <link rel="stylesheet" type="text/css" href="css/loginUtil.css">
-        <link rel="stylesheet" type="text/css" href="css/stylesordem.css">
-    </head>
+@layout("layouts.master")
 
-    <body>
+@section("content")
 
-<h1>CRIAR USUARIO (provisorio)</h1>
+  <div id="lista-cadastro-cliente">
+    <h3>Novo Usuário</h3>
 
-  <form action="/usuario/store" method="POST">
-    {{ csrfField() }}
 
-    <div class="form-group">
-      <label for="">Username</label>
-      <input type="text" name="username" class="form-control">
-    </div>
+    <form action="/usuario/store" method="POST">
+      {{ csrfField() }}
 
-    <div class="form-group">
-      <label for="">Email</label>
-      <input type="text" name="email" class="form-control">
-    </div>
+      <div id="busca">
+      </div>
 
-    <div class="form-group">
-      <label for="">Password</label>
-      <input type="password" name="password" class="form-control">
-    </div>
+      <div class="label-float">
+        <input type="text" placeholder=" " value="{{ old('username', '') }}" name="username" id="username" required/>
+        <label>Nome</label>
+        @if(hasErrorFor('username')) 
+          <span class= "mens-error"> {{ getErrorFor('username') }} </span>
+        @endif
+      </div>
 
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
+      <div class="label-float">
+        <input type="email" placeholder=" " value="{{ old('email', '') }}" name="email" id="email" required/>
+        <label>E-mail</label>
+        @if(hasErrorFor('email')) 
+          <span class= "mens-error"> {{ getErrorFor('email') }} </span>
+        @endif
+      </div>
 
-    </body>
-</html>
+      <div class="label-float">
+          <input type="password" placeholder=" " value="" name="password" id="password" required/>
+          <label>Senha</label>
+          @if(hasErrorFor('password')) 
+           <span class= "mens-error"> {{ getErrorFor('password') }} </span>
+          @endif
+      </div>
+
+      <div class="label-float">
+
+      </div>
+
+      <div class="botoes">
+          <button type="cancel" 
+                  onclick="window.location='/usuarios';return false;" 
+                  class="botao-cancelar">
+              Cancelar
+          </button>
+
+          <button type="submit" class="botao-cadastrar">
+            Salvar
+          </button>
+      </div>
+    </form>
+  </div>
+
+
+
+@endsection
+
+@section('scripts')
+
+  <script>
+ 
+  </script>
+
+@endsection

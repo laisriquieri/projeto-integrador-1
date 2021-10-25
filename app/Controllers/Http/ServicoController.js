@@ -102,7 +102,6 @@ class ServicoController {
   async show ({ params, request, response, view }) {
 
     const servico = await Servico.find(params.id);
-    servico.data_nascimento = await servico.toJSON().data_nascimento;
     return  view.render('frontend.servicos.show', {servico} )
 
   }
@@ -119,7 +118,6 @@ class ServicoController {
   async edit ({ params, request, response, view }) {
 
     const servico = await Servico.find(params.id);
-    servico.data_nascimento = await servico.toJSON().data_nascimento
     return view.render('frontend.servicos.edit', {servico})
 
   }

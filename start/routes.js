@@ -26,7 +26,7 @@ Route.get('logout', 'LoginController.delete');
 
 // Usuarios (PROVISORIO)
 Route.get('usuario', 'UserController.create');       //create.edge provisório
-Route.post('usuario/store', 'UserController.store'); //provisório
+Route.post('usuario/store', 'UserController.store').validator('UserStore'); //provisório
 
 //-----------------------------------
 //ROTAS PROTEGIDAS
@@ -38,8 +38,23 @@ Route.group(() => {
 
         // Ordens de Serviços
         Route.get('os', 'OrdemServicoController.index');
-        Route.get('os/create', 'OrdemServicoController.create'); // Aguardando form.
-        //Route.post('os/store', 'OrdemServicoController.store'); // Aguardando form.
+        Route.post('os', 'OrdemServicoController.index');
+        Route.get('os/create', 'OrdemServicoController.create'); 
+        Route.post('os/create', 'OrdemServicoController.store').validator('OrdemServicoStore');
+        Route.get('os/show/:id', 'OrdemServicoController.show'); 
+        Route.get('os/edit/:id', 'OrdemServicoController.edit'); 
+        Route.post('os/update/:id', 'OrdemServicoController.update').validator('OrdemServicoUpdate'); 
+        Route.post('os/destroy/:id', 'OrdemServicoController.destroy');
+
+        //Usuários
+        Route.get('usuarios', 'UserController.index');
+        Route.post('usuarios', 'UserController.index');
+        Route.get('usuario/create', 'UserController.create'); //Por enquanto tem rota desprotegida também
+        Route.post('usuario/create', 'UserController.store').validator('UserStore'); //Por enquanto tem rota desprotegida também
+        Route.get('usuario/show/:id', 'UserController.show'); 
+        Route.get('usuario/edit/:id', 'UserController.edit'); 
+        Route.post('usuario/update/:id', 'UserController.update').validator('UserUpdate'); 
+        Route.post('usuario/destroy/:id', 'UserController.destroy');
 
         // Clientes
         Route.get('clientes', 'ClienteController.index'); 
@@ -58,7 +73,7 @@ Route.group(() => {
         Route.get('servicos', 'ServicoController.index'); 
         Route.post('servicos', 'ServicoController.index'); 
         Route.get('servico/create', 'ServicoController.create');
-        Route.post('servico/create', 'ServicoController.store').validator('ServicoStore');
+        Route.post('servico/create', 'ServicoController.store').validator('ServicoUpdate');
         Route.get('servico/show/:id', 'ServicoController.show'); 
         Route.get('servico/edit/:id', 'ServicoController.edit'); 
         Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate'); 

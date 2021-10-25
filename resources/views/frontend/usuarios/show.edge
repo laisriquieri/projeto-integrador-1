@@ -1,0 +1,46 @@
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista-mostra-cliente">
+  <h3>Serviço: {{ usuario.username }}</h3>
+  <div>
+  
+    <table id="tabela">
+     
+      <div class="label-edit">
+        <label for="">Nome:</label>
+        <input disabled type="text" autocomplete="off" name="username" value="{{ usuario.username }}" class="form-control" required/>
+      </div>
+      
+      <div class="label-edit">
+        <label>Email: </label>
+        <input disabled type="email" name="email" value="{{ usuario.email }}" class="form-control" required/>
+      </div>
+    </table>
+
+    <div class="botoes">
+      
+        <form action="/usuario/destroy/{{ usuario.id }}" method="POST"> 
+          {{ csrfField() }}
+          <button class="botao-cadastrar" 
+                  onclick="return confirm('Certeza que gostaria de deletar o usuário: {{ usuario.username }} ?')";>
+                  Deletar
+          </button>
+        </form>
+        
+        <form action="/usuario/edit/{{ usuario.id }}">
+          <button class="botao-cancelar">Editar</button>
+        </form>
+              
+      </div>
+
+  <a href="/usuario/create" class="float">
+    <i id="add-button" class="material-icons">add</i>
+  </a>
+    
+@endsection
