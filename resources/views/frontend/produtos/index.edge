@@ -10,6 +10,15 @@
 <div id="lista">
   <h3>Produtos</h3>
 
+    <form action="/servicos" method="POST"> 
+      {{ csrfField() }}
+    
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>  
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
   <div>
 
     <table id="tabela">
@@ -56,9 +65,26 @@
     </table>
   </div>
 
-<a href="/produto/create" class="float">
-  <i id="add-button" class="material-icons">+</i>
+</table>
+
+<div class="div-paginacao">
+  <a href="/produtos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+    <span class="material-icons">navigate_before</span>
+  </a>
+
+  <a href="/produtos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+    <span class="material-icons">navigate_next</span>
+  </a>
+</div>
+
+</div>
+</div>
+
+
+<a href="/produtos/create" class="float">
+<i id="add-button" class="material-icons">add</i>
 </a>
+@endsection
 
 
 @endsection
