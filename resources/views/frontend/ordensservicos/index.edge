@@ -9,8 +9,9 @@
 <div id="lista">
 
 
-  <h3>Nova Ordem de Serviço</h3>
+  <h3>Ordem de Serviço</h3>
   <div>
+
     <form action="/ordensservicos" method="POST"> 
       {{ csrfField() }}
      
@@ -41,48 +42,51 @@
         </tr>
       </thead>
       <tbody>
+
+        @each(ordensservico in ordensservicos) 
+
         <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
+          <td><a href="/ordensservicos/show/{{ ordem_servico.id }}">{{ ordem_servico.nome }}</a></td>
+          <td>{{ ordem_servico.cliente }}</td>
+          <td>{{ ordem_servico.data_entrada }}</td>
+          <td>{{ ordem_servico.status }}</td>
+          <th>{{ordem_servico.data_entrega}}</th>
+          <td>
+            <a href="/cliente/edit/{{ cliente.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          
+          <td>
+            <form action="/ordensservicos/destroy/{{ ordem_servico.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar a ordem de serviço: {{ ordem_servico.nome }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
         </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
-        <tr>
-          <td>Vinícius da Silva</td>
-          <td>01/01/2021</td>
-          <td>Pronto</td>
-          <td>R$50,00</td>
-          <td>01/01/2021</td>
-          <td><span class="material-icons">edit</span></td>
-          <td><span class="material-icons">delete</span></td>
-        </tr>
+        
+        @endeach
       </tbody>
     </table>
+
+    <div class="div-paginacao">
+      <a href="/ordensservicos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/ordensservicos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
   </div>
 </div>
 
-<a href="/os/create" class="float">
+<a href="/ordensservicos/create" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
 
