@@ -42,26 +42,27 @@ Route.group(() => {
         //Route.post('os/store', 'OrdemServicoController.store'); // Aguardando form.
 
         // Clientes
-        Route.get('clientes', 'ClienteController.index'); 
-        Route.post('clientes', 'ClienteController.index'); 
+        Route.get('clientes', 'ClienteController.index');
+        Route.post('clientes', 'ClienteController.index');
         Route.get('cliente/create', 'ClienteController.create');
         Route.post('cliente/create', 'ClienteController.store').validator('ClienteStore');
-        Route.get('cliente/show/:id', 'ClienteController.show'); 
-        Route.get('cliente/edit/:id', 'ClienteController.edit'); 
-        Route.post('cliente/update/:id', 'ClienteController.update').validator('ClienteUpdate'); 
+        Route.get('cliente/show/:id', 'ClienteController.show');
+        Route.get('cliente/edit/:id', 'ClienteController.edit');
+        Route.post('cliente/update/:id', 'ClienteController.update').validator('ClienteUpdate');
         Route.post('cliente/destroy/:id', 'ClienteController.destroy');
 
         //Produtos
         Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
+        Route.post('produto/destroy/:id', 'ProdutoController.destroy');//teste
 
         //Servicos
-        Route.get('servicos', 'ServicoController.index'); 
-        Route.post('servicos', 'ServicoController.index'); 
+        Route.get('servicos', 'ServicoController.index');
+        Route.post('servicos', 'ServicoController.index');
         Route.get('servico/create', 'ServicoController.create');
         Route.post('servico/create', 'ServicoController.store').validator('ServicoStore');
-        Route.get('servico/show/:id', 'ServicoController.show'); 
-        Route.get('servico/edit/:id', 'ServicoController.edit'); 
-        Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate'); 
+        Route.get('servico/show/:id', 'ServicoController.show');
+        Route.get('servico/edit/:id', 'ServicoController.edit');
+        Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate');
         Route.post('servico/destroy/:id', 'ServicoController.destroy');
 
 }).middleware('auth')

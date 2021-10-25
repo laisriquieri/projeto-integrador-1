@@ -22,9 +22,9 @@ class ProdutoController {
 
   async index ({ view }) {
     const produtos = await Produto.all();
-    return view.render('frontend.produtos.index',  { produto: produtos['rows'] });
+    return view.render('frontend.produtos.index',  { produtos: produtos['rows'] });
   }
-  
+
     /**
      * Query for search.
      * GET produtos/create
@@ -128,7 +128,7 @@ class ProdutoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, request, response, session }) {
 
     const produto = await Produto.find(params.id);
     await produto.delete();
