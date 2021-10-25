@@ -5,7 +5,7 @@
 <div id="lista-cadastro-cliente">
   <h3>Nova Ordem de Serviço</h3>
 
-  <form action="/cliente/create" method="POST">
+  <form action="/os/create" method="POST">
     {{ csrfField() }}
 
   <div id="busca">
@@ -45,7 +45,7 @@
         <span class= "mens-error"> {{ getErrorFor('relato') }} </span>
       @endif
     </div>
-    
+
     <div class="label-float">
       <select id="drop-lista-categorias" onchange="selecionaCategoria()">
         <option value="" {{ old('categoria', '') == '' ? "selected" : '' }}>Selecione a Categoria:</option>
