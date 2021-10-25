@@ -5,7 +5,7 @@
 <div id="lista-cadastro-cliente">
   <h3>Nova Ordem de Serviço</h3>
 
-  <form action="/os/create" method="POST">
+  <form action="/cliente/create" method="POST">
     {{ csrfField() }}
 
   <div id="busca">
@@ -45,27 +45,13 @@
         <span class= "mens-error"> {{ getErrorFor('relato') }} </span>
       @endif
     </div>
-
-    <div class="label-float">
-      <select id="drop-lista-categorias" onchange="selecionaCategoria()">
-        <option value="" {{ old('categoria', '') == '' ? "selected" : '' }}>Selecione a Categoria:</option>
-        <option value="Manutenção"{{ old('categoria', '') == 'Manutenção' ? "selected" : '' }}>Manutenção</option>
-        <option value="Assistência"{{ old('categoria', '') == 'Assistência' ? "selected" : '' }}>Assistência</option>
-        <option value="Teste"{{ old('categoria', '') == 'Teste' ? "selected" : '' }}>Teste</option>
-      </select>
-      <input type="hidden" value="{{ old('categoria', '') }}" name="categoria" id="input-categoria">
-      <label>Categoria</label>
-      @if(hasErrorFor('categoria')) 
-        <span class= "mens-error"> {{ getErrorFor('categoria') }} </span>
-      @endif
-    </div>
   
     
 
     <div class="label-float">
       <input type="hidden" name="status" value="{{ old('status', '') }}" id="input-tipo-status" required/>
       <label>Selecione um Status</label>
-      <select id="drop-lista-status"onchange="selecionaListaStatus()">
+      <select id="drop-lista-status" onchange="selecionaListaStatus()">
         <option value="" {{ old('status', '') == '' ? "selected" : '' }}>Selecione um Status</option>
         <option value="Em análise"{{ old('status', '') == 'Em análise' ? "selected" : '' }}>Em análise</option>
         <option value="Orçamento enviado"{{ old('status', '') == 'Orçamento enviado' ? "selected" : '' }}>Orçamento enviado</option>
@@ -124,7 +110,7 @@
     <div class="label-float">
       <input type="hidden" name="lista-pagamento" value="{{ old('forma-pagto', '') }}" id="input-pagto" required/>
       <label>Selecione um Status</label>
-      <select id="drop-lista-pagto"onchange="selecionaListaPagto()">
+      <select id="drop-lista-pagto" onchange="selecionaListaPagto()">
         <option value="" {{ old('forma-pagto', '') == '' ? "selected" : '' }}>Selecione um Status</option>
         <option value="Dinheiro"{{ old('forma-pagto', '') == 'Dinheiro' ? "selected" : '' }}>Dinheiro</option>
         <option value="Cartão de Crédito"{{ old('forma-pagto', '') == 'Cartão de Crédito' ? "selected" : '' }}>Cartão de Crédito</option>
