@@ -1,0 +1,64 @@
+<div class = "containertasklist">
+          
+  <table id="tabela">
+    <thead>  
+          <tr>
+          <th>Equipamento</th>
+          <th>Serviço</th>
+          <th>Quantidade</th>
+          <th>Valor Total Bruto</th>
+          <th>Desconto</th>
+          <th>Valor total Liquido</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>Notebook</td>
+          <td>Formatação</td>
+          <td>01</td>
+          <th>R$500,00</th>
+          <th>10%</th>
+          <th>R$450,00</th>
+          <td>
+            <a href="/usuario/edit/{{ usuario.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          <td>
+            <form action="/usuario/destroy/{{ usuario.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar este usuario: {{ usuario.username }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
+          <td>Notebook</td>
+          <td>Formatação</td>
+          <td>01</td>
+          <th>R$500,00</th>
+          <th>10%</th>
+          <th>R$450,00</th>
+          <td>
+            <a href="/usuario/edit/{{ usuario.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          <td>
+            <form action="/usuario/destroy/{{ usuario.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar este usuario: {{ usuario.username }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
+
+      </tbody>
+
+
+  </div>
+</body>
+</html>

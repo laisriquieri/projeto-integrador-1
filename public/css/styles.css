@@ -695,15 +695,15 @@ span.mens-error {
   font: 14px Verdana, sans-serif;
 }
 
-.label-edit{
-position: relative;
-padding-top: 13px;
-margin-top: 50px;
-margin-left: 75px;
-width: 350px;
-height: 40px;
-float: left;
-}
+.label-edit {
+  position: relative;
+  padding-top: 13px;
+  margin-top: 50px;
+  margin-left: 75px;
+  width: 350px;
+  height: 40px;
+  float: left;
+  }
 
 
 .label-edit input{
@@ -760,5 +760,24 @@ float: left;
 
 .div-paginacao{
   text-align: center;
+}
+
+/*Teste tasklist*/
+
+containertask {
+  flex: 1;
+  margin-top: 8;
+  flex:initial;
+  align-items: center;
+  background-color:  #FFF;
+  border-radius:  5px;
+  justify-content: space-between ;
+}
+tasklistcss {
+  color: #121212;
+  font-size: 5px;
+  padding-right: 10px;
+  padding-left: 15px;
+
 }
 

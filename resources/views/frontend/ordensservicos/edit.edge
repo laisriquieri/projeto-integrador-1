@@ -120,6 +120,7 @@
           <option value="Cartão de Débito"{{ old('forma_pagto', ordem_servicos.forma_pagto) == 'Cartão de Débito' ? "selected" : '' }}>Cartão de Débito</option>
           <option value="Pix"{{ old('forma_pagto', ordem_servicos.forma_pagto) == 'Pix' ? "selected" : '' }}>Pix</option>
         </select>
+
         @if(hasErrorFor('forma_pagto')) 
           <span class= "mens-error"> {{ getErrorFor('forma_pagto') }} </span>
         @endif
