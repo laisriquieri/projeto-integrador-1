@@ -3,115 +3,220 @@
 
 @section("content")
 
+@if(flashMessage('notification'))
+  <span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
 <div id="lista">
-  <div>
+
+  
+  <h3>Ordem de Serviço Nº {{ordensservico.id}}. </h3>
 
     <div>
       
-
         <div id="busca">
+        </div>
+        
+        <div class="label-float">
+          <input type="text" name="ordem_servico_id" value="{{  ordensservico.id }}" readonly/>
+          <label>Nº OS</label>
         </div>
       
         <div class="label-float">
-          <input type="text" name="nome" value={{ ordem.nome }} required/>
+          <input type="text" name="nome" value="{{  ordensservico.toJSON().cliente.nome }}" readonly/>
           <label>Cliente</label>
         </div>
       
+
         <div class="label-float">
-          <input type="text" name="data" value={{ ordem.data }} required/>
+          <input type="text" name="telefone" value="{{ ordensservico.toJSON().cliente.telefone }}" readonly/>
+          <label>Telefone do Cliente</label>
+        </div>
+
+
+        <div class="label-float">
+          <input type="text" name="data" value="{{ ordensservico.data_entrada }}" readonly/>
           <label>Data da Entrada</label>
         </div>
       
         <div class="label-float">
-          <input type="text" name="equipamento" value={{ ordem.equipamento }} required/>
+          <input type="text" name="equipamento" value="{{ ordensservico.equipamento }}" readonly/>
           <label>Equipamento do Cliente</label>
         </div>
       
         <div class="label-float">
-          <input type="text" name="relato" value={{ ordem.relato }} required/>
+          <input type="text" name="relato" value="{{ ordensservico.relato }}" readonly/>
           <label>Relato do Cliente</label>
-        </div>
+        </div>   
+      
+
       
         <div class="label-float">
-          <input list="lista-servicos" name="lista-servico" value={{ ordem.lista-servico }} required/>
-          <label>Selecione um Serviço</label>
-        </div>
-      
-        <datalist id="lista-servicos">
-          <option>Formatação</option>
-          <option>Manutenção em hardware</option>
-          <option>Teste</option>
-        </datalist>
-      
-        <div class="label-float">
-          <input list="lista-produtos" name="lista-produto" value={{ ordem.lista-produto }} required/>
-          <label>Selecione um Produto</label>
-        </div>
-      
-        <datalist id="lista-produtos">
-          <option>Teclado</option>
-          <option>Mouse</option>
-          <option>Memória DDR3</option>
-          <option>Pendrive</option>
-          <option>Teste</option>
-        </datalist>
-      
-        <div class="label-float">
-          <input type="number"  name="valor" value={{ ordem.valor }} required/>
-          <label>Valor</label>
-        </div>
-      
-        <div class="label-float">
-          <input type="text" name="telefone" value={{ ordem.telefone }} required/>
-          <label>Telefone do Cliente</label>
-        </div>
-      
-        <div class="label-float">
-          <input type="text" name="observacao" value={{ ordem.observacao }} required/>
+          <input type="text" name="observacao" value="{{ ordensservico.obs_tecnico }}" readonly/>
           <label>Observações do Técnico</label>
         </div>
-      
+         
         <div class="label-float">
-          <input type="date" name="data-entrega" value={{ ordem.data-entrega }} required/>
-          <label>Data da Entrega</label>
-        </div>
-      
-        <div class="label-float">
-          <input list="lista-status" name="lista-status" value={{ ordem.lista-status }} required/>
+          <input name="status" value="{{ ordensservico.status }}" readonly/>
           <label>Selecione um Status</label>
         </div>
-      
-        <datalist id="lista-status">
-          <option>Em análise</option>
-          <option>Orçamento enviado</option>
-          <option>Orçamento aprovado</option>
-          <option>Cancelado</option>
-          <option>Em andamento</option>
-          <option>Pronto para entrega</option>
-          <option>Entregue</option>
-        </datalist>
-      
+         
         <div class="label-float">
-          <input list="lista-pagamento" name="lista-pagamento" value={{ ordem.lista-pagamento }} required/>
-          <label>Selecione uma Forma de Pagamento</label>
+          <input type="date" name="data_entrega" value="{{ ordensservico.data_entrega }}" readonly/>
+          <label>Data da Entrega</label>
         </div>
-      
-        <datalist id="lista-pagamento">
-          <option>Dinheiro</option>
-          <option>Cartão de Crédito</option>
-          <option>Cartão de Débito</option>
-          <option>Pix</option>
-        </datalist>
+
+        <div class="label-float">
+
+        </div>
+        
+        
+
+        
+        
+        
+        
+        <table id="tabela">
+          <thead>
+              <tr>
+                  <th>Serviço</th>
+                  <th>Categoria</th>
+                  <th>Quantidade</th>
+                  <th>Valor unitário</th>
+                  <th>Valor total</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            @each(servico in servico_ordensservico)
+            
+            <tr>
+              <td><a href="/servico/show/{{ servico.id }}">{{ servico.nome }}</a></td>
+              <td>{{ servico.categoria }}</td>
+              <td>{{ servico.quantidade }}</td>
+              <td>{{ servico.valor }}</td>
+              <td>{{ servico.valor * servico.quantidade }}</td>
+              <td>
+                <a href="/os/edit-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}">
+                  <span class="material-icons">edit</span>
+                </a>
+              </td>
+              
+              <td>
+                <form action="/os/destroy-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}" method="POST">
+                {{ csrfField() }}
+
+                  <button type="submit"
+                  onclick="return confirm('Certeza que gostaria de deletar este serviço: {{ servico.nome }} ?')";>
+                    <span class="material-icons">delete</span>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            
+            @endeach
+
+          </tbody>
+        </table>
+
+
+
+
+        <table id="tabela">
+          <thead>
+              <tr>
+                  <th>Produto</th>
+                  <th>Categoria</th>
+                  <th>Quantidade</th>
+                  <th>Valor unitário</th>
+                  <th>Valor total</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            @each(produto in produto_ordensservico)
+            
+            <tr>
+              <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
+              <td>Produto</td>
+              <td>{{ produto.quantidade }}</td>
+              <td>{{ produto.valor_venda }}</td>
+              <td>{{ produto.valor_venda * produto.quantidade }}</td>
+              <td>
+                <a href="/os/edit-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}">
+                  <span class="material-icons">edit</span>
+                </a>
+              </td>
+              
+              <td>
+                <form action="/os/destroy-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}" method="POST">
+                {{ csrfField() }}
+
+                  <button type="submit"
+                  onclick="return confirm('Certeza que gostaria de deletar este produto: {{ produto.nome }} ?')";>
+                    <span class="material-icons">delete</span>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            
+            @endeach
+
+          </tbody>
+        </table>
+
+
+
+
+        <div class="label-float">
+          <input type="text"  name="valor_total_bruto" value="{{ ordensservico.valor_total_bruto }}" min="0.01" step="0.01" readonly/>
+          <label>Valor Bruto</label>
+        </div>
+
+        <div class="label-float">
+          <input type="text"  name="desconto" value="{{ ordensservico.desconto*100 }} %" readonly/>
+          <label>Desconto</label>
+        </div>
+
+        <div class="label-float">
+          <input type="text"  name="valor_total_liquido" value="{{ ordensservico.valor_total_liquido }}" min="0.01" step="0.01" readonly/>
+          <label>Valor Líquido</label>
+        </div>
+         
+        <div class="label-float">
+          <input name="forma_pagto" value="{{ ordensservico.forma_pagto != null ? ordensservico.forma_pagto : 'A combinar' }}" readonly/>
+          <label>Forma de Pagamento</label>
+        </div>
+
 
         <div class="botoes">
-          <button class="botao-cancelar" href="/cliente/edit/{{ cliente.id }}">
-            Editar
+        
+        <form action="/os/create-step2/{{ ordensservico.id }}">
+          <button class="botao-cancelar">
+            + Serviço
+          </button>      
+        </form>
+        
+        <form action="/os/create-step3/{{ ordensservico.id }}">
+          <button class="botao-cadastrar">
+            + Produto
           </button>
-          
+        </form>
+        
+        <form action="/os/edit/{{ ordensservico.id }}">
+          <button class="botao-cancelar">Editar</button>
+        </form>
   
-          <button class="botao-cadastrar" href="/cliente/destroy/{{ cliente.id }}">
-            Deletar
+        <form action="/os/destroy/{{ ordensservico.id }}" method="POST"> 
+          {{ csrfField() }}
+          <button class="botao-cadastrar" 
+                  onclick="return confirm('Certeza que gostaria de deletar a ordem de serviço Nº {{ ordensservico.id }} ?')";>
+                  Deletar
           </button>
+        </form>
+
         </div>
 
   </div>

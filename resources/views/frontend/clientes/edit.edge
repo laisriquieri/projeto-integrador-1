@@ -37,7 +37,7 @@
 
         <div class="label-edit">
           <label for="">CPF / CNPJ:</label>
-          <input type="text" name="cpf_cnpj" value="{{ old('cpf_cnpj', cliente.cpf_cnpj) }}" class="form-control"required/>
+          <input type="text" name="cpf_cnpj" value="{{ old('cpf_cnpj', cliente.cpf_cnpj) }}" class="form-control" readonly/>
           @if(hasErrorFor('cpf_cnpj')) 
           <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
           @endif
@@ -93,7 +93,7 @@
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input type="text" name="complemento" value="{{ old('complemento', cliente.complemento) }}" class="form-control"/>
+          <input type="text" name="complemento" value="{{ old('complemento', cliente.complemento == null ? "" : cliente.complemento) }}" class="form-control"/>
           @if(hasErrorFor('complemento')) 
           <span class= "mens-error"> {{ getErrorFor('complemento') }} </span>
           @endif
@@ -155,7 +155,7 @@
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input type="text" name="observacoes" value="{{ old('observacoes', cliente.observacoes) }}" class="form-control"/>
+          <input type="text" name="observacoes" value="{{ old('observacoes', cliente.observacoes == null ? "" : cliente.observacoes) }}" class="form-control"/>
           @if(hasErrorFor('observacoes')) 
           <span class= "mens-error"> {{ getErrorFor('observacoes') }} </span>
           @endif

@@ -65,7 +65,7 @@
 
         <div class="label-edit">
           <label for="">Complemento: </label>
-          <input disabled type="text" name="complemento" value="{{ cliente.complemento }}" class="form-control"required/>
+          <input disabled type="text" name="complemento" value="{{ cliente.complemento == null ? "" : cliente.complemento }}" class="form-control"required/>
         </div>
 
         <div class="label-edit">
@@ -85,7 +85,7 @@
 
         <div class="label-edit">
           <label for="">Observações: </label>
-          <input disabled type="text" name="observacoes" value="{{ cliente.observacoes }}" class="form-control"required/>
+          <input disabled type="text" name="observacoes" value="{{ cliente.observacoes == null ? "" : cliente.observacoes }}" class="form-control"required/>
         </div>
       <div class="botoes">
       

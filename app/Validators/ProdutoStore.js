@@ -9,7 +9,7 @@ class ProdutoStore {
 
   get rules () {
     return {
-      nome: 'required|min:3|max:100',
+      nome: 'required|min:3|unique:produtos|max:100',
       descricao: 'required|min:3|max:200',
       valor_compra: 'required|min:1|number|max:10',
       valor_venda: 'required|min:1|number|max:10',
@@ -18,7 +18,7 @@ class ProdutoStore {
   }
 
   get messages() {
-    returne{
+    return {
       min: 'Preencha no mínimo {{argument.0}} caracteres(s)',
       max: 'Preencha no máximo {{argument.0}} caracteres(s)',
       required: 'Campo {{field}} não pode ser vazio.',

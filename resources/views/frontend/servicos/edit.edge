@@ -15,7 +15,7 @@
 
         <div class="label-edit">
           <label>Nome</label>
-          <input type="text" placeholder=" " value="{{ old('nome', servico.nome) }}" name="nome" required/>
+          <input type="text" placeholder=" " value="{{ old('nome', servico.nome) }}" name="nome" readonly/>
           @if(hasErrorFor('nome')) 
             <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
           @endif

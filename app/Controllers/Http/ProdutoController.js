@@ -21,15 +21,13 @@ class ProdutoController {
    */
 
   async index ({ view, request }) {
-    /**const produtos = await Produto.all();
-    return view.render('frontend.produtos.index',  { produtos: produtos['rows'] });
-  }*/
-  const perPage = 3 // produtos por página
-      const page = await request.all().p || 1;
-      const testeSearch = await request.all().search;
-      const testeS = await request.all().s;
-      var produtos = "";
-      var search = "";
+
+    const perPage = 3 // produtos por página
+    const page = await request.all().p || 1;
+    const testeSearch = await request.all().search;
+    const testeS = await request.all().s;
+    var produtos = "";
+    var search = "";
 
       if ( !(typeof testeSearch === "undefined") && !(testeSearch == null) ) {
         var search = testeSearch.replace(/[^a-zA-Z0-9]/gi, '');
@@ -84,11 +82,8 @@ class ProdutoController {
     const data = request.only(Produto.fillable());
     const produto = await Produto.create(data);
 
-    //Implementar no front as mensagens flash
-    //session.flash({ notification: 'Produto criado com sucesso' });
-    console.log('Produto criado com sucesso')
-    return response.redirect(`/produto/${produto.id}`)
-
+    session.flash({ notification: 'Produto criado com sucesso' });
+    return response.redirect(`/produto/show/${produto.id}`)
   }
 
   /**
@@ -131,7 +126,7 @@ class ProdutoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, session }) {
 
     const data = request.only(Produto.fillable());
     const produto = await Produto.find(params.id);
@@ -139,7 +134,7 @@ class ProdutoController {
     await produto.save();
 
     session.flash({ notification: 'Produto atualizado com sucesso' });
-    return response.redirect('/produto');
+    return response.redirect('/produtos');
 
 
   }
@@ -158,7 +153,7 @@ class ProdutoController {
     await produto.delete();
 
     session.flash({ notification: 'Produto excluído com sucesso' });
-    return response.redirect('/produto');
+    return response.redirect('/produtos');
 
   }
 }

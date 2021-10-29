@@ -1,0 +1,76 @@
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista">
+
+
+  <h3>Ordem de Serviço</h3>
+  <div>
+
+    <form action="/os/create-step0" method="POST"> 
+      {{ csrfField() }}
+     
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>  
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+    </form>
+
+  <div id="busca">
+  </div>
+ 
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>CPF/CNPJ</th>
+          <th>Tipo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @each(cliente in clientes) 
+
+        
+          <tr>
+            <td><a href="/cliente/show/{{ cliente.id }}">{{ cliente.nome }}</a></td>
+            <td>{{ cliente.cpf_cnpj }}</td>
+            <td>{{ cliente.tipo }}</td>      
+            <td>
+                <a href="/os/create-step1/{{ cliente.id }}">
+                  <button type="submit"
+                          onclick="return 
+                          confirm('Gostaria de adicionar 
+                          {{ cliente.nome }} a uma nova Order de Serviço?')";>
+                    <span class="" ><b>CRIAR O.S.<b></span>
+                  </button>
+                </a>  
+                
+              </form>
+            </td>
+          </tr>
+        @endeach
+      </tbody>
+    </table>
+
+    <div class="div-paginacao">
+      <a href="/os/create-step0?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_before</span>
+      </a>
+
+      <a href="/os/create-step0?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span class="material-icons">navigate_next</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+@endsection

@@ -6,17 +6,17 @@
 <div id="lista-cadastro">
   <h3>Novo Produto</h3>
 
-  <form action="/produto" method="POST">
+  <form action="/produto/create" method="POST">
     {{ csrfField() }}
 
     <div id="busca">
     </div>
 
       <div class="label-float">
-        <input type="text" placeholder=" " name="nome" valor_vendavalue="{{ old('nome', '') }}" required/>
+        <input type="text" placeholder=" " name="nome" value="{{ old('nome', '') }}" required/>
         <label>Nome</label>
         @if(hasErrorFor('nome'))
-        <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+          <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
         @endif
       </div>
 
@@ -46,7 +46,7 @@
 
     <div class="botoes">
       <button type="cancel"
-              onclick="window.location='/produto/';return false;"
+              onclick="window.location='/produtos';return false;"
               class="botao-cancelar">
           Cancelar
       </button>

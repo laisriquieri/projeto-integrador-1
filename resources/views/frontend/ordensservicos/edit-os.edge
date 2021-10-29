@@ -1,0 +1,155 @@
+@layout("layouts.master")
+
+@section("content")
+
+<div id="lista-cadastro-cliente">
+  <h3>Alterar Ordem de Serviço Nº {{ ordensservico.id }}.</h3>
+
+
+
+  <div id="busca">
+  </div>  
+    
+  <form action="/os/update/{{ ordensservico.id }}" method="POST">
+  {{ csrfField() }}
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="cliente_id" value="{{ ordensservico.toJSON().cliente.id }}" readonly/>
+      <label>Cód. Cliente</label>
+      @if(hasErrorFor('cliente_id')) 
+        <span class= "mens-error"> {{ getErrorFor('cliente_id') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="" value="{{ ordensservico.toJSON().cliente.nome }}" disabled/>
+      <label>Cliente</label>
+
+    </div>
+    
+    <div class="label-float">
+      <input type="date" placeholder=" " name="data_entrada" value="{{ old('data_entrada', ordensservico.toJSON().data_entrada) }}" required/>
+      <label>Data da Entrada</label>
+      @if(hasErrorFor('data_entrada')) 
+        <span class= "mens-error"> {{ getErrorFor('data_entrada') }} </span>
+      @endif
+    </div>
+
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="equipamento" value="{{ old('equipamento', ordensservico.equipamento) }}" required/>
+      <label>Equipamento do Cliente</label>
+      @if(hasErrorFor('equipamento')) 
+        <span class= "mens-error"> {{ getErrorFor('equipamento') }} </span>
+      @endif
+    </div>
+
+
+    <div class="label-float">
+      <input type="text" placeholder=" " name="relato" value="{{ old('relato', ordensservico.relato) }}" required/>
+      <label>Relato do Cliente</label>
+      @if(hasErrorFor('relato')) 
+        <span class= "mens-error"> {{ getErrorFor('relato') }} </span>
+      @endif
+    </div>
+  
+    <div class="label-float">
+      <input type="text" placeholder=" " name="obs_tecnico" value="{{ old('obs_tecnico', ordensservico.obs_tecnico) }}" required/>
+      <label>Observações do Técnico</label>
+      @if(hasErrorFor('obs_tecnico')) 
+        <span class= "mens-error"> {{ getErrorFor('obs_tecnico') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+      <input type="hidden" name="status" value="{{ old('status', ordensservico.status) }}" id="input-tipo-status" required/>
+      <label>Status</label>
+      <select id="drop-lista-status" onchange="selecionaListaStatus()">
+        <option value="" {{ old('status', ordensservico.status) == '' ? "selected" : '' }}>Selecione um Status</option>
+        <option value="Em análise"{{ old('status', ordensservico.status) == 'Em análise' ? "selected" : '' }}>Em análise</option>
+        <option value="Orçamento enviado"{{ old('status', ordensservico.status) == 'Orçamento enviado' ? "selected" : '' }}>Orçamento enviado</option>
+        <option value="Orçamento aprovado"{{ old('status', ordensservico.status) == 'Orçamento aprovado' ? "selected" : '' }}>Orçamento aprovado</option>
+        <option value="Cancelado"{{ old('status', ordensservico.status) == 'Cancelado' ? "selected" : '' }}>Cancelado</option>
+        <option value="Em andamento"{{ old('status', ordensservico.status) == 'Em andamento' ? "selected" : '' }}>Em andamento</option>
+        <option value="Pronto para entrega"{{ old('status', ordensservico.status) == 'Pronto para entrega' ? "selected" : '' }}>Pronto para entrega</option>
+        <option value="Entregue"{{ old('status', ordensservico.status) == 'Entregue' ? "selected" : '' }}>Entregue</option>
+      </select>
+      @if(hasErrorFor('status')) 
+        <span class= "mens-error"> {{ getErrorFor('status') }} </span>
+      @endif
+    </div>
+  
+
+
+    <div class="label-float">
+          <input type="date" name="data_entrega" value="{{ old('data_entrega', ordensservico.toJSON().data_entrega ) }}" />
+          <label>Data da Entrega</label>
+          @if(hasErrorFor('data_entrega')) 
+            <span class= "mens-error"> {{ getErrorFor('data_entrega') }} </span>
+          @endif
+    </div>
+
+
+    <div class="label-float">
+      <input type="number" min=0 max=100 step=0.01  name="desconto" value="{{ old('desconto', ordensservico.desconto*100 ) }}" required/>
+      <label>Desconto (%)</label>
+      @if(hasErrorFor('desconto')) 
+          <span class= "mens-error"> {{ getErrorFor('desconto') }} </span>
+      @endif
+    </div>
+
+    <div class="label-float">
+        <input type="hidden" name="forma_pagto" value="{{ old('forma_pagto', ordensservico.forma_pagto ) }}" id="input-pagto" required/>
+        <label>Forma de pagamento</label>
+        <select id="drop-lista-pagto" onchange="selecionaListaPagto()">
+          <option value="A combinar" {{ old('forma_pagto', ordensservico.forma_pagto) == 'A combinar' ? "selected" : '' }}>Selecione uma Forma de Pagamento</option>
+          <option value="Dinheiro"{{ old('forma_pagto', ordensservico.forma_pagto) == 'Dinheiro' ? "selected" : '' }}>Dinheiro</option>
+          <option value="Cartão de Crédito"{{ old('forma_pagto', ordensservico.forma_pagto) == 'Cartão de Crédito' ? "selected" : '' }}>Cartão de Crédito</option>
+          <option value="Cartão de Débito"{{ old('forma_pagto', ordensservico.forma_pagto) == 'Cartão de Débito' ? "selected" : '' }}>Cartão de Débito</option>
+          <option value="Pix"{{ old('forma_pagto', ordensservico.forma_pagto) == 'Pix' ? "selected" : '' }}>Pix</option>
+        </select>
+        @if(hasErrorFor('forma_pagto')) 
+          <span class= "mens-error"> {{ getErrorFor('forma_pagto') }} </span>
+        @endif
+    </div>
+  
+    <div class="botoes">
+        <button type="cancel" 
+                onclick="window.location='/os/show/{{ ordensservico.id }}';return false;" 
+                class="botao-cancelar">
+            Cancelar
+        </button>
+
+        <button type="submit" class="botao-cadastrar">
+          Salvar
+        </button>
+    </div>
+  </form>
+</div>
+
+@endsection
+
+
+@section('scripts')
+
+  <script>
+
+    function selecionaListaStatus() {
+      var x = document.getElementById("drop-lista-status").value;
+      document.getElementById("input-tipo-status").value = x;
+    }
+
+    function selecionaListaPagto() {
+      var x = document.getElementById("drop-lista-pagto").value;
+      document.getElementById("input-pagto").value = x;
+    }
+
+
+  </script>
+
+@endsection
+
+
+
+
+

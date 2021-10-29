@@ -4,40 +4,61 @@
 @section("content")
 
 <div id="lista-cadastro">
-  <form action="/produtos/update/{{ produto.id }}" method="POST">
+  <form action="/produto/update/{{ produto.id }}" method="POST">
     {{ csrfField() }}
 
-  <h3>Novo Produto</h3>
+  <h3>Alterar produto: {{ produto.nome }}</h3>
 
   <div id="busca">
   </div>
 
   <div class="label-float">
-    <input type="text" name="nome" value={{ produto.nome }}  required/>
+    <input type="text" name="nome" value="{{ old( 'nome', produto.nome) }}"  readonly/>
     <label>Nome</label>
+    @if(hasErrorFor('nome')) 
+      <span class= "mens-error"> {{ getErrorFor('nome') }} </span>
+    @endif
   </div>
 
   <div class="label-float">
-    <input type="text" name="descricao" value={{ produto.descricao }}  required/>
+    <input type="text" name="descricao" value="{{ old( 'descricao', produto.descricao) }}" required/>
     <label>Descrição</label>
+    @if(hasErrorFor('descricao')) 
+      <span class= "mens-error"> {{ getErrorFor('descricao') }} </span>
+    @endif
   </div>
 
   <div class="label-float">
-    <input type="number" name="valor_compra" value={{ produto.valor_compra }}  required/>
+    <input type="number" name="valor_compra" value="{{ old( 'valor_compra', produto.valor_compra) }}"  required/>
     <label>Valor Compra</label>
+    @if(hasErrorFor('valor_compra')) 
+      <span class= "mens-error"> {{ getErrorFor('valor_compra') }} </span>
+    @endif
   </div>
 
   <div class="label-float">
-    <input type="number" name="valor_venda" value={{ produto.valor_venda }}  required/>
-    <label>Valor Venda</label>
+    <input type="number" name="valor_venda" value="{{ old( 'valor_venda', produto.valor_venda) }}"  required/>
+    <label>Valor Compra</label>
+  @if(hasErrorFor('valor_venda')) 
+    <span class= "mens-error"> {{ getErrorFor('valor_venda') }} </span>
+  @endif
   </div>
 
-  <div class="botoes">
-    <button class="login100-form-btn" type="submit">
-      Salvar
-    </button>
-  </div>
+  
+ <div  class="botoes">
 
+          <button type="cancel" 
+                  onclick="window.location='/produto/show/{{ produto.id }}';return false;" 
+                  class="botao-cancelar">
+              Cancelar
+          </button>
+
+          <button type="submit" class="botao-cadastrar">
+            Salvar
+          </button>
+          
+    </div>
+  </form>
 </div>
 @endsection
 

@@ -33,19 +33,39 @@ Route.post('usuario/store', 'UserController.store').validator('UserStore'); //pr
 //-----------------------------------
 Route.group(() => {
 
-       // Raiz
+        // Raiz
         Route.get('/', 'OrdemServicoController.index');
 
         // Ordens de Serviços
         Route.get('os', 'OrdemServicoController.index');
         Route.post('os', 'OrdemServicoController.index');
-        Route.get('os/create', 'OrdemServicoController.create');
-        Route.post('os/create', 'OrdemServicoController.store').validator('OrdemServicoStore');
-        Route.get('os/show/:id', 'OrdemServicoController.show');
-        Route.get('os/edit/:id', 'OrdemServicoController.edit');
-        Route.post('os/update/:id', 'OrdemServicoController.update').validator('OrdemServicoUpdate');
-        Route.post('os/destroy/:id', 'OrdemServicoController.destroy');
+        Route.get('os/create-step0', 'OrdemServicoController.escolheCliente'); // Escolhe cliente
+        Route.post('os/create-step0', 'OrdemServicoController.escolheCliente'); // Pesquisa cliente
 
+        Route.get('os/create-step1/:cliente_id', 'OrdemServicoController.create'); // Formulario informações OS
+        Route.post('os/store-step1', 'OrdemServicoController.store').validator('OrdemServico'); // Grava informações OS
+
+        Route.get('os/show/:id', 'OrdemServicoController.show');
+
+        Route.get('os/edit/:id', 'OrdemServicoController.edit');
+        Route.post('os/update/:id', 'OrdemServicoController.update').validator('OrdemServico');
+        
+        Route.post('os/destroy/:id', 'OrdemServicoController.destroy');      
+        
+        Route.get('os/create-step2/:id', 'ServicosDasOrdensServicoController.create'); // Formulario serviços
+        Route.post('os/create-step2/:id', 'ServicosDasOrdensServicoController.create'); // Formulario serviços pesquisa
+        Route.post('os/store-step2', 'ServicosDasOrdensServicoController.store').validator('ServicosDasOrdensServico'); // Grava serviços OS
+        Route.get('os/edit-step2/:ordem_servico_id/:servico_id/', 'ServicosDasOrdensServicoController.edit'); // Formulario serviços edição
+        Route.post('os/update-step2/:ordem_servico_id/:servico_id/', 'ServicosDasOrdensServicoController.update').validator('ServicosDasOrdensServico'); // Formulario serviços edição
+        Route.post('os/destroy-step2/:ordem_servico_id/:servico_id/', 'ServicosDasOrdensServicoController.destroy'); // Formulario serviços edição
+        
+        Route.get('os/create-step3/:id', 'ProdutosDasOrdensServicoController.create'); // Formulario produtos
+        Route.post('os/create-step3/:id', 'ProdutosDasOrdensServicoController.create'); // Formulario produtos pesquisa
+        Route.post('os/store-step3', 'ProdutosDasOrdensServicoController.store').validator('ProdutosDasOrdensServico'); // Grava produtos OS
+        Route.get('os/edit-step3/:ordem_servico_id/:produto_id/', 'ProdutosDasOrdensServicoController.edit'); // Formulario produtos edição
+        Route.post('os/update-step3/:ordem_servico_id/:produto_id/', 'ProdutosDasOrdensServicoController.update').validator('ProdutosDasOrdensServico'); // Formulario produtos edição
+        Route.post('os/destroy-step3/:ordem_servico_id/:produto_id/', 'ProdutosDasOrdensServicoController.destroy'); // Formulario produtos edição
+        
         //Usuários
         Route.get('usuarios', 'UserController.index');
         Route.post('usuarios', 'UserController.index');
@@ -67,9 +87,16 @@ Route.group(() => {
         Route.post('cliente/destroy/:id', 'ClienteController.destroy');
 
         //Produtos
-        Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
-        Route.post('produto/destroy/:id', 'ProdutoController.destroy');//correção
+        //Route.resource('produto', 'ProdutoController'); // Para obter a lista de rotas use o comando: adonis route:list
+        Route.get('produtos', 'ProdutoController.index');
         Route.post('produtos', 'ProdutoController.index');
+        Route.get('produto/create', 'ProdutoController.create');
+        Route.post('produto/create', 'ProdutoController.store').validator('ProdutoStore');
+        Route.get('produto/show/:id', 'ProdutoController.show');
+        Route.get('produto/edit/:id', 'ProdutoController.edit');
+        Route.post('produto/update/:id', 'ProdutoController.update').validator('ProdutoUpdate');
+        Route.post('produto/destroy/:id', 'ProdutoController.destroy');
+
 
         //Servicos
         Route.get('servicos', 'ServicoController.index');
