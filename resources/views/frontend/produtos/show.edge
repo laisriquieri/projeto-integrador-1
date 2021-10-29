@@ -2,50 +2,63 @@
 
 @section("content")
 
-<div id="lista">
+@if(flashMessage('notification'))
+  <span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista-mostra-cliente">
+
   <h3>Produto: {{ produto.nome }}</h3>
   <div>
+    
     <div id="busca">
-
-
     </div>
 
     <table id="tabela">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Valor Compra</th>
-          <th>Valor Venda</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ produto.nome }}</td>
-          <td>{{ produto.descricao }}</td>
-          <td>{{ produto.valor_compra }}</td>
-          <td>{{ produto.valor_venda }}</td>
-          <td>
-            <a href="/produto/{{ produto.id }}/edit">
-            <span class="material-icons">edit</span>
-            </a>
-          </td>
+      
+        <div class="label-edit">
+        <label for="">Nome:</label>
+        <input disabled type="text" autocomplete="off" name="nome" value="{{ produto.nome }}" class="form-control" required/>
+      </div>
+      
+      <div class="label-edit">
+        <label>Descrição:</label>
+        <input disabled type="text" value="{{ produto.descricao }}" name="descricao" class="form-control" required/>
+      </div>
 
-          <td>
+      <div class="label-edit">
+        <label for="">Valor Compra: </label>
+        <input disabled type="text" name="valor_compra" value="{{ produto.valor_compra }}" class="form-control" required/>
+      </div>
 
-            <form action="produto/destroy/{{ produto.id }}" method="POST">
-              {{ csrfField() }}
 
-                <button type="submit"
-                onclick="return confirm('Certeza que gostaria de deletar o produto: {{ produto.nome }} ?')";>
-                  <span class="material-icons">delete</span>
-                </button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
+      <div class="label-edit">
+        <label>Valor Venda: </label>
+        <input disabled type="number" name="valor_venda" value="{{ produto.valor_venda }}" class="form-control" required/>
+      </div>
+
     </table>
 
+    <div class="botoes">
+      
+        <form action="/produto/destroy/{{ produto.id }}" method="POST"> 
+          {{ csrfField() }}
+          <button class="botao-cadastrar" 
+                  onclick="return confirm('Certeza que gostaria de deletar o produto: {{ produto.nome }} ?')";>
+                  Deletar
+          </button>
+        </form>
+        
+        <form action="/produto/edit/{{ produto.id }}">
+          <button class="botao-cancelar">Editar</button>
+        </form>
+              
+      </div>
+
+
+<a href="/produto/create" class="float">
+  <i id="add-button" class="material-icons">add</i>
+</a>
     <br>
   </div>
 </div>

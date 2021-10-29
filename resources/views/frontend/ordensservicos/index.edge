@@ -12,7 +12,7 @@
   <h3>Ordem de Serviço</h3>
   <div>
 
-    <form action="/ordensservicos" method="POST"> 
+    <form action="/os" method="POST"> 
       {{ csrfField() }}
      
             <button id="icone-pesquisa" type="submit">
@@ -27,11 +27,10 @@
     <table id="tabela">
       <thead>
         <tr>
+          <th>Nº OS</th>
           <th>Cliente</th>
-          <th>Data de Entrada</th>
+          <th>Valor Líquido</th>
           <th>Status</th>
-          <th>Valor</th>
-          <th>Data de Entrega</th>
           <th></th>
           <th></th>
         </tr>
@@ -41,23 +40,22 @@
         @each(ordensservico in ordensservicos) 
 
         <tr>
-          <td><a href="/ordensservicos/show/{{ ordem_servico.id }}">{{ ordem_servico.nome }}</a></td>
-          <td>{{ ordem_servico.cliente }}</td>
-          <td>{{ ordem_servico.data_entrada }}</td>
-          <td>{{ ordem_servico.status }}</td>
-          <th>{{ordem_servico.data_entrega}}</th>
+          <td><a href="/os/show/{{ ordensservico.id }}">{{ ordensservico.id }}</a></td>
+          <td>{{ ordensservico.toJSON().cliente.nome }}</td>
+          <td>{{ ordensservico.valor_total_liquido }}</td>
+          <td>{{ ordensservico.status }}</td>
           <td>
-            <a href="/cliente/edit/{{ cliente.id }}">
+            <a href="/os/edit/{{ ordensservico.id }}">
               <span class="material-icons">edit</span>
             </a>
           </td>
           
           <td>
-            <form action="/ordensservicos/destroy/{{ ordem_servico.id }}" method="POST">
+            <form action="/os/destroy/{{ ordensservico.id }}" method="POST">
             {{ csrfField() }}
 
               <button type="submit"
-              onclick="return confirm('Certeza que gostaria de deletar a ordem de serviço: {{ ordem_servico.nome }} ?')";>
+              onclick="return confirm('Certeza que gostaria de deletar a Ordem de Serviço Nº {{ ordensservico.id }} ?')";>
                 <span class="material-icons">delete</span>
               </button>
             </form>
@@ -69,11 +67,11 @@
     </table>
 
     <div class="div-paginacao">
-      <a href="/ordensservicos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/os?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_before</span>
       </a>
 
-      <a href="/ordensservicos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/os?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_next</span>
       </a>
     </div>
@@ -81,7 +79,7 @@
   </div>
 </div>
 
-<a href="/ordensservicos/create" class="float">
+<a href="/os/create-step0" class="float">
   <i id="add-button" class="material-icons">add</i>
 </a>
 

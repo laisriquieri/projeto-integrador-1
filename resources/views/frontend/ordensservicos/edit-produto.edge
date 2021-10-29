@@ -1,0 +1,65 @@
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista">
+
+
+  <h3>Ordem de Serviço: Editar produto</h3>
+  <div>
+
+  <div id="busca">
+  </div>
+
+  
+             @if(hasErrorFor('quantidade')) 
+              <span class= "mens-error"> {{ getErrorFor('quantidade') }} no campo quantidade </span>
+            @endif
+
+
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Categoria</th>
+          <th>Valor unitário</th>
+          <th>Quantidade</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+          <tr>
+            <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
+            <td>Produto</td>    
+            <form action="/os/update-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}" method="POST">
+              {{ csrfField() }}
+              <td><input type="text" placeholder="" name="valor_venda" value="{{ produto.valor_venda }}" readonly /></td>
+              <td><input type="number" placeholder="" name="quantidade" value="{{ old('quantidade', produto_ordensservico.quantidade) }}" min=1 step=1 required /></td>
+              <td> 
+                <input hidden type="number" placeholder="" name="ordem_servico_id" value="{{ produto_ordensservico.ordem_servico_id }}"  />
+                <input hidden type="number" placeholder="" name="produto_id" value="{{ produto_ordensservico.produto_id }}"  />
+                <button type="submit"
+                      onclick="return 
+                      confirm('Gostaria de adicionar 
+                      {{ produto.nome }} a uma nova Order de Serviço?')";>
+                  <span class="" ><b>Editar<b></span>
+                </button>
+              
+              </td>
+            </form>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+@endsection

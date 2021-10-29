@@ -38,12 +38,12 @@
         @each(produto in produtos)
 
         <tr>
-          <td><a href="/produto/{{ produto.id }}">{{ produto.nome }}</a></td>
+          <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
           <td>{{ produto.descricao }}</td>
           <td>{{ produto.valor_compra }}</td>
           <td>{{ produto.valor_venda }}</td>
           <td>
-            <a href="/produto/{{ produto.id }}/edit">
+            <a href="/produto/edit/{{ produto.id }}">
             <span class="material-icons">edit</span>
             </a>
           </td>
@@ -67,11 +67,11 @@
     </table>
 
     <div class="div-paginacao">
-      <a href="/produto?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/produtos?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_before</span>
       </a>
 
-      <a href="/produto?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+      <a href="/produtos?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
         <span class="material-icons">navigate_next</span>
       </a>
     </div>
