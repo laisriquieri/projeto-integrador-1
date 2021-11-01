@@ -70,16 +70,28 @@
 
         </div>
         
-        
+        <div class="botoes">
 
-        
+          <form action="/os/create-step2/{{ ordensservico.id }}">
+            <button class="botao-cancelar">
+              + Serviço
+            </button>      
+          </form>
+          
+          <form action="/os/create-step3/{{ ordensservico.id }}">
+            <button class="botao-cadastrar">
+              + Produto
+            </button>
+          </form>
+
+        </div>
         
         
         
         <table id="tabela">
           <thead>
               <tr>
-                  <th>Serviço</th>
+                  <th>Serviço/Produto</th>
                   <th>Categoria</th>
                   <th>Quantidade</th>
                   <th>Valor unitário</th>
@@ -117,25 +129,6 @@
             
             @endeach
 
-          </tbody>
-        </table>
-
-
-
-
-        <table id="tabela">
-          <thead>
-              <tr>
-                  <th>Produto</th>
-                  <th>Categoria</th>
-                  <th>Quantidade</th>
-                  <th>Valor unitário</th>
-                  <th>Valor total</th>
-                  <th></th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
             @each(produto in produto_ordensservico)
             
             <tr>
@@ -192,19 +185,7 @@
 
 
         <div class="botoes">
-        
-        <form action="/os/create-step2/{{ ordensservico.id }}">
-          <button class="botao-cancelar">
-            + Serviço
-          </button>      
-        </form>
-        
-        <form action="/os/create-step3/{{ ordensservico.id }}">
-          <button class="botao-cadastrar">
-            + Produto
-          </button>
-        </form>
-        
+              
         <form action="/os/edit/{{ ordensservico.id }}">
           <button class="botao-cancelar">Editar</button>
         </form>
