@@ -48,7 +48,7 @@
               {{ csrfField() }}
               <td><input type="text" placeholder="" name="categoria" value="{{ servico.categoria }}" readonly /></td>    
               <td><input type="text" placeholder="" name="valor" value="{{ servico.valor }}" readonly /></td>
-              <td><input type="number" placeholder="" name="quantidade" value="" min=1 step=1 required /></td>
+              <td><input type="number" placeholder="quantidade" name="quantidade" value="" min=1 step=1 required /></td>
               <td>
                 <input hidden type="number" placeholder="" name="ordem_servico_id" value="{{ ordem_servico_id }}"  />
                 <input hidden type="number" placeholder="" name="servico_id" value="{{ servico.id }}"  />
@@ -56,7 +56,9 @@
                       onclick="return 
                       confirm('Gostaria de adicionar 
                       {{ servico.nome }} a uma nova Order de Serviço?')";>
-                  <span class="" ><b>+<b></span>
+                  <span class="material-icons">
+                    add_circle_outline
+                    </span>
                 </button>
               
               </td>

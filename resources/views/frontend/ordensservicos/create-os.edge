@@ -2,7 +2,7 @@
 
 @section("content")
 
-<div id="lista-cadastro-cliente">
+<div id="lista-cadastro-NovaOs">
   <h3>Nova Ordem de Serviço</h3>
 
   <form action="/os/store-step1" method="POST">
@@ -18,6 +18,10 @@
         <span class= "mens-error"> {{ getErrorFor('cliente_id') }} </span>
       @endif
     </div>
+
+     
+    
+    
 
     <div class="label-float">
       <input type="text" placeholder=" " name="cliente_nome" value="{{ clienteOS.nome }}" disabled/>
@@ -114,7 +118,7 @@
       var x = document.getElementById("drop-lista-pagto").value;
       document.getElementById("input-pagto").value = x;
     }
-
+  
 
   </script>
 
