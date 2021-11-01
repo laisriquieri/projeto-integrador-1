@@ -9,7 +9,7 @@
 <div id="lista">
 
 
-  <h3>Ordem de Serviço</h3>
+  <h3>Ordem de Serviço: Escolha um Cliente</h3>
   <div>
 
     <form action="/os/create-step0" method="POST"> 
@@ -43,13 +43,18 @@
             <td>{{ cliente.cpf_cnpj }}</td>
             <td>{{ cliente.tipo }}</td>      
             <td>
+              
                 <a href="/os/create-step1/{{ cliente.id }}">
-                  <button type="submit"
-                          onclick="return 
-                          confirm('Gostaria de adicionar 
-                          {{ cliente.nome }} a uma nova Order de Serviço?')";>
-                    <span class="" ><b>CRIAR O.S.<b></span>
-                  </button>
+                  
+                    <button class="botao-cadastraos" type="submit"
+                            onclick="return 
+                            confirm('Gostaria de adicionar 
+                            {{ cliente.nome }} a uma nova Order de Serviço?')";>
+                      <span ><b>Criar Ordem 
+                        de Serviço<b></span>
+                    </button>
+                  
+              
                 </a>  
                 
               </form>

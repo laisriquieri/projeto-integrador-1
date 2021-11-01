@@ -7,7 +7,7 @@
   <span class="sucesso">{{ flashMessage('notification') }}</span>
 @endif
 
-<div id="lista">
+<div id="lista-cadastro-ordemservico">
 
   
   <h3>Ordem de Serviço Nº {{ordensservico.id}}. </h3>
@@ -55,32 +55,24 @@
           <input type="text" name="observacao" value="{{ ordensservico.obs_tecnico }}" readonly/>
           <label>Observações do Técnico</label>
         </div>
-         
-        <div class="label-float">
-          <input name="status" value="{{ ordensservico.status }}" readonly/>
-          <label>Selecione um Status</label>
+
+        <div id="linha-divisao">
         </div>
          
-        <div class="label-float">
-          <input type="date" name="data_entrega" value="{{ ordensservico.data_entrega }}" readonly/>
-          <label>Data da Entrega</label>
-        </div>
-
-        <div class="label-float">
-
-        </div>
         
+               
         <div class="botoes">
 
           <form action="/os/create-step2/{{ ordensservico.id }}">
-            <button class="botao-cancelar">
-              + Serviço
+            <button class="botao-adiciona">
+              Adiciona 
+              Serviço
             </button>      
           </form>
           
           <form action="/os/create-step3/{{ ordensservico.id }}">
-            <button class="botao-cadastrar">
-              + Produto
+            <button class="botao-adiciona">
+              Adiciona Produto
             </button>
           </form>
 
@@ -88,77 +80,82 @@
         
         
         
-        <table id="tabela">
-          <thead>
+        <table id="containertask">
+          <div>
+
+            <thead>
+                <tr>
+                    <th>Serviço/Produto</th>
+                    <th>Categoria</th>
+                    <th>Quantidade</th>
+                    <th>Valor unitário</th>
+                    <th>Valor total</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+              @each(servico in servico_ordensservico)
+              
               <tr>
-                  <th>Serviço/Produto</th>
-                  <th>Categoria</th>
-                  <th>Quantidade</th>
-                  <th>Valor unitário</th>
-                  <th>Valor total</th>
-                  <th></th>
-                  <th></th>
+                <td><a href="/servico/show/{{ servico.id }}">{{ servico.nome }}</a></td>
+                <td>{{ servico.categoria }}</td>
+                <td>{{ servico.quantidade }}</td>
+                <td>{{ servico.valor }}</td>
+                <td>{{ servico.valor * servico.quantidade }}</td>
+                <td>
+                  <a href="/os/edit-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}">
+                    <span class="material-icons">edit</span>
+                  </a>
+                </td>
+                
+                <td>
+                  <form action="/os/destroy-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}" method="POST">
+                  {{ csrfField() }}
+
+                    <button type="submit"
+                    onclick="return confirm('Certeza que gostaria de deletar este serviço: {{ servico.nome }} ?')";>
+                      <span class="material-icons">delete</span>
+                    </button>
+                  </form>
+                </td>
               </tr>
-          </thead>
-          <tbody>
-            @each(servico in servico_ordensservico)
-            
-            <tr>
-              <td><a href="/servico/show/{{ servico.id }}">{{ servico.nome }}</a></td>
-              <td>{{ servico.categoria }}</td>
-              <td>{{ servico.quantidade }}</td>
-              <td>{{ servico.valor }}</td>
-              <td>{{ servico.valor * servico.quantidade }}</td>
-              <td>
-                <a href="/os/edit-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}">
-                  <span class="material-icons">edit</span>
-                </a>
-              </td>
+
+                      
+              @endeach
+
+              @each(produto in produto_ordensservico)
               
-              <td>
-                <form action="/os/destroy-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}" method="POST">
-                {{ csrfField() }}
+              <tr>
+                <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
+                <td>Produto</td>
+                <td>{{ produto.quantidade }}</td>
+                <td>{{ produto.valor_venda }}</td>
+                <td>{{ produto.valor_venda * produto.quantidade }}</td>
+                <td>
+                  <a href="/os/edit-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}">
+                    <span class="material-icons">edit</span>
+                  </a>
+                </td>
+                
+                <td>
+                  <form action="/os/destroy-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}" method="POST">
+                  {{ csrfField() }}
 
-                  <button type="submit"
-                  onclick="return confirm('Certeza que gostaria de deletar este serviço: {{ servico.nome }} ?')";>
-                    <span class="material-icons">delete</span>
-                  </button>
-                </form>
-              </td>
-            </tr>
-            
-            @endeach
-
-            @each(produto in produto_ordensservico)
-            
-            <tr>
-              <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>
-              <td>Produto</td>
-              <td>{{ produto.quantidade }}</td>
-              <td>{{ produto.valor_venda }}</td>
-              <td>{{ produto.valor_venda * produto.quantidade }}</td>
-              <td>
-                <a href="/os/edit-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}">
-                  <span class="material-icons">edit</span>
-                </a>
-              </td>
+                    <button type="submit"
+                    onclick="return confirm('Certeza que gostaria de deletar este produto: {{ produto.nome }} ?')";>
+                      <span class="material-icons">delete</span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
               
-              <td>
-                <form action="/os/destroy-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}" method="POST">
-                {{ csrfField() }}
+              @endeach
 
-                  <button type="submit"
-                  onclick="return confirm('Certeza que gostaria de deletar este produto: {{ produto.nome }} ?')";>
-                    <span class="material-icons">delete</span>
-                  </button>
-                </form>
-              </td>
-            </tr>
-            
-            @endeach
-
-          </tbody>
+            </tbody>
+          </div>
         </table>
+        
 
 
 
@@ -183,20 +180,32 @@
           <label>Forma de Pagamento</label>
         </div>
 
+      
+
+        <div class="label-float">
+          <input name="status" value="{{ ordensservico.status }}" readonly/>
+          <label>Selecione um Status</label>
+        </div>
+         
+        <div class="label-float">
+          <input type="date" name="data_entrega" value="{{ ordensservico.data_entrega }}" readonly/>
+          <label>Data da Entrega</label>
+        </div>
+
 
         <div class="botoes">
               
-        <form action="/os/edit/{{ ordensservico.id }}">
-          <button class="botao-cancelar">Editar</button>
-        </form>
-  
-        <form action="/os/destroy/{{ ordensservico.id }}" method="POST"> 
-          {{ csrfField() }}
-          <button class="botao-cadastrar" 
-                  onclick="return confirm('Certeza que gostaria de deletar a ordem de serviço Nº {{ ordensservico.id }} ?')";>
-                  Deletar
-          </button>
-        </form>
+          <form action="/os/edit/{{ ordensservico.id }}">
+            <button class="botao-cancelar">Editar</button>
+          </form>
+    
+          <form action="/os/destroy/{{ ordensservico.id }}" method="POST"> 
+            {{ csrfField() }}
+            <button class="botao-cadastrar" 
+                    onclick="return confirm('Certeza que gostaria de deletar a ordem de serviço Nº {{ ordensservico.id }} ?')";>
+                    Deletar
+            </button>
+          </form>
 
         </div>
 
