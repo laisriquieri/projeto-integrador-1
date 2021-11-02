@@ -776,17 +776,18 @@ span.mens-error {
 
 #containertask {
   margin: 10px;
-  border-collapse:unset;
-  border: 3px solid #999;
   width:  90%;
   margin-left: 55px;
   margin-right: 60px;
   margin-top: 60px;
-  border-radius: 20px ;
+  border-collapse: collapse;
 
 }
-#containertask th {
-  background-color: #dcdcdc;
+
+#containertask-head {
+  box-shadow: 0 0 0 1px #707070;
+  border-radius: 50px;
+  border-bottom: 5px solid transparent;
 }
 
 #tasklistcss {
@@ -798,13 +799,12 @@ span.mens-error {
 }
 
 .botao-cadastraos {
-  border: 2px solid #242222;
-  border-radius: 25px;
-  background-color: white;
+  border-radius: 40px;
+  background-color: #e6e6e6;
   color: #131212;
   font-size: 12px;
   cursor: pointer;
-  width: 70px;
+  width: 160px;
   height: 50px;
   margin-top: 10px;
   float: left;
