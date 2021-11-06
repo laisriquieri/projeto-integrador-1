@@ -106,7 +106,7 @@ th {
 
 .barra {
   background-color: #fff;
-  height: 370px;
+  height: 700px;
   width: 280px;
   display: inline-block;
   margin-top: 160px;
@@ -124,6 +124,7 @@ th {
   width: 200px;
   margin-right: 55px;
   margin-top: -20px;
+  font-size: 18px;
 }
 
 #tabela {
