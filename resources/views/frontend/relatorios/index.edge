@@ -1,0 +1,60 @@
+{{--provisório para testes--}}
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista">
+  <h3>Relatórios</h3>
+  <div>
+     <div id="busca">
+     </div>
+  </div>
+
+  <div>
+    <a href="/relatorios/aniversariantes">
+        <h2>Aniversariantes do dia</h2>
+    </a>
+  </div>
+
+  <form action="relatorios/os-mes-ano" method="get">
+    <div class="label-float">
+        
+        <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
+          <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
+          @each(mes in meses)
+            <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
+          @endeach
+        </select>
+        
+        <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
+        <label>OS por mês</label>
+
+        @if(hasErrorFor('mes_ano')) 
+          <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
+        @endif  
+
+        <button type="submit" class="botao-cadastrar">
+          Solicitar relátorio: OS por mês
+        </button>
+        
+    </div>
+  </form>
+
+@endsection
+
+@section('scripts')
+
+  <script>
+
+    function selecionaMesAno() {
+      var x = document.getElementById("drop-list-mes-ano").value;
+      document.getElementById("input-mes-ano").value = x;
+    }
+
+  </script>
+
+@endsection

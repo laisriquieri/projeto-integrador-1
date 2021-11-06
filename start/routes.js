@@ -108,6 +108,11 @@ Route.group(() => {
         Route.post('servico/update/:id', 'ServicoController.update').validator('ServicoUpdate');
         Route.post('servico/destroy/:id', 'ServicoController.destroy');
 
+        //Relatorios
+        Route.get('relatorios', 'RelatorioController.index');
+        Route.get('relatorios/aniversariantes', 'RelatorioController.aniversariantes');
+        Route.get('relatorios/os-mes-ano', 'RelatorioController.osPorMes').validator('Relatorios');;
+
 }).middleware('auth')
 
 

@@ -1,0 +1,62 @@
+@layout("layouts.master")
+
+@section("content")
+
+@if(flashMessage('notification'))
+<span class="sucesso">{{ flashMessage('notification') }}</span>
+@endif
+
+<div id="lista">
+
+
+  <h3>Ordem de Serviços: Mês {{ mes_ano }}</h3>
+  <div>
+ 
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Nº OS</th>
+          <th>Cliente</th>
+          <th>Valor Líquido</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @each(ordensservico in ordensservicos) 
+
+        <tr>
+          <td><a href="/os/show/{{ ordensservico.id }}">{{ ordensservico.id }}</a></td>
+          <td>{{ ordensservico.toJSON().cliente.nome }}</td>
+          <td>{{ ordensservico.valor_total_liquido }}</td>
+          <td>{{ ordensservico.status }}</td>
+          <td>
+            <a href="/os/edit/{{ ordensservico.id }}">
+              <span class="material-icons">edit</span>
+            </a>
+          </td>
+          
+          <td>
+            <form action="/os/destroy/{{ ordensservico.id }}" method="POST">
+            {{ csrfField() }}
+
+              <button type="submit"
+              onclick="return confirm('Certeza que gostaria de deletar a Ordem de Serviço Nº {{ ordensservico.id }} ?')";>
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        
+        @endeach
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+
+@endsection
