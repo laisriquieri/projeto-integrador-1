@@ -7,42 +7,74 @@
 <span class="sucesso">{{ flashMessage('notification') }}</span>
 @endif
 
-<div id="lista">
-  <h3>Relatórios</h3>
-  <div>
-     <div id="busca">
-     </div>
-  </div>
+<div id="lista-altera-cliente">
+    <button id="icone-back" type="submit">
+      <span class="material-icons">arrow_back</span>
+    </button>
 
-  <div>
-    <a href="/relatorios/aniversariantes">
-        <h2>Aniversariantes do dia</h2>
-    </a>
-  </div>
+    <h3>Relatórios</h3>
 
   <form action="relatorios/os-mes-ano" method="get">
-    <div class="label-float">
-        
-        <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
-          <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
-          @each(mes in meses)
-            <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
-          @endeach
-        </select>
-        
-        <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
-        <label>OS por mês</label>
+      {{ csrfField() }}
+            <button id="icone-pesquisa" type="submit">
+              <span class="material-icons">search</span>
+            </button>
+            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
+  
 
-        @if(hasErrorFor('mes_ano')) 
-          <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
-        @endif  
-
-        <button type="submit" class="botao-cadastrar">
-          Solicitar relátorio: OS por mês
-        </button>
-        
+    <div id="busca">
     </div>
-  </form>
+    
+      
+    <div id="box-relatorios"> 
+        
+      <div id="div-relatorios">
+        <label>Aniversariantes do dia</label>
+      </div>
+      <div id="div-relatorios">
+        
+          <button type="submit"  class="botao-consulta-os" onclick="/relatorios/aniversariantes">
+            Consultar
+          </button>
+        
+      </div>
+
+    </div>   
+    <div id="busca">
+    </div>
+    <div id="box-relatorios" >
+      <div id="div-relatorios">
+        <label> Ordens de Serviço por Mês </label>
+      </div>
+          
+      <div id="div-relatorios">
+            <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
+              <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
+                @each(mes in meses)
+              <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
+                @endeach
+            </select>
+      </div>
+      <div id="div-relatorios">
+            <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
+              @if(hasErrorFor('mes_ano')) 
+            <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
+                @endif
+      </div>
+      <div id="div-relatorios">
+            <button type="submit" class="botao-consulta-os">
+              Consultar
+            </button>
+      </div>
+    </div>
+  </form>          
+     
+</div>      
+
+           
+            
+        
+     
 
 @endsection
 

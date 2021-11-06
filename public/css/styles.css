@@ -782,7 +782,8 @@ span.mens-error {
   margin-right: 60px;
   margin-top: 60px;
   border-collapse: collapse;
-
+  justify-items: auto;
+  align-content: initial;
 }
 
 #containertask-head {
@@ -845,4 +846,51 @@ span.mens-error {
   border-radius: 15px;
   opacity: 1;
   float: right;
+}
+#icone-back{
+  line-height: 1.5;
+  color: #5a5858;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background: #f5f3f3;
+  margin-top: 10px;
+  justify-content:initial;
+  align-items:initial;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: 2px solid #707070;
+  float:left;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  
+}
+#box-relatorios{
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  
+}
+#div-relatorios{
+  margin-left: 20px;
+  margin-top: 20px;
+  
+ 
+}
+.botao-consulta-os {
+  border: 2px solid #707070;
+  border-radius: 25px;
+  background-color: white;
+  color: #707070;
+  font-size: 16px;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  margin-top: 30px;
+  float: left;
+  margin-left: 30px;
 }

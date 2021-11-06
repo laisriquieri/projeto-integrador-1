@@ -6,7 +6,10 @@
 <div id="lista-cadastro">
   <form action="/produto/update/{{ produto.id }}" method="POST">
     {{ csrfField() }}
-
+    <button id="icone-back" type="submit">
+      <span class="material-icons">arrow_back
+        </span>
+    </button>
   <h3>Alterar produto: {{ produto.nome }}</h3>
 
   <div id="busca">
