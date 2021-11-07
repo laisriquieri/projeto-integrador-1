@@ -8,13 +8,11 @@
 
 <div id="lista-mostra-cliente">
 
-  <form action="/produtos" method="get">
-    <button id="icone-back" type="submit">
+    <button id="icone-back" type="submit" onclick="window.history.back();return false;" > 
       <span class="material-icons">
         arrow_back
       </span>
     </button>
-  </form>
 
   <h3>Produto: {{ produto.nome }}</h3>
   <div>
