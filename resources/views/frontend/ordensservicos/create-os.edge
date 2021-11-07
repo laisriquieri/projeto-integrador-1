@@ -3,10 +3,15 @@
 @section("content")
 
 <div id="lista-cadastro-NovaOs">
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
+
+  <form action="/os/create-step0" method="get">
+    <button id="icone-back" type="submit">
+      <span class="material-icons">
+        arrow_back
       </span>
-  </button>
+    </button>
+  </form>
+
   <h3>Nova Ordem de Serviço</h3>
 
   <form action="/os/store-step1" method="POST">

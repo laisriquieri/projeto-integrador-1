@@ -4,16 +4,25 @@
 @section("content")
 
 <div id="lista-cadastro">
-  <form action="/produto/update/{{ produto.id }}" method="POST">
-    {{ csrfField() }}
+
+  <form action="/produtos" method="get">
     <button id="icone-back" type="submit">
-      <span class="material-icons">arrow_back
-        </span>
+      <span class="material-icons">
+        arrow_back
+      </span>
     </button>
+  </form>
+
   <h3>Alterar produto: {{ produto.nome }}</h3>
+
+
+
 
   <div id="busca">
   </div>
+  
+  <form action="/produto/update/{{ produto.id }}" method="POST">
+  {{ csrfField() }}
 
   <div class="label-float">
     <input type="text" name="nome" value="{{ old( 'nome', produto.nome) }}"  readonly/>

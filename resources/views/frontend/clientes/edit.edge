@@ -3,10 +3,13 @@
 @section("content")
 
 <div id="lista-altera-cliente">
+  <form action="/clientes" method="get">
     <button id="icone-back" type="submit">
-      <span class="material-icons">arrow_back
-        </span>
+      <span class="material-icons">
+        arrow_back
+      </span>
     </button>
+  </form>
     <h3>Alterar Cliente: {{ cliente.nome }}</h3>
 
     <div id="busca">

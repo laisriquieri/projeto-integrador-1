@@ -7,10 +7,13 @@
 @endif
 
 <div id="lista-mostra-cliente">
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
+  <form action="/clientes" method="get">
+    <button id="icone-back" type="submit">
+      <span class="material-icons">
+        arrow_back
       </span>
-  </button>
+    </button>
+  </form>
   <h3>Cliente: {{ cliente.nome }}</h3>
   <div>
          

@@ -3,11 +3,16 @@
 @section("content")
 
   <div id="lista-cadastro-cliente">
+
+  <form action="/servicos" method="get">
     <button id="icone-back" type="submit">
-      <span class="material-icons">arrow_back
-        </span>
+      <span class="material-icons">
+        arrow_back
+      </span>
     </button>
-    <h3>Novo Serviço</h3>
+  </form>
+
+  <h3>Novo Serviço</h3>
 
 
     <form action="/servico/create" method="POST">

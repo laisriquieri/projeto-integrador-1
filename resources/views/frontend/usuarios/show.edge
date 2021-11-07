@@ -7,10 +7,15 @@
 @endif
 
 <div id="lista-mostra-cliente">
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
-      </span>
-  </button>
+
+    <form action="/usuarios" method="get">
+      <button id="icone-back" type="submit">
+        <span class="material-icons">
+          arrow_back
+        </span>
+      </button>
+    </form>
+
   <h3>Serviço: {{ usuario.username }}</h3>
   <div>
   
