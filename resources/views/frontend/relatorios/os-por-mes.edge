@@ -6,7 +6,7 @@
 <span class="sucesso">{{ flashMessage('notification') }}</span>
 @endif
 
-<div id="lista-">
+<div id="lista">
 
   <button id="icone-back" type="submit">
     <span class="material-icons">arrow_back
@@ -56,6 +56,15 @@
         @endeach
       </tbody>
     </table>
+    <div class="div-paginacao">
+      <a {{--  id="icone-before"  --}} href="/relatorios?p={{ pages.page == 1 ? 1 : pages.page-1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span  class="material-icons">navigate_before</span>
+      </a>
+
+      <a {{--  id="icone-next"  --}} href="/relatorios?p={{ pages.page == pages.lastPage ? pages.lastPage : pages.page+1 }}{{ search == "" ? "" : "&s="+search}}">
+        <span  class="material-icons">navigate_next</span>
+      </a>
+    </div>
 
   </div>
 </div>

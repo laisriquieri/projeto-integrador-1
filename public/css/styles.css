@@ -869,15 +869,19 @@ span.mens-error {
   
 }
 #box-relatorios{
-  width: 300px;
+  width: 970px;
   height: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction:row;
+  align-content:space-between
   
 }
 #div-relatorios{
-  margin-left: 20px;
-  margin-top: 20px;
+  margin:auto;
+  padding: 30px;
+  flex-direction: column;
+  
+
   
  
 }
@@ -894,3 +898,44 @@ span.mens-error {
   float: left;
   margin-left: 30px;
 }
+#icone-next{
+  
+  color: #5a5858;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: #f5f3f3;
+  margin-top: 10px;
+  justify-content:center;
+  align-items:center;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: 3px solid #707070;
+  float:none;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+#icone-before{
+ 
+  color: #5a5858;
+  width: 25px;
+  position: relative;
+  height: 35px;
+  border-radius: 5px;
+  background: #f5f3f3;
+  margin-top: 20px;
+  justify-content:center;
+  align-items:center;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  border: 3px solid #707070;
+  float:none;
+  margin-right: 20px;
+  margin-left: 20px;
+  
+}  

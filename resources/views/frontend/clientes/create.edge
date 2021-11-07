@@ -38,7 +38,7 @@
     </div>
 
     <div class="label-float">
-      <input type="text" placeholder=" " name="cpf_cnpj" value="{{ old('cpf_cnpj', '') }}" required/>
+      <input type="text" id="cpf" autocomplete="off" onkeyup="mascara_cpf()" placeholder=" " name="cpf_cnpj" value="{{ old('cpf_cnpj', '') }}" required/>
       <label>CPF / CNPJ</label>
       @if(hasErrorFor('cpf_cnpj')) 
       <span class= "mens-error"> {{ getErrorFor('cpf_cnpj') }} </span>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="label-float">
-      <input type="text" placeholder=" " name="telefone" value="{{ old('telefone', '') }}" required/>
+      <input type="text" placeholder=" " data-js="phone" name="telefone" value="{{ old('telefone', '') }}" required/>
       <label>Telefone</label>
       @if(hasErrorFor('telefone')) 
       <span class= "mens-error"> {{ getErrorFor('telefone') }} </span>
@@ -192,6 +192,28 @@
       var x = document.getElementById("drop-list-estado").value;
       document.getElementById("input-estado").value = x;
     }
+
+    // function mascara_cpf(){
+    //   var cpf = document.getElementById('cpf')
+    //   if(input-tipo-pessoa.value == 'PF')
+    //   {
+    //      (cpf.value.length == 3 || cpf.value.length == 7 ){
+    //         cpf.value += "."
+    //       } else if (cpf.value.length == 11) {
+    //         cpf.value += "-"
+    //       }
+    //   } else if {
+    //     (cpf.value.length == 2 || cpf.value.length == 6 ){
+    //       cpf.value += "."
+    //     } else if (cpf.value.length == 10) {
+    //       cpf.value += "/"
+    //     } else if (cpf.value.length == 15){
+    //       cpf.value += "-"
+    //     }
+    //   }
+    // }
+    
+    
 
 
   </script>

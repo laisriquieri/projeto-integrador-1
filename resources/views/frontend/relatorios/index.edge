@@ -14,8 +14,7 @@
 
     <h3>Relatórios</h3>
 
-  <form action="relatorios/os-mes-ano" method="get">
-      {{ csrfField() }}
+  
             <button id="icone-pesquisa" type="submit">
               <span class="material-icons">search</span>
             </button>
@@ -27,47 +26,55 @@
     
       
     <div id="box-relatorios"> 
-        
-      <div id="div-relatorios">
-        <label>Aniversariantes do dia</label>
-      </div>
-      <div id="div-relatorios">
-        
-          <button type="submit"  class="botao-consulta-os" onclick="/relatorios/aniversariantes">
-            Consultar
-          </button>
-        
-      </div>
+      
+        <div id="div-relatorios">
+          <label><h3>Aniversariantes do dia:</h3></label>
+        </div>
+
+        <div id="div-relatorios">
+          <a href="/relatorios/aniversariantes">
+            <button type="submit" class="botao-consulta-os">
+              Consultar
+            </button>
+          </a>
+        </div>
+      
 
     </div>   
     <div id="busca">
     </div>
-    <div id="box-relatorios" >
-      <div id="div-relatorios">
-        <label> Ordens de Serviço por Mês </label>
-      </div>
+    <form action="relatorios/os-mes-ano" method="get">
+        {{ csrfField() }}   
+      
+      <div id="box-relatorios" >
+        <div>
+          <div id="div-relatorios">
+            <label> <h3>Ordens de Serviço por Mês: </h3></label>
           
-      <div id="div-relatorios">
-            <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
-              <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
-                @each(mes in meses)
-              <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
-                @endeach
-            </select>
+          </div>    
+          <div id="div-relatorios">
+                <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
+                  <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
+                    @each(mes in meses)
+                  <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
+                    @endeach
+                </select>
+          </div>
+        </div>
+
+        <div id="div-relatorios">
+              <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
+                @if(hasErrorFor('mes_ano')) 
+              <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
+                  @endif
+        </div>
+        <div id="div-relatorios">
+              <button type="submit" class="botao-consulta-os">
+                Consultar
+              </button>
+        </div>
       </div>
-      <div id="div-relatorios">
-            <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
-              @if(hasErrorFor('mes_ano')) 
-            <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
-                @endif
-      </div>
-      <div id="div-relatorios">
-            <button type="submit" class="botao-consulta-os">
-              Consultar
-            </button>
-      </div>
-    </div>
-  </form>          
+    </form>            
      
 </div>      
 
