@@ -8,10 +8,13 @@
 
 <div id="lista">
 
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
+    <button id="icone-back" type="submit" onclick="window.history.back();return false;" > 
+      <span class="material-icons">
+        arrow_back
       </span>
-  </button>
+    </button>
+
+
   <h3>Ordem de Serviço: Editar produto</h3>
   <div>
 
@@ -19,9 +22,9 @@
   </div>
 
   
-             @if(hasErrorFor('quantidade')) 
-              <span class= "mens-error"> {{ getErrorFor('quantidade') }} no campo quantidade </span>
-            @endif
+  @if(hasErrorFor('quantidade')) 
+    <span class= "mens-error"> {{ getErrorFor('quantidade') }} no campo quantidade </span>
+  @endif
 
 
     <table id="tabela">
@@ -35,8 +38,6 @@
         </tr>
       </thead>
       <tbody>
-
-
 
           <tr>
             <td><a href="/produto/show/{{ produto.id }}">{{ produto.nome }}</a></td>

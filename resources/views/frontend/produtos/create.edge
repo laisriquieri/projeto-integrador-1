@@ -1,13 +1,15 @@
-{{--provisório para testes--}}
 @layout("layouts.master")
 
 @section("content")
 
 <div id="lista-cadastro">
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
+
+    <button id="icone-back" type="submit" onclick="window.history.back();return false;" > 
+      <span class="material-icons">
+        arrow_back
       </span>
-  </button>
+    </button>
+
   <h3>Novo Produto</h3>
 
   <form action="/produto/create" method="POST">

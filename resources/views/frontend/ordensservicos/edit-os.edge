@@ -3,10 +3,14 @@
 @section("content")
 
 <div id="lista-cadastro-cliente">
-  <button id="icone-back" type="submit">
-    <span class="material-icons">arrow_back
+  
+    <button id="icone-back" type="submit" onclick="window.history.back();return false;" > 
+      <span class="material-icons">
+        arrow_back
       </span>
-  </button>
+    </button>
+
+
   <h3>Alterar Ordem de Serviço Nº {{ ordensservico.id }}.</h3>
 
 
