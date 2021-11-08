@@ -10,21 +10,11 @@
 <div id="lista-altera-cliente">
 
     <h3>Relatórios</h3>
-
-<<<<<<< HEAD
-  
-=======
->>>>>>> de6967b67c9944b80c0fc8de003db34711deff06
-            <button id="icone-pesquisa" type="submit">
-              <span class="material-icons">search</span>
-            </button>
-            <input id="pesquisar" type="search" name="search" value="" placeholder="Pesquisar" />
-  
+ 
     <div id="busca">
     </div>
     
     <div id="box-relatorios"> 
-<<<<<<< HEAD
       
         <div id="div-relatorios">
           <label><h3>Aniversariantes do dia:</h3></label>
@@ -38,25 +28,10 @@
           </a>
         </div>
       
-=======
-        
-      <div id="div-relatorios">
-        <label>Aniversariantes do dia</label>
-      </div>
-      <div id="div-relatorios">
-        
-      <a href="/relatorios/aniversariantes">
-          <button type="submit" class="botao-consulta-os">
-            Consultar
-          </button>
-      </a>
-      </div>
->>>>>>> de6967b67c9944b80c0fc8de003db34711deff06
 
     </div>   
     <div id="busca">
     </div>
-<<<<<<< HEAD
     <form action="relatorios/os-mes-ano" method="get">
         {{ csrfField() }}   
       
@@ -87,33 +62,6 @@
                 Consultar
               </button>
         </div>
-=======
-    <div id="box-relatorios" >
-      <div id="div-relatorios">
-        <label> Ordens de Serviço por Mês </label>
-      </div>
-        
-      <form action="relatorios/os-mes-ano" method="get">
-      {{ csrfField() }}
-      <div id="div-relatorios">
-            <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
-              <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
-                @each(mes in meses)
-              <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
-                @endeach
-            </select>
-      </div>
-      <div id="div-relatorios">
-            <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
-              @if(hasErrorFor('mes_ano')) 
-            <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
-                @endif
-      </div>
-      <div id="div-relatorios">
-            <button type="submit" class="botao-consulta-os">
-              Consultar
-            </button>
->>>>>>> de6967b67c9944b80c0fc8de003db34711deff06
       </div>
     </form>            
      
