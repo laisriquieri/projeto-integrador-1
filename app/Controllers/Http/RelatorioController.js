@@ -31,9 +31,16 @@ class RelatorioController {
                       .whereIn('id', id_os_por_mes)
                       .with('cliente')
                       .fetch()
+
+      os_por_mes = os_por_mes['rows']
+      const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+
+      os_por_mes.forEach( os => {
+        os.valor_total_liquido = formataReais.format(os.valor_total_liquido);
+      } )
       
       return view.render('frontend.relatorios.os-por-mes', { mes_ano: mes_ano,
-              ordensservicos: os_por_mes['rows'] } );
+              ordensservicos: os_por_mes } );
         
     }
 

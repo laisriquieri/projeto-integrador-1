@@ -18,7 +18,7 @@ class ClienteUpdate {
       nome: 'required|min:3|max:254',
       cpf_cnpj: 'required|min:3|max:14|number',
       data_nascimento: 'required|date',
-      telefone: 'required|min:8|number|max:11',
+      telefone: 'required|min:10|number|max:11',
       email: 'required|email|min:5|max:254',
       cep: 'required|min:3|max:8|number',
       endereco: 'required|min:3|max:250',
