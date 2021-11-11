@@ -43,9 +43,19 @@ class OrdemServicoController {
 
     var ordensservicos = await this.search(search, page, perPage);
 
+
+    var pages = ordensservicos['pages'];
+    ordensservicos = ordensservicos['rows'];
+
+    const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+    
+    ordensservicos.forEach( os => {
+      os.valor_total_liquido = formataReais.format( os.valor_total_liquido );
+    } )
+
     return view.render('frontend.ordensservicos.index',  { 
-      ordensservicos: ordensservicos['rows'],
-      pages:    ordensservicos['pages'],
+      ordensservicos: ordensservicos,
+      pages:    pages,
       search:   search
     });
   }
@@ -151,8 +161,6 @@ class OrdemServicoController {
                                             .where('id', params.id)
                                             .with('cliente').first();
 
-    ordensservico.data_entrada = await ordensservico.toJSON().data_entrada
-    ordensservico.data_entrega = await ordensservico.toJSON().data_entrega
 
 
     const servico_ordensservico = await Database.select('*')
@@ -164,6 +172,29 @@ class OrdemServicoController {
                                         .from('produtos_das_ordens_servicos as pos')
                                         .innerJoin('produtos as p', 'p.id', 'pos.produto_id')
                                         .where('pos.ordem_servico_id', ordensservico.id )
+
+
+    const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+
+    ordensservico.data_entrada = await ordensservico.toJSON().data_entrada
+    ordensservico.data_entrega = await ordensservico.toJSON().data_entrega    
+    
+    ordensservico.valor_total_bruto = formataReais.format( ordensservico.valor_total_bruto );
+    ordensservico.valor_total_liquido = formataReais.format( ordensservico.valor_total_liquido );
+
+    servico_ordensservico.forEach( servico => {
+      const valor_total = servico.valor * servico.quantidade;
+      servico.valor = formataReais.format( servico.valor );
+      servico.valor_total = formataReais.format(valor_total);
+    } )
+
+
+    produto_ordensservico.forEach( produto => {
+      const valor_total = produto.valor_venda * produto.quantidade;
+      produto.valor_venda = formataReais.format( produto.valor_venda );
+      produto.valor_total = formataReais.format(valor_total);
+      console.log(produto)
+    } )
 
     return  view.render('frontend.ordensservicos.show', 
         { ordensservico, servico_ordensservico, produto_ordensservico } )

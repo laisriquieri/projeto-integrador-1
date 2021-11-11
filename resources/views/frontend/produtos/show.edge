@@ -32,15 +32,16 @@
         <input disabled type="text" value="{{ produto.descricao }}" name="descricao" class="form-control" required/>
       </div>
 
+  
       <div class="label-edit">
         <label for="">Valor Compra: </label>
-        <input disabled type="text" name="valor_compra" value="{{ produto.valor_compra }}" class="form-control" required/>
+        <input disabled type="text" id="valor_compra" name="valor_compra" value="{{ produto.valor_compra }}" class="form-control" required/>
       </div>
 
 
       <div class="label-edit">
         <label>Valor Venda: </label>
-        <input disabled type="number" name="valor_venda" value="{{ produto.valor_venda }}" class="form-control" required/>
+        <input disabled type="text" id="valor_venda" name="valor_venda" value="{{ produto.valor_venda }}" class="form-control" required/>
       </div>
 
     </table>
@@ -68,4 +69,11 @@
     <br>
   </div>
 </div>
+@endsection
+
+
+@section('scripts')
+
+
+
 @endsection

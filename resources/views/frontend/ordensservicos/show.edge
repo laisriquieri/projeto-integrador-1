@@ -107,7 +107,7 @@
                 <td>{{ servico.categoria }}</td>
                 <td>{{ servico.quantidade }}</td>
                 <td>{{ servico.valor }}</td>
-                <td>{{ servico.valor * servico.quantidade }}</td>
+                <td>{{ servico.valor_total}}</td>
                 <td>
                   <a href="/os/edit-step2/{{ servico.ordem_servico_id }}/{{ servico.servico_id }}">
                     <span class="material-icons">edit</span>
@@ -136,7 +136,7 @@
                 <td>Produto</td>
                 <td>{{ produto.quantidade }}</td>
                 <td>{{ produto.valor_venda }}</td>
-                <td>{{ produto.valor_venda * produto.quantidade }}</td>
+                <td>{{ produto.valor_total }}</td>
                 <td>
                   <a href="/os/edit-step3/{{ produto.ordem_servico_id }}/{{ produto.produto_id }}">
                     <span class="material-icons">edit</span>

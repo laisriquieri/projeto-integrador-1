@@ -39,9 +39,19 @@ class ServicoController {
 
       var servicos = await this.search(search, page, perPage);
 
+      var pages = servicos['pages'];
+      servicos = servicos['rows'];
+
+      const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+      
+      servicos.forEach( servico => {
+        servico.valor = formataReais.format( servico.valor );
+      } )
+      
+
       return view.render('frontend.servicos.index',  { 
-        servicos: servicos['rows'],
-        pages:    servicos['pages'],
+        servicos: servicos,
+        pages:    pages,
         search:   search
       });
     }
@@ -102,6 +112,11 @@ class ServicoController {
   async show ({ params, request, response, view }) {
 
     const servico = await Servico.find(params.id);
+
+    const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+    servico.valor = formataReais.format( servico.valor );
+    console.log(servico.valor)
+
     return  view.render('frontend.servicos.show', {servico} )
 
   }

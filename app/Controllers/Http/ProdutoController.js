@@ -38,10 +38,19 @@ class ProdutoController {
       }
 
       var produtos = await this.search(search, page, perPage);
+      var pages = produtos['pages'];
+      produtos = produtos['rows'];
+
+      const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+      
+      produtos.forEach( produto => {
+        produto.valor_compra = formataReais.format( produto.valor_compra );
+        produto.valor_venda = formataReais.format( produto.valor_venda );  
+      } )
 
       return view.render('frontend.produtos.index',  {
-        produtos: produtos['rows'],
-        pages:    produtos['pages'],
+        produtos: produtos,
+        pages:    pages,
         search:   search
       });
 }
@@ -98,6 +107,11 @@ class ProdutoController {
   async show ({ params, request, response, view }) {
 
     const produto = await Produto.find(params.id);
+
+    const formataReais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+    produto.valor_compra = formataReais.format( produto.valor_compra );
+    produto.valor_venda = formataReais.format( produto.valor_venda );
+
     return  view.render('frontend.produtos.show', {produto})
 
   }
