@@ -1,6 +1,7 @@
 'use strict'
 
 const Produto = use('App/Models/Produto');
+const ProdutosDasOrdensServico = use('App/Models/ProdutosDasOrdensServico');
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -164,6 +165,13 @@ class ProdutoController {
   async destroy ({ params, request, response, session }) {
 
     const produto = await Produto.find(params.id);
+
+    const existeProdutoEmOS = await ProdutosDasOrdensServico.query().where('produto_id', produto.id).first() !== null
+    if ( existeProdutoEmOS ) {
+      session.flash({ notification: 'Ops! Não é possível excluir, produto pertence a OS' });
+      return response.redirect('/produtos');    
+    }
+    
     await produto.delete();
 
     session.flash({ notification: 'Produto excluído com sucesso' });

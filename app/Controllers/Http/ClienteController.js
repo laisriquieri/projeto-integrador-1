@@ -1,6 +1,7 @@
 'use strict';
 
 const Cliente = use('App/Models/Cliente');
+const OrdemServico = use('App/Models/OrdemServico');
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -155,6 +156,13 @@ class ClienteController {
   async destroy ({ params, request, response, session }) {
 
     const cliente = await Cliente.findOrFail(params.id)
+
+    const existeClienteEmOS = await OrdemServico.query().where('cliente_id', cliente.id).first() !== null
+    if ( existeClienteEmOS ) {
+      session.flash({ notification: 'Ops! Não é possível excluir, cliente pertence a OS' });
+      return response.redirect('/clientes');    
+    }
+
     await cliente.delete()
 
     session.flash({ notification: 'Cliente deletado com sucesso' });

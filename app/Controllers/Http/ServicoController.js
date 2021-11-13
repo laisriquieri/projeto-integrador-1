@@ -1,6 +1,7 @@
 'use strict'
 
 const Servico = use('App/Models/Servico');
+const ServicosDasOrdensServico = use('App/Models/ServicosDasOrdensServico');
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -168,6 +169,13 @@ class ServicoController {
   async destroy ({ params, request, response, session }) {
 
     const servico = await Servico.findOrFail(params.id)
+
+    const existeServicoEmOS = await ServicosDasOrdensServico.query().where('servico_id', servico.id).first() !== null
+    if ( existeServicoEmOS ) {
+      session.flash({ notification: 'Ops! Não é possível excluir, servico pertence a OS' });
+      return response.redirect('/servicos');    
+    }
+
     await servico.delete()
 
     session.flash({ notification: 'Servico deletado com sucesso' });
