@@ -7,7 +7,7 @@
 <span class="sucesso">{{ flashMessage('notification') }}</span>
 @endif
 
-<div id="lista-altera-cliente">
+<div id="lista-relatorio">
 
     <h3>Relatórios</h3>
  
@@ -18,15 +18,14 @@
       
         <div id="div-relatorios">
           <label><h3>Aniversariantes do dia:</h3></label>
-        </div>
-
-        <div id="div-relatorios">
           <a href="/relatorios/aniversariantes">
             <button type="submit" class="botao-consulta-os">
               Consultar
             </button>
           </a>
         </div>
+
+      
       
 
     </div>   
@@ -39,29 +38,26 @@
         <div>
           <div id="div-relatorios">
             <label> <h3>Ordens de Serviço por Mês: </h3></label>
+            <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
+              <option  value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
+                @each(mes in meses)
+              <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
+                @endeach
+            </select>
+            <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
+            @if(hasErrorFor('mes_ano')) 
+          <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
+              @endif
           
-          </div>    
-          <div id="div-relatorios">
-                <select id="drop-list-mes-ano" onchange="selecionaMesAno()">
-                  <option value="" {{ old('mes_ano', '') == '' ? "selected" : '' }}>Selecione mês e ano</option>
-                    @each(mes in meses)
-                  <option value="{{mes.mes_ano }}" {{ old('mes_ano', '') == mes.mes_ano  ? "selected" : '' }} > {{ mes.mes_ano }} </option>
-                    @endeach
-                </select>
-          </div>
-        </div>
-
-        <div id="div-relatorios">
-              <input type="hidden" value="{{ old('mes_ano', '') }}" name="mes_ano" id="input-mes-ano" required>
-                @if(hasErrorFor('mes_ano')) 
-              <span class= "mens-error"> {{ getErrorFor('mes_ano') }} </span>
-                  @endif
-        </div>
-        <div id="div-relatorios">
-              <button type="submit" class="botao-consulta-os">
+              <button type="submit" class="botao-consulta-os2">
                 Consultar
               </button>
+          </div>    
+
         </div>
+
+
+        
       </div>
     </form>            
      
